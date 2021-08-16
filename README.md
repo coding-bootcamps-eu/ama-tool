@@ -32,3 +32,28 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## Regeln
+- Variablen: variablen (english) "camelCase"
+- Class (HTML) id-Namen mit "-" und lowercase
+- Selfdescribing variabel
+- Vue-Bezeichnungen doppelbennung und Anfangsbuchstabe groß "MaxMustermann"
+- bei unklare Funktionen Kommentare dazu schreiben
+- Quotes: "..." >> Doublequotes
+- CSS-Style:
+    - General-Styling
+    - Specific-Styling
+    - Rest von oben nach unten passend zum DOM
+- Components only with "scoped" and in folder
+## Views
+- Body
+  Home
+  Teams
+- Fragen
+  - Fragen Stellen
+  - Frage Liste
+- Footer
+  Datenschutz
+  Imprint
+
