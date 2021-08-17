@@ -30,7 +30,7 @@
           >
         </li>
       </ul>
-      <p>Copyright 2021</p>
+      <p>Copyright {{ year }}</p>
       <div class="footer-social-wrapper">
         <ul>
           <li>
@@ -54,6 +54,26 @@
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  name: "MainFooter",
+  data() {
+    return {
+      year: "",
+    };
+  },
+  methods: {
+    getYear() {
+      this.year = new Date();
+      this.year = this.year.getFullYear();
+    },
+  },
+  created() {
+    this.getYear();
+  },
+};
+</script>
 
 <style scoped>
 .image-footer {
