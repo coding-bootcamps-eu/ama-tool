@@ -8,16 +8,16 @@
     <nav>
         <ul class="header-nav">
             <li class="nav-element">
-                <router-link class="nav-link" to="/">Start</router-link>
+                <router-link to="/">Start</router-link>
             </li>
             <li class="nav-element">
-                <router-link class="nav-link" to="/questionlist">Fragen Liste</router-link>
+                <router-link to="/questionlist">Fragen Liste</router-link>
             </li>
             <li class="nav-element">
-                <router-link class="nav-link" to="/askquestion">Frage stellen</router-link>
+                <router-link to="/askquestion">Frage stellen</router-link>
             </li>
             <li class="nav-element">
-                <router-link class="nav-link" to="/team">Team</router-link>
+                <router-link to="/team">Team</router-link>
             </li>
         </ul>
     </nav>
@@ -27,7 +27,7 @@
 .header-wrapper {
     display: flex;
     align-items: center;
-    padding-left: 2rem;
+    padding-left: 2.54rem;
 }
 .header-logo {
     height: 3rem;
@@ -35,21 +35,30 @@
 h1 {
     margin-left: 2rem;
 }
-.header-nav {
- display: flex;
- flex-flow: row;
- list-style-type: none;
-}
-.nav-element {
-    margin: 1rem;
-    border-radius: .25rem;
-    border: 1px solid red;
-    padding: 1rem;
-}
-.nav-link {
+nav {
+  .header-nav {
+    padding: 0rem 2rem 2rem 2rem;
+    display: flex;
+    flex-flow: row;
+    list-style-type: none;
+    border-bottom: 0.5px solid var(--primary-color);
+  }
+  li a {
+    color: black;
     text-decoration: none;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border: 0.5px solid var(--primary-color);
+    border-radius: 0.25rem;
+    &.router-link-active {
+      border: 2.5px solid var(--primary-color);
+      border-radius: 0.25rem;
+    }
+    &:focus {
+        outline: none;
+        border: 2.5px solid var(--primary-color);
+        border-radius: 0.25rem;
+    }
+  }
 }
-/* .nav-element:active {
-    border: 1px solid blue;
-} */
 </style>

@@ -13,24 +13,35 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  --primary-color: #6A1CC3;
+  --secondary-color: #A970EB;
+  --background-color: #fafafa;
+  --success-color: #A3DB33;
+  --fail-color: #ED3221;
+  --font-color: #121212;
+  --placeholder-color: rgba(18, 18, 18, .7);
+
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+}
+html {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  font-size: 18px;
+  line-height: 1.5rem;
+  h1{font-size: 2.2rem};
+  h2{font-size: 2.0rem};
+  h3{font-size: 1.8rem};
+}
+body {
+  margin: 0;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
