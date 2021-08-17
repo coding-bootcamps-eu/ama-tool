@@ -56,7 +56,7 @@ nav {
     }
     &:focus {
         outline: none;
-        border: 2.5px solid var(--primary-color);
+        border: 2.5px solid var(--success-color);
         border-radius: 0.25rem;
     }
   }
