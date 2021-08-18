@@ -1,6 +1,7 @@
 <template>
   <div>
     <MainNavigation />
+    <AskQuestion />
     <MainFooter />
     <router-view />
   </div>
@@ -8,12 +9,14 @@
 
 <script>
 import MainNavigation from "@/components/MainNavigation/MainNavigation.vue";
+import AskQuestion from "@/components/AskQuestion/AskQuestion.vue";
 import MainFooter from "@/components/MainFooter/MainFooter.vue";
 
 export default {
   name: "App",
   components: {
     MainNavigation,
+    AskQuestion,
     MainFooter,
   },
 };
