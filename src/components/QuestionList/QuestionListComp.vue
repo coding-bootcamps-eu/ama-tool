@@ -2,10 +2,12 @@
   <section class="question-list">
     <ul id="questions">
       <ListElement
-        v-for="question in questions"
-        :key="question.id"
+        v-for="(question, index) in questions"
+        :key="index"
         v-bind="question"
-        @upvote="voteQuestion(question.id)"
+        @upvote="voteQuestion(index)"
+        @answer="answerQuestion(index)"
+        @downvote="downVote(index)"
       />
     </ul>
   </section>
@@ -27,14 +29,35 @@ export default {
   },
   methods: {
     voteQuestion(id) {
+      this.questions[id].upvotes++;
       this.questions[id] = {
         ...this.questions[id],
-        upvote: true,
+        isVoted: true,
+      };
+    },
+    downVote(id) {
+      this.questions[id].upvotes--;
+      this.questions[id] = {
+        ...this.questions[id],
+        isVoted: false,
+      };
+    },
+    answerQuestion(id) {
+      this.questions[id] = {
+        ...this.questions[id],
+        isDone: true,
       };
     },
   },
+  computed: {},
   created() {
     this.questions = [...QUESTIONS];
+    console.log(this.questions);
   },
 };
 </script>
+<style lang="scss" scoped>
+ul > li {
+  display: flex;
+}
+</style>
