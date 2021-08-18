@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <label for="question-title"></label>
     <input
       type="text"
       id="question-title"
@@ -9,7 +8,7 @@
       placeholder="Titel der Frage"
       maxlength="150"
     />
-    <label for="question-description"></label>
+    <label for="question-title">Titel der Frage:</label>
     <textarea
       id="question-description"
       class="question-description"
@@ -19,24 +18,30 @@
       cols="30"
       rows="10"
     ></textarea>
-    <label for="cancel-question-btn"></label>
-    <input
-      type="button"
-      id="cancel-question-btn"
-      class="cancel-question-btn"
-      value="ABBRECHEN"
-    />
-    <label for="send-question-btn"></label>
-    <input
-      type="button"
-      id="send-question-btn"
-      class="send-question-btn"
-      value="SENDEN"
-    />
+    <label for="question-description">Beschreibung der Frage:</label>
+    <div class="wrapper-btn-row">
+      <input
+        type="button"
+        id="cancel-question-btn"
+        class="cancel-question-btn"
+        value="ABBRECHEN"
+      />
+      <label for="cancel-question-btn">Abbrechen Button</label>
+      <input
+        type="button"
+        id="send-question-btn"
+        class="send-question-btn"
+        value="SENDEN"
+      />
+      <label for="send-question-btn">Senden Button</label>
+    </div>
   </div>
 </template>
 
 <style scoped>
+textarea {
+  resize: none;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -49,6 +54,16 @@
   padding: 0.3rem;
   margin: 0.5rem;
   font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
+  /*TODO: need to fix max width */
+  min-width: 60%;
+  max-width: 40vw;
+}
+/*TODO: need to fix styling of the labels and :focus pseudo-class */
+.question-title:focus + label,
+.question-description:focus + label {
+  border: 2.5px solid var(--success-color);
 }
 .cancel-question-btn {
   color: var(--background-color);
@@ -58,6 +73,9 @@
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
 }
 .send-question-btn {
   color: var(--background-color);
@@ -67,5 +85,13 @@
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
+}
+/*TODO: need to fix styling of the labels and :focus pseudo-class */
+.cancel-question-btn:focus + label,
+.send-question-btn:focus + label {
+  border: 2.5px solid var(--success-color);
 }
 </style>
