@@ -1,39 +1,45 @@
 <template>
-<header>
-    <div class="header-wrapper">
-    <img class="header-logo" alt="Coding Bootcamp Europe Logo" src="@/assets/cbe-logo-plain.png" />
-    <h1>AMA Tool</h1>
-    </div>
-</header>
+  <div>
+    <header>
+      <div class="header-wrapper">
+        <img
+          class="header-logo"
+          alt="Coding Bootcamp Europe Logo"
+          src="@/assets/cbe-logo-plain.png"
+        />
+        <h1>AMA Tool</h1>
+      </div>
+    </header>
     <nav>
-        <ul class="header-nav">
-            <li class="nav-element">
-                <router-link to="/">Start</router-link>
-            </li>
-            <li class="nav-element">
-                <router-link to="/questionlist">Fragen Liste</router-link>
-            </li>
-            <li class="nav-element">
-                <router-link to="/askquestion">Frage stellen</router-link>
-            </li>
-            <li class="nav-element">
-                <router-link to="/team">Team</router-link>
-            </li>
-        </ul>
+      <ul class="header-nav">
+        <li class="nav-element">
+          <router-link to="/">Start</router-link>
+        </li>
+        <li class="nav-element">
+          <router-link to="/questionlist">Fragen Liste</router-link>
+        </li>
+        <li class="nav-element">
+          <router-link to="/askquestion">Frage stellen</router-link>
+        </li>
+        <li class="nav-element">
+          <router-link to="/team">Team</router-link>
+        </li>
+      </ul>
     </nav>
+  </div>
 </template>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .header-wrapper {
-    display: flex;
-    align-items: center;
-    padding-left: 2.54rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2.54rem;
 }
 .header-logo {
-    height: 3rem;
+  height: 3rem;
 }
 h1 {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
 nav {
   .header-nav {
@@ -55,9 +61,9 @@ nav {
       border-radius: 0.25rem;
     }
     &:focus {
-        outline: none;
-        border: 2.5px solid var(--primary-color);
-        border-radius: 0.25rem;
+      outline: none;
+      border: 2.5px solid var(--primary-color);
+      border-radius: 0.25rem;
     }
   }
 }

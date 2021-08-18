@@ -1,7 +1,9 @@
 <template>
-  <MainNavigation />
-  <MainFooter />
-  <router-view />
+  <div>
+    <MainNavigation />
+    <MainFooter />
+    <router-view />
+  </div>
 </template>
 
 <script>
