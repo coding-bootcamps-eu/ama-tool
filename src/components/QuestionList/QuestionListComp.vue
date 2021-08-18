@@ -1,8 +1,33 @@
 <template>
-  <section class="question-list">
+  <section class="question-list" id="questionList">
+    <div class="filter-optionen">
+      <input
+        type="radio"
+        v-model="questionStatus"
+        name="filter"
+        id="filterAll"
+        value="All"
+      />
+      <label for="filterAll">Zeige alle Fragen</label>
+      <input
+        type="radio"
+        v-model="questionStatus"
+        name="filter"
+        id="filterOpen"
+        value="false"
+      />
+      <label for="filterOpen">Zeige offene Fragen</label>
+      <input
+        type="radio"
+        v-model="questionStatus"
+        name="filter"
+        id="filterClosed"
+        value="true"
+      /><label for="filterClosed">Zeige beantwortete Fragen</label>
+    </div>
     <ul id="questions">
       <ListElement
-        v-for="(question, index) in questions"
+        v-for="(question, index) in filteredQuestions"
         :key="index"
         v-bind="question"
         @upvote="voteQuestion(index)"
@@ -19,12 +44,14 @@ import QUESTIONS from "./QuestionsJS.js";
 
 export default {
   name: "QuestionList",
+  el: "#questionList",
   components: {
     ListElement,
   },
   data() {
     return {
       questions: [],
+      questionStatus: "All",
     };
   },
   methods: {
@@ -49,7 +76,22 @@ export default {
       };
     },
   },
-  computed: {},
+  computed: {
+    filteredQuestions: function () {
+      let questionStatus = this.questionStatus;
+      if (questionStatus === "All") {
+        return this.questions;
+      } else if (questionStatus === "false") {
+        return this.questions.filter(function (question) {
+          return question.isDone === false;
+        });
+      } else {
+        return this.questions.filter(function (question) {
+          return question.isDone === true;
+        });
+      }
+    },
+  },
   created() {
     this.questions = [...QUESTIONS];
     console.log(this.questions);
