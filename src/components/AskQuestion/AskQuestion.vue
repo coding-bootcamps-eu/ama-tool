@@ -5,6 +5,7 @@
       id="question-title"
       class="question-title"
       name="question-title"
+      v-model="currentQuestion.title"
       placeholder="Titel der Frage"
       maxlength="150"
     />
@@ -13,6 +14,7 @@
       id="question-description"
       class="question-description"
       name="question-description"
+      v-model="currentQuestion.description"
       placeholder="Bitte beschreibe deine Frage genauer."
       maxlength="5000"
       cols="30"
@@ -24,6 +26,7 @@
         type="button"
         id="cancel-question-btn"
         class="cancel-question-btn"
+        @click="resetInput"
         value="ABBRECHEN"
       />
       <label for="cancel-question-btn">Abbrechen Button</label>
@@ -31,12 +34,63 @@
         type="button"
         id="send-question-btn"
         class="send-question-btn"
+        @click="initQuestions"
         value="SENDEN"
       />
       <label for="send-question-btn">Senden Button</label>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "AskQuestions",
+
+  data() {
+    return {
+      currentQuestion: {
+        id: 1,
+        title: "",
+        description: "",
+        category: "Simons category",
+        isDone: false,
+        created_at: new Date(),
+        author: "randomAuthor",
+        upvotes: 0,
+      },
+
+      questionArray: [],
+    };
+  },
+  methods: {
+    initQuestions() {
+      // initiated with send-button. questionToList will be new stringify-Entry and will be pushed in array - later new DB-entry.
+      // todo: check min-length of title/description?
+      // afterwards delete this.title, this.description. Later on have to check all the attributes.
+      this.created_at = new Date();
+
+      const questionToList = JSON.stringify({
+        id: this.currentQuestion.id,
+        title: this.currentQuestion.title,
+        description: this.currentQuestion.description,
+        category: this.currentQuestion.category,
+        isDone: this.currentQuestion.isDone,
+        created_at: this.currentQuestion.created_at,
+        author: this.currentQuestion.author,
+        upvotes: this.currentQuestion.upvotes,
+      });
+      this.questionArray.push(questionToList);
+      this.currentQuestion.title = "";
+      this.currentQuestion.description = "";
+    },
+    resetInput() {
+      // resets the written values (Todo: re-routing; Reset more values?!)
+      this.currentQuestion.description = "";
+      this.currentQuestion.title = "";
+    },
+  },
+};
+</script>
 
 <style scoped>
 textarea {
