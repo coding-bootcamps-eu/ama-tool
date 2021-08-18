@@ -1,33 +1,45 @@
 <template>
   <section class="question-list" id="questionList">
-    <div class="filter-optionen">
-      <input
-        type="radio"
-        v-model="questionStatus"
-        name="filter"
-        id="filterAll"
-        value="All"
-      />
-      <label for="filterAll">Zeige alle Fragen</label>
-      <input
-        type="radio"
-        v-model="questionStatus"
-        name="filter"
-        id="filterOpen"
-        value="false"
-      />
-      <label for="filterOpen">Zeige offene Fragen</label>
-      <input
-        type="radio"
-        v-model="questionStatus"
-        name="filter"
-        id="filterClosed"
-        value="true"
-      /><label for="filterClosed">Zeige beantwortete Fragen</label>
+    <div class="user-options">
+      <div class="filter-options">
+        <input
+          type="radio"
+          v-model="questionStatus"
+          name="filter"
+          id="filterAll"
+          value="All"
+        />
+        <label for="filterAll">Alle Fragen</label>
+        <input
+          type="radio"
+          v-model="questionStatus"
+          name="filter"
+          id="filterOpen"
+          value="false"
+        />
+        <label for="filterOpen">Offene Fragen</label>
+        <input
+          type="radio"
+          v-model="questionStatus"
+          name="filter"
+          id="filterClosed"
+          value="true"
+        /><label for="filterClosed">Beantwortete Fragen</label>
+      </div>
     </div>
     <ul id="questions">
       <ListElement
         v-for="(question, index) in filteredQuestions"
+        :key="index"
+        v-bind="question"
+        @upvote="voteQuestion(index)"
+        @answer="answerQuestion(index)"
+        @downvote="downVote(index)"
+      />
+    </ul>
+    <ul id="questions">
+      <ListElement
+        v-for="(question, index) in sortedQuestions"
         :key="index"
         v-bind="question"
         @upvote="voteQuestion(index)"
@@ -91,6 +103,14 @@ export default {
         });
       }
     },
+    sortedQuestions: function () {
+      function compare(a, b) {
+        if (a.upvotes > b.upvotes) return -1;
+        if (a.upvotes < b.upvotes) return 1;
+        return 0;
+      }
+      return this.questions.slice(0).sort(compare);
+    },
   },
   created() {
     this.questions = [...QUESTIONS];
@@ -101,5 +121,13 @@ export default {
 <style lang="scss" scoped>
 ul > li {
   display: flex;
+}
+.filter-options {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  label {
+    margin-right: 1rem;
+  }
 }
 </style>
