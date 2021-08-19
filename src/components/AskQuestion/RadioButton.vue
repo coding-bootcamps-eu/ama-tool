@@ -112,16 +112,6 @@ label {
   _padding: 0.5rem;
   font-size: 0.85rem;
 }
-label > label {
-  _margin-right: 0.6rem;
-}
-/*
-.result-text {
-  position: relative;
-  bottom: 1.55rem;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.85rem;
-}*/
 
 .button-area {
   display: flex;
