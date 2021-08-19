@@ -111,14 +111,11 @@ input[type="radio"]:focus + label {
   outline: none;
   border: 2.5px solid black;
   border-radius: 0.25rem;
+  transform: scale(1.1);
 }
 
 input[type="radio"] {
   all: unset;
-}
-input[type="radio"]:checked + label {
-  border: solid 2.5px green;
-  border-radius: 0.25rem;
 }
 
 .category-html-input {

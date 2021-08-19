@@ -1,33 +1,48 @@
 <template>
   <div class="wrapper">
-    <input
-      type="text"
-      id="question-title"
-      class="question-title"
-      name="question-title"
-      v-model="currentQuestion.title"
-      placeholder="Titel der Frage"
-      maxlength="150"
-    />
-    <label for="question-title">Titel der Frage:</label>
-    <textarea
-      id="question-description"
-      class="question-description"
-      name="question-description"
-      v-model="currentQuestion.description"
+    <div class="wrapper-question-title">
+      <input
+        type="text"
+        id="question-title"
+        class="question-title"
+        name="question-title"
+        v-model="currentQuestion.title"
+        maxlength="150"
+      />
+      <label for="question-title" class="label-title">Titel der Frage</label>
+    </div>
+    <RadioButton />
+    <div class="wrapper-question-description">
+      <textarea
+        id="question-description"
+        class="question-description"
+        name="question-description"
+        v-model="currentQuestion.description"
+        maxlength="5000"
+        cols="30"
+        rows="10"
+      ></textarea>
+      <label for="question-description" class="label-description"
+        >Beschreibung der Frage</label
+      >
+    </div>
+    <div
+      id="question-preview"
+      class="question-preview"
+      name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
-      maxlength="5000"
-      cols="30"
-      rows="10"
-    ></textarea>
-    <label for="question-description">Beschreibung der Frage:</label>
+      v-show="previewIsVisible"
+    >
+      <Markdown :source="currentQuestion.description" />
+    </div>
+
     <input
       type="button"
       id="preview-question-btn"
       class="preview-question-btn"
       value="Vorschau"
-    /><RadioButton />
-    <label for="preview-question-btn">Vorschau</label>
+      @click="showPreview"
+    />
     <div class="wrapper-btn-row">
       <input
         type="button"
@@ -36,8 +51,6 @@
         @click="resetInput"
         value="ABBRECHEN"
       />
-
-      <label for="cancel-question-btn">Abbrechen Button</label>
       <input
         type="button"
         id="send-question-btn"
@@ -45,18 +58,19 @@
         @click="initQuestions"
         value="SENDEN"
       />
-      <label for="send-question-btn">Senden Button</label>
     </div>
   </div>
 </template>
 
 <script>
 import RadioButton from "@/components/AskQuestion/RadioButton.vue";
+import Markdown from "vue3-markdown-it";
 
 export default {
   name: "AskQuestions",
   components: {
     RadioButton,
+    Markdown,
   },
 
   data() {
@@ -71,7 +85,7 @@ export default {
         author: "randomAuthor",
         upvotes: 0,
       },
-
+      previewIsVisible: false,
       questionArray: [],
     };
   },
@@ -101,11 +115,15 @@ export default {
       this.currentQuestion.description = "";
       this.currentQuestion.title = "";
     },
+    showPreview() {
+      this.previewIsVisible = !this.previewIsVisible;
+    },
   },
 };
 </script>
 
 <style scoped>
+/* -------- Styling of the input field and textarea -------- */
 textarea {
   resize: none;
 }
@@ -115,23 +133,55 @@ textarea {
   align-items: center;
 }
 .question-title,
-.question-description {
+.question-description,
+.question-preview {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
-  padding: 0.3rem;
+  padding: 0.8rem 0.3rem 0.3rem 0.3rem;
   margin: 0.5rem;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 1.5rem;
   /*TODO: need to fix max width */
-  min-width: 60%;
-  max-width: 40vw;
+  min-width: 60vw;
+  max-width: 20%;
+}
+.wrapper-question-title,
+.wrapper-question-description {
+  position: relative;
+}
+.label-title {
+  position: absolute;
+  transition: 0.3s;
+  top: 50%;
+  left: 0.95rem;
+  transform: translateY(-50%);
+  color: var(--placeholder-color);
+}
+.label-description {
+  position: absolute;
+  transition: 0.3s;
+  top: 10%;
+  left: 0.95rem;
+  transform: translateY(-50%);
+  color: var(--placeholder-color);
 }
 /*TODO: need to fix styling of the labels and :focus pseudo-class */
+/*TODO: need to fix movement when input field is selected (border of focus is larger) */
 .question-title:focus + label,
 .question-description:focus + label {
+  font-size: 0.6rem;
+  transition: 0.3s;
+  top: 20px;
+  color: var(--font-color);
+}
+.question-title:focus,
+.question-description:focus {
+  outline: none;
   border: 2.5px solid var(--success-color);
 }
+
+/* -------- Styling of the buttons -------- */
 .cancel-question-btn {
   color: var(--background-color);
   font-weight: bold;
