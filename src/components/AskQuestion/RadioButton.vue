@@ -7,7 +7,7 @@
         class="category-html"
         name="category-html"
         value="HTML"
-        v-model="picked"
+        @click="getCategory"
       />
       <label class="category-html-input" for="category-html"
         ><p class="result-text">HTML</p></label
@@ -19,7 +19,7 @@
         class="category-css"
         name="category-css"
         value="CSS"
-        v-model="picked"
+        @click="getCategory"
       />
       <label class="category-css-input" for="category-css"
         ><p class="result-text">CSS</p></label
@@ -31,7 +31,7 @@
         class="category-javascript"
         name="category-javascript"
         value="JavaScript"
-        v-model="picked"
+        @click="getCategory"
       />
       <label class="category-javascript-input" for="category-javascript"
         ><p class="result-text">JavaScript</p></label
@@ -43,7 +43,7 @@
         class="category-vue"
         name="category-vue"
         value="VUE"
-        v-model="picked"
+        @click="getCategory"
       />
       <label class="category-vue-input" for="category-vue"
         ><p class="result-text">VUE</p></label
@@ -55,7 +55,7 @@
         class="category-tooling"
         name="category-tooling"
         value="Tooling"
-        v-model="picked"
+        @click="getCategory"
       />
       <label class="category-tooling-input" for="category-tooling"
         ><p class="result-text">Tooling</p></label
@@ -68,23 +68,22 @@
         class="category-sonstiges"
         name="category-sonstiges"
         value="Sonstiges"
-        v-model="picked"
+        @click="getCategory"
       />
       <label class="category-sonstiges-input" for="category-sonstiges"
         ><p class="result-text">Sonstiges</p></label
       >
-
-      <div class="results">Auswahl: {{ picked }}</div>
     </div>
   </body>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      picked: "",
-    };
+  methods: {
+    getCategory() {
+      this.$emit("getCategory", event.target.value);
+      console.log(event.target.value);
+    },
   },
 };
 </script>

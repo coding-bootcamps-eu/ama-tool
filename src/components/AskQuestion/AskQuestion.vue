@@ -11,7 +11,7 @@
       />
       <label for="question-title" class="label-title">Titel der Frage</label>
     </div>
-    <RadioButton />
+    <RadioButton @getCategory="setNewCategory" />
     <div class="wrapper-question-description">
       <textarea
         id="question-description"
@@ -117,6 +117,9 @@ export default {
     },
     showPreview() {
       this.previewIsVisible = !this.previewIsVisible;
+    },
+    setNewCategory(result) {
+      this.currentQuestion.category = result;
     },
   },
 };
