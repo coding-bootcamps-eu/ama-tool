@@ -1,84 +1,97 @@
 <template>
   <body>
-    <div id="v-model-radiobutton" class="button-area">
-      <input
-        type="radio"
-        id="category-html"
-        class="category-html"
-        name="category-html"
-        value="HTML"
-        @click="getCategory"
-      />
-      <label class="category-html-input" for="category-html"
-        ><p class="result-text">HTML</p></label
-      >
-
-      <input
-        type="radio"
-        id="category-css"
-        class="category-css"
-        name="category-css"
-        value="CSS"
-        @click="getCategory"
-      />
-      <label class="category-css-input" for="category-css"
-        ><p class="result-text">CSS</p></label
-      >
-
-      <input
-        type="radio"
-        id="category-javascript"
-        class="category-javascript"
-        name="category-javascript"
-        value="JavaScript"
-        @click="getCategory"
-      />
-      <label class="category-javascript-input" for="category-javascript"
-        ><p class="result-text">JavaScript</p></label
-      >
-
-      <input
-        type="radio"
-        id="category-vue"
-        class="category-vue"
-        name="category-vue"
-        value="VUE"
-        @click="getCategory"
-      />
-      <label class="category-vue-input" for="category-vue"
-        ><p class="result-text">VUE</p></label
-      >
-
-      <input
-        type="radio"
-        id="category-tooling"
-        class="category-tooling"
-        name="category-tooling"
-        value="Tooling"
-        @click="getCategory"
-      />
-      <label class="category-tooling-input" for="category-tooling"
-        ><p class="result-text">Tooling</p></label
-      >
-
-      <input
-        data-name="test"
-        type="radio"
-        id="category-sonstiges"
-        class="category-sonstiges"
-        name="category-sonstiges"
-        value="Sonstiges"
-        @click="getCategory"
-      />
-      <label class="category-sonstiges-input" for="category-sonstiges"
-        ><p class="result-text">Sonstiges</p></label
-      >
+    <div id="button-area" class="button-area">
+      <div>
+        <input
+          type="radio"
+          id="category-html"
+          class="category-html"
+          name="category-html"
+          value="HTML"
+          @click="getCategory"
+          v-model="picked"
+          default="true"
+        />
+        <label class="category-html-input" for="category-html">HTML</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="category-css"
+          class="category-css"
+          name="category-css"
+          value="CSS"
+          @click="getCategory"
+          v-model="picked"
+        />
+        <label class="category-css-input" for="category-css">CSS</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="category-javascript"
+          class="category-javascript"
+          name="category-javascript"
+          value="JavaScript"
+          @click="getCategory"
+          v-model="picked"
+        />
+        <label class="category-javascript-input" for="category-javascript"
+          >JavaScript</label
+        >
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="category-vue"
+          class="category-vue"
+          name="category-vue"
+          value="VUE"
+          @click="getCategory"
+          v-model="picked"
+        />
+        <label class="category-vue-input" for="category-vue">VUE</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="category-tooling"
+          class="category-tooling"
+          name="category-tooling"
+          value="Tooling"
+          @click="getCategory"
+          v-model="picked"
+        />
+        <label class="category-tooling-input" for="category-tooling"
+          >Tooling</label
+        >
+      </div>
+      <div>
+        <input
+          data-name="test"
+          type="radio"
+          id="category-sonstiges"
+          class="category-sonstiges"
+          name="category-sonstiges"
+          value="Sonstiges"
+          @click="getCategory"
+          v-model="picked"
+        />
+        <label class="category-sonstiges-input" for="category-sonstiges"
+          >Sonstiges</label
+        >
+      </div>
     </div>
   </body>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      picked: "",
+    };
+  },
   methods: {
     getCategory() {
       this.$emit("getCategory", event.target.value);
@@ -91,20 +104,31 @@ export default {
 <style scoped>
 label {
   display: inline-block;
-  width: 5.25rem;
-  height: 1.2rem;
+  position: relative;
+  width: 6rem;
+  _height: 1rem;
   border-radius: 0.25rem;
-  margin: 0.6rem;
-  padding: 0.5rem;
+  _margin: 0.6rem;
+  _padding: 0.5rem;
+  font-size: 0.85rem;
 }
-.button-area {
-  margin-top: 0.9rem;
+label > label {
+  _margin-right: 0.6rem;
 }
+/*
 .result-text {
   position: relative;
   bottom: 1.55rem;
   font-family: "Open Sans", sans-serif;
   font-size: 0.85rem;
+}*/
+
+.button-area {
+  display: flex;
+  width: 60vw;
+  max-width: 40rem;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 input[type="radio"]:focus + label {
@@ -181,5 +205,12 @@ input[type="radio"]:checked + .category-sonstiges-input {
 .results {
   margin-left: 1.25rem;
   font-family: "Open Sans", sans-serif;
+}
+@media screen and (max-width: 1080px) {
+  .button-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px 0px;
+  }
 }
 </style>
