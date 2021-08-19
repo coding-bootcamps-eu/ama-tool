@@ -21,6 +21,15 @@
         cols="30"
         rows="10"
       ></textarea>
+      <div
+        id="question-preview"
+        class="question-preview"
+        name="question-preview"
+        placeholder="Bitte beschreibe deine Frage genauer."
+        v-show="previewIsVisible"
+      >
+        <Markdown :source="currentQuestion.description" />
+      </div>
       <label for="question-description" class="label-description"
         >Beschreibung der Frage</label
       >
@@ -30,6 +39,7 @@
       id="preview-question-btn"
       class="preview-question-btn"
       value="Vorschau"
+      @click="showPreview"
     />
     <div class="wrapper-btn-row">
       <input
@@ -51,8 +61,13 @@
 </template>
 
 <script>
+import Markdown from "vue3-markdown-it";
+
 export default {
   name: "AskQuestions",
+  components: {
+    Markdown,
+  },
 
   data() {
     return {
@@ -66,7 +81,7 @@ export default {
         author: "randomAuthor",
         upvotes: 0,
       },
-
+      previewIsVisible: false,
       questionArray: [],
     };
   },
@@ -96,6 +111,9 @@ export default {
       this.currentQuestion.description = "";
       this.currentQuestion.title = "";
     },
+    showPreview() {
+      this.previewIsVisible = !this.previewIsVisible;
+    },
   },
 };
 </script>
@@ -111,7 +129,8 @@ textarea {
   align-items: center;
 }
 .question-title,
-.question-description {
+.question-description,
+.question-preview {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
   padding: 0.8rem 0.3rem 0.3rem 0.3rem;
