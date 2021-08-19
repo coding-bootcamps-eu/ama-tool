@@ -89,22 +89,23 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 label {
   display: inline-block;
-  width: 6.25rem;
-  height: 1.625rem;
+  width: 5.25rem;
+  height: 1.2rem;
   border-radius: 0.25rem;
-  margin: 10px;
-  padding-bottom: 20px;
+  margin: 0.6rem;
+  padding: 0.5rem;
 }
 .button-area {
-  margin-top: 15px;
+  margin-top: 0.9rem;
 }
 .result-text {
   position: relative;
-  bottom: 18px;
+  bottom: 1.55rem;
   font-family: "Open Sans", sans-serif;
+  font-size: 0.85rem;
 }
 
 input[type="radio"]:focus + label {
@@ -179,7 +180,7 @@ input[type="radio"]:checked + .category-sonstiges-input {
 }
 
 .results {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   font-family: "Open Sans", sans-serif;
 }
 </style>

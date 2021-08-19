@@ -139,12 +139,9 @@ textarea {
   border-radius: 0.25rem;
   padding: 0.8rem 0.3rem 0.3rem 0.3rem;
   margin: 0.5rem;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
   line-height: 1.5rem;
-  /*TODO: need to fix max width */
-  min-width: 60vw;
-  max-width: 20%;
+  width: 60vw;
+  max-width: 40rem;
 }
 .wrapper-question-title,
 .wrapper-question-description {
@@ -166,8 +163,6 @@ textarea {
   transform: translateY(-50%);
   color: var(--placeholder-color);
 }
-/*TODO: need to fix styling of the labels and :focus pseudo-class */
-/*TODO: need to fix movement when input field is selected (border of focus is larger) */
 .question-title:focus + label,
 .question-description:focus + label {
   font-size: 0.6rem;
@@ -178,7 +173,7 @@ textarea {
 .question-title:focus,
 .question-description:focus {
   outline: none;
-  border: 2.5px solid var(--success-color);
+  border: 0.5px solid var(--success-color);
 }
 
 /* -------- Styling of the buttons -------- */
@@ -186,7 +181,7 @@ textarea {
   color: var(--background-color);
   font-weight: bold;
   background-color: var(--secondary-color);
-  border: none;
+  border: 2.5px solid transparent;
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
@@ -198,7 +193,7 @@ textarea {
   color: var(--background-color);
   font-weight: bold;
   background-color: var(--primary-color);
-  border: none;
+  border: 2.5px solid transparent;
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
@@ -210,7 +205,7 @@ textarea {
   color: var(--background-color);
   font-weight: bold;
   background-color: var(--secondary-color);
-  border: none;
+  border: 2.5px solid transparent;
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
@@ -219,9 +214,10 @@ textarea {
   line-height: 1.5rem;
 }
 /*TODO: need to fix styling of the labels and :focus pseudo-class */
-.cancel-question-btn:focus + label,
-.send-question-btn:focus + label,
-.preview-question-btn:focus + label {
+.cancel-question-btn:focus,
+.send-question-btn:focus,
+.preview-question-btn:focus {
+  outline: none;
   border: 2.5px solid var(--success-color);
 }
 </style>
