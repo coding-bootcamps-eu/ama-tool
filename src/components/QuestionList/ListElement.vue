@@ -14,12 +14,11 @@
     </div>
     <div class="vote-wrapper">
       <p>Votes: {{ upvotes }}</p>
-      <button :disabled="isVoted" @click="$emit('upvote')">
-        <p v-if="isVoted">Bereits abgestimmt</p>
-        <p v-else>Vote</p>
+      <button :disabled="userVoted" @click="$emit('upvote')">
+        <span v-if="!userVoted">vote</span>
       </button>
-      <button :disbaled="!isVoted" @click="$emit('downvote')">
-        <p v-if="isVoted">Zurückziehen</p>
+      <button :disabled="!userVoted" @click="$emit('downvote')">
+        <span v-if="userVoted">Downvote</span>
       </button>
     </div>
   </li>
@@ -58,13 +57,23 @@ export default {
     upvotes: {
       type: Number,
     },
-    isVoted: {
+    hasVoted: {
+      type: Array,
+    },
+    userVoted: {
       type: Boolean,
       default: false,
     },
   },
   emits: ["upvote", "answer", "downvote"],
 };
+/** <button :disabled="hasVoted" @click="$emit('upvote')">
+        <p v-if="!hasVoted">Vote</p>
+        <p v-if="hasVoted">Bereits abgestimmt</p>
+      </button>
+      <button :disbaled="!hasVoted" @click="$emit('downvote')">
+        <p v-if="hasVoted">Zurückziehen</p>
+      </button>  */
 </script>
 
 <style lang="scss" scoped>

@@ -37,16 +37,6 @@
         @downvote="downVote(index)"
       />
     </ul>
-    <ul id="questions">
-      <ListElement
-        v-for="(question, index) in sortedQuestions"
-        :key="index"
-        v-bind="question"
-        @upvote="voteQuestion(index)"
-        @answer="answerQuestion(index)"
-        @downvote="downVote(index)"
-      />
-    </ul>
   </section>
 </template>
 
@@ -64,22 +54,48 @@ export default {
     return {
       questions: [],
       questionStatus: "All",
+      storageKeyUser: "userID",
+      storageKeyVoteStatus: "voteStatus",
     };
   },
   methods: {
     voteQuestion(id) {
-      this.questions[id].upvotes++;
-      this.questions[id] = {
-        ...this.questions[id],
-        isVoted: true,
-      };
+      // User votet. Name wird in Array (hasVoted) gespeichert.
+      // Kontrolle, ob Name in Array vorhanden, wenn ja= darf nicht voten (true, false)
+      this.questions[id].hasVoted.forEach((voter) => {
+        if (voter != localStorage.getItem(this.storageKeyUser)) {
+          //darf voten
+          this.questions[id].upvotes++;
+          this.questions[id] = {
+            ...this.questions[id],
+            hasVoted: [localStorage.getItem(this.storageKeyUser)],
+            userVoted: true,
+          };
+          console.log("User hat gevoted " + this.questions[id].hasVoted);
+          this.questions.forEach((question) => {
+            console.log(question.hasVoted);
+          });
+        } else {
+          //darf nicht voten
+          console.log("Darf nicht voten");
+        }
+      });
     },
     downVote(id) {
-      this.questions[id].upvotes--;
-      this.questions[id] = {
-        ...this.questions[id],
-        isVoted: false,
-      };
+      console.log("questions array " + this.questions[id].hasVoted);
+      // User kann vote zurückziehen, wenn er schon gevotet hat. Wenn er das tut, darf er wieder voten.
+      this.questions[id].hasVoted.forEach((voter) => {
+        if (voter === localStorage.getItem(this.storageKeyUser)) {
+          this.questions[id].upvotes--;
+          this.questions[id] = {
+            ...this.questions[id],
+            userVoted: false,
+          };
+          let voterIndex = this.questions[id].hasVoted.indexOf(voter, 0);
+          console.log(voterIndex);
+          this.questions[id].hasVoted.splice(voterIndex, 1, "0");
+        }
+      });
     },
     answerQuestion(id) {
       this.questions[id] = {
@@ -114,7 +130,14 @@ export default {
   },
   created() {
     this.questions = [...QUESTIONS];
-    console.log(this.questions);
+    // push empty voteslots to prevent loading a empty array
+    this.questions.forEach((question) => {
+      question.hasVoted.push("yes");
+      console.log(question.hasVoted);
+    });
+    // generate user id
+    localStorage.setItem(this.storageKeyUser, Math.random());
+    console.log("User ID: " + localStorage.getItem(this.storageKeyUser));
   },
 };
 </script>

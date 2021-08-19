@@ -8,7 +8,7 @@ const QUESTIONS = [
     created_at: "Tue Aug 19 1975 23:15:30 GMT+0200 (CEST)",
     author: "Christian",
     upvotes: 5,
-    isVoted: false,
+    hasVoted: [],
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const QUESTIONS = [
     created_at: "Tue Aug 19 1975 23:15:30 GMT+0200 (CEST)",
     author: "Christian",
     upvotes: 3,
-    isVoted: false,
+    hasVoted: [],
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const QUESTIONS = [
     created_at: "Tue Aug 19 1975 23:15:30 GMT+0200 (CEST)",
     author: "Christian",
     upvotes: 9,
-    isVoted: false,
+    hasVoted: [],
   },
 ];
 
