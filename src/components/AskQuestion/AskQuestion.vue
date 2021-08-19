@@ -213,7 +213,6 @@ textarea {
   font-size: 18px;
   line-height: 1.5rem;
 }
-/*TODO: need to fix styling of the labels and :focus pseudo-class */
 .cancel-question-btn:focus,
 .send-question-btn:focus,
 .preview-question-btn:focus {
