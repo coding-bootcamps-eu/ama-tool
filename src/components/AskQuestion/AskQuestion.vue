@@ -25,6 +25,7 @@
       <label for="question-description" class="label-description"
         >Beschreibung der Frage</label
       >
+      <p class="char-counter">5000/5000</p>
     </div>
     <div
       id="question-preview"
@@ -140,6 +141,7 @@ textarea {
   padding: 0.8rem 0.3rem 0.3rem 0.3rem;
   margin: 0.5rem;
   line-height: 1.5rem;
+  font-family: "Open Sans", sans-serif;
   width: 60vw;
   max-width: 40rem;
 }
@@ -174,6 +176,13 @@ textarea {
 .question-description:focus {
   outline: none;
   border: 0.5px solid var(--success-color);
+}
+.char-counter {
+  position: absolute;
+  transform: translateY(-260%);
+  right: 1.8rem;
+  font-size: 0.7rem;
+  color: var(--placeholder-color);
 }
 
 /* -------- Styling of the buttons -------- */
