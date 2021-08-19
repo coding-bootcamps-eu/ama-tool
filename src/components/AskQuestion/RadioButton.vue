@@ -200,7 +200,8 @@ input[type="radio"]:checked + .category-sonstiges-input {
   .button-area {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px 0px;
+    gap: 10px 25px;
+    justify-content: center;
   }
 }
 </style>

@@ -161,7 +161,9 @@ textarea {
   margin: 0.5rem;
   line-height: 1.5rem;
   font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
   width: 60vw;
+  min-width: 27rem;
   max-width: 40rem;
 }
 .wrapper-question-title,
