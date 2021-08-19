@@ -9,7 +9,9 @@
         v-model="currentQuestion.title"
         maxlength="150"
       />
-      <label for="question-title" class="label-title">Titel der Frage</label>
+      <label for="question-title" v-bind:class="titleSize"
+        >Titel der Frage</label
+      >
     </div>
     <RadioButton @getCategory="setNewCategory" />
     <div class="wrapper-question-description">
@@ -22,10 +24,12 @@
         cols="30"
         rows="10"
       ></textarea>
-      <label for="question-description" class="label-description"
+      <label for="question-description" v-bind:class="descriptionSize"
         >Beschreibung der Frage</label
       >
-      <p class="char-counter">5000/5000</p>
+      <p class="char-counter">
+        {{ 5000 - currentQuestion.description.length }}/5000
+      </p>
     </div>
     <div
       id="question-preview"
@@ -123,6 +127,18 @@ export default {
       this.currentQuestion.category = result;
     },
   },
+  computed: {
+    titleSize() {
+      return this.currentQuestion.title.length === 0
+        ? "label-title"
+        : "small-label-title";
+    },
+    descriptionSize() {
+      return this.currentQuestion.description.length === 0
+        ? "label-description"
+        : "small-label-title";
+    },
+  },
 };
 </script>
 
@@ -160,6 +176,16 @@ textarea {
   transform: translateY(-50%);
   color: var(--placeholder-color);
 }
+.small-label-title {
+  position: absolute;
+  top: 20px;
+  transition: 0.3s;
+  left: 0.95rem;
+  font-size: 0.6rem;
+  transform: translateY(-50%);
+  color: var(--font-color);
+}
+
 .label-description {
   position: absolute;
   transition: 0.3s;
