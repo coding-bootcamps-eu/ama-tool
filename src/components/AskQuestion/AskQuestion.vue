@@ -21,6 +21,13 @@
       rows="10"
     ></textarea>
     <label for="question-description">Beschreibung der Frage:</label>
+    <input
+      type="button"
+      id="preview-question-btn"
+      class="preview-question-btn"
+      value="Vorschau"
+    />
+    <label for="preview-question-btn">Vorschau</label>
     <div class="wrapper-btn-row">
       <input
         type="button"
@@ -143,9 +150,22 @@ textarea {
   font-size: 18px;
   line-height: 1.5rem;
 }
+.preview-question-btn {
+  color: var(--background-color);
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.3rem 0.7rem;
+  margin: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
+}
 /*TODO: need to fix styling of the labels and :focus pseudo-class */
 .cancel-question-btn:focus + label,
-.send-question-btn:focus + label {
+.send-question-btn:focus + label,
+.preview-question-btn:focus + label {
   border: 2.5px solid var(--success-color);
 }
 </style>
