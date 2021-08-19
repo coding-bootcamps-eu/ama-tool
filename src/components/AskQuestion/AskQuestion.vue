@@ -26,7 +26,7 @@
       id="preview-question-btn"
       class="preview-question-btn"
       value="Vorschau"
-    />
+    /><RadioButton />
     <label for="preview-question-btn">Vorschau</label>
     <div class="wrapper-btn-row">
       <input
@@ -36,6 +36,7 @@
         @click="resetInput"
         value="ABBRECHEN"
       />
+
       <label for="cancel-question-btn">Abbrechen Button</label>
       <input
         type="button"
@@ -50,8 +51,13 @@
 </template>
 
 <script>
+import RadioButton from "@/components/AskQuestion/RadioButton.vue";
+
 export default {
   name: "AskQuestions",
+  components: {
+    RadioButton,
+  },
 
   data() {
     return {
