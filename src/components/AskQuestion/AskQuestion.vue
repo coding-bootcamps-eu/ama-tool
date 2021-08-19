@@ -31,7 +31,6 @@
       class="preview-question-btn"
       value="Vorschau"
     />
-    <label for="preview-question-btn">Vorschau</label>
     <div class="wrapper-btn-row">
       <input
         type="button"
@@ -40,7 +39,6 @@
         @click="resetInput"
         value="ABBRECHEN"
       />
-      <label for="cancel-question-btn">Abbrechen Button</label>
       <input
         type="button"
         id="send-question-btn"
@@ -48,7 +46,6 @@
         @click="initQuestions"
         value="SENDEN"
       />
-      <label for="send-question-btn">Senden Button</label>
     </div>
   </div>
 </template>
@@ -134,7 +131,7 @@ textarea {
   position: absolute;
   transition: 0.3s;
   top: 50%;
-  left: 20px;
+  left: 0.95rem;
   transform: translateY(-50%);
   color: var(--placeholder-color);
 }
@@ -142,12 +139,12 @@ textarea {
   position: absolute;
   transition: 0.3s;
   top: 10%;
-  left: 20px;
+  left: 0.95rem;
   transform: translateY(-50%);
   color: var(--placeholder-color);
 }
 /*TODO: need to fix styling of the labels and :focus pseudo-class */
-/*TODO: need to fix movement when input field is selected */
+/*TODO: need to fix movement when input field is selected (border of focus is larger) */
 .question-title:focus + label,
 .question-description:focus + label {
   font-size: 0.6rem;
@@ -157,6 +154,7 @@ textarea {
 }
 .question-title:focus,
 .question-description:focus {
+  outline: none;
   border: 2.5px solid var(--success-color);
 }
 
