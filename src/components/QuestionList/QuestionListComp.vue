@@ -37,6 +37,16 @@
         @downvote="downVote(index)"
       />
     </ul>
+    <ul id="questions">
+      <ListElement
+        v-for="(question, index) in sortedQuestions"
+        :key="index"
+        v-bind="question"
+        @upvote="voteQuestion(index)"
+        @answer="answerQuestion(index)"
+        @downvote="downVote(index)"
+      />
+    </ul>
   </section>
 </template>
 
@@ -119,20 +129,25 @@ export default {
         });
       }
     },
-    sortedQuestions: function () {
-      function compare(a, b) {
-        if (a.upvotes > b.upvotes) return -1;
-        if (a.upvotes < b.upvotes) return 1;
-        return 0;
-      }
-      return this.questions.slice(0).sort(compare);
+
+    /**
+     *  sortedQuestions: function () {
+      return [...this.questions].sort((a, b) => a.upvotes < b.upvotes);
     },
+     */
   },
   created() {
     this.questions = [...QUESTIONS];
+    function compare(a, b) {
+      if (a.upvotes > b.upvotes) return -1;
+      if (a.upvotes < b.upvotes) return 1;
+      return 0;
+    }
+
+    this.questions = this.questions.slice(0).sort(compare);
     // push empty voteslots to prevent loading a empty array
     this.questions.forEach((question) => {
-      question.hasVoted.push("yes");
+      question.hasVoted.push("0");
       console.log(question.hasVoted);
     });
     // generate user id
