@@ -38,7 +38,7 @@
       placeholder="Bitte beschreibe deine Frage genauer."
       v-show="previewIsVisible"
     >
-      <Markdown :source="currentQuestion.description" />
+      <Markdown :source="currentQuestion.description" text-align: left />
     </div>
 
     <input
@@ -165,6 +165,7 @@ textarea {
   width: 60vw;
   min-width: 27rem;
   max-width: 40rem;
+  text-align: left;
 }
 .wrapper-question-title,
 .wrapper-question-description {
