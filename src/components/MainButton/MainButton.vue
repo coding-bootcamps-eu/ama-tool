@@ -1,0 +1,50 @@
+<template>
+  <input type="button" :class="buttonClass" />
+</template>
+
+<script>
+//   <main-button buttonClass="secondary" value="senden" />
+export default {
+  name: "MainButton",
+
+  props: {
+    buttonClass: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.primary {
+  color: var(--background-color);
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  border: 2.5px solid transparent;
+  border-radius: 0.25rem;
+  padding: 0.3rem 0.7rem;
+  margin: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
+}
+.secondary {
+  color: var(--background-color);
+  font-weight: bold;
+  background-color: var(--primary-color);
+  border: 2.5px solid transparent;
+  border-radius: 0.25rem;
+  padding: 0.3rem 0.7rem;
+  margin: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
+}
+
+.secondary-color-btn:focus,
+.primary-color-btn:focus {
+  outline: none;
+  border: 2.5px solid var(--success-color);
+}
+</style>
