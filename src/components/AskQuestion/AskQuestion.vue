@@ -45,13 +45,15 @@
     </div>
 
     <div class="wrapper-btn-row">
-      <input
+      <button
         type="button"
         id="preview-question-btn"
         class="preview-question-btn"
-        value="Vorschau"
         @click="showPreview"
-      />
+        v-on:click="toggleText"
+      >
+        {{ buttonText }}
+      </button>
       <div class="empty-flex-item"></div>
       <input
         type="button"
@@ -84,6 +86,10 @@ export default {
 
   data() {
     return {
+      isVisible: false,
+      showPreviewToggle: "Vorschau ausblenden",
+      hidePreviewToggle: "Vorschau einblenden",
+
       currentQuestion: {
         id: 1,
         title: "",
@@ -130,6 +136,13 @@ export default {
     setNewCategory(result) {
       this.currentQuestion.category = result;
     },
+    toggleText() {
+      if (!this.isVisible) {
+        this.isVisible = true;
+      } else {
+        this.isVisible = false;
+      }
+    },
   },
   computed: {
     titleSize() {
@@ -141,6 +154,9 @@ export default {
       return this.currentQuestion.description.length === 0
         ? "label-description"
         : "small-label-title";
+    },
+    buttonText() {
+      return this.isVisible ? this.showPreviewToggle : this.hidePreviewToggle;
     },
   },
 };
