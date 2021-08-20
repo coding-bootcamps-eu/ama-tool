@@ -89,6 +89,7 @@ export default {
       isVisible: false,
       showPreviewToggle: "Vorschau ausblenden",
       hidePreviewToggle: "Vorschau einblenden",
+      disabled: 0,
 
       currentQuestion: {
         id: 1,
@@ -131,6 +132,10 @@ export default {
       this.currentQuestion.title = "";
     },
     showPreview() {
+      if (this.currentQuestion.description.length === 0) {
+        this.previewIsVisible = true;
+        this.isVisible = true;
+      }
       this.previewIsVisible = !this.previewIsVisible;
     },
     setNewCategory(result) {
@@ -158,6 +163,7 @@ export default {
     buttonText() {
       return this.isVisible ? this.showPreviewToggle : this.hidePreviewToggle;
     },
+    
   },
 };
 </script>
