@@ -26,13 +26,17 @@ const routes = [
     path: "/askquestion",
     name: "AskQuestion",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Questions/AskQuestion.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/Questions/AskQuestion.vue"
+      ),
   },
   {
     path: "/questionlist",
     name: "QuestionList",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Questions/QuestionList.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/Questions/QuestionList.vue"
+      ),
   },
   {
     path: "/imprint",
@@ -44,7 +48,9 @@ const routes = [
     path: "/privacypolicies",
     name: "PrivacyPolicies",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Footer/PrivacyPolicies.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/Footer/PrivacyPolicies.vue"
+      ),
   },
 ];
 
@@ -54,4 +60,3 @@ const router = createRouter({
 });
 
 export default router;
-
