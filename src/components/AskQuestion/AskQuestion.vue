@@ -44,14 +44,15 @@
       <Markdown :source="currentQuestion.description" text-align: left />
     </div>
 
-    <input
-      type="button"
-      id="preview-question-btn"
-      class="preview-question-btn"
-      value="Vorschau"
-      @click="showPreview"
-    />
     <div class="wrapper-btn-row">
+      <input
+        type="button"
+        id="preview-question-btn"
+        class="preview-question-btn"
+        value="Vorschau"
+        @click="showPreview"
+      />
+      <div class="empty-flex-item"></div>
       <input
         type="button"
         id="cancel-question-btn"
@@ -227,6 +228,20 @@ textarea {
 }
 
 /* -------- Styling of the buttons -------- */
+.wrapper-btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 60vw;
+  min-width: 27rem;
+  max-width: 40rem;
+}
+.preview-question-btn {
+  align-self: flex-start;
+}
+.empty-flex-item {
+  flex-grow: 2;
+}
 .cancel-question-btn {
   color: var(--background-color);
   font-weight: bold;
@@ -247,6 +262,7 @@ textarea {
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
+  margin-right: 0;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 1.5rem;
@@ -259,6 +275,7 @@ textarea {
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
   margin: 0.5rem;
+  margin-left: 0;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 1.5rem;
