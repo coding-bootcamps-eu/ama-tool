@@ -39,6 +39,8 @@ export default {
   text-align: center;
 }
 html {
+  max-width: 150ch;
+  margin: 0 auto;
   background-color: var(--background-color);
   color: var(--font-color);
   font-size: 18px;

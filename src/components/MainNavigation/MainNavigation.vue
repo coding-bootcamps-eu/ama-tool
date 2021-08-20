@@ -33,7 +33,7 @@
 .header-wrapper {
   display: flex;
   align-items: center;
-  padding-left: 2.54rem;
+  margin-left: 2.54rem;
 }
 .header-logo {
   height: 3rem;
@@ -43,7 +43,8 @@ h1 {
 }
 nav {
   .header-nav {
-    padding: 0rem 2rem 2rem 2rem;
+    margin: 1rem 2rem 1rem 2.2rem;
+    padding: 0rem 2rem 2rem 0rem;
     display: flex;
     flex-flow: row;
     list-style-type: none;
@@ -53,7 +54,7 @@ nav {
     color: black;
     text-decoration: none;
     padding: 0.5rem;
-    margin: 0.5rem;
+    margin-right: 1rem;
     border: 0.5px solid var(--primary-color);
     border-radius: 0.25rem;
     &.router-link-active {
