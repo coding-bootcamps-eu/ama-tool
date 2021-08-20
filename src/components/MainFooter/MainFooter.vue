@@ -92,9 +92,9 @@ li {
   align-items: flex-end;
 }
 ul {
-  padding-right: 4rem;
+  _padding-right: 4rem;
 }
 .footer-social-wrapper {
-  padding: 0 4rem;
+  padding: 0 0rem;
 }
 </style>
