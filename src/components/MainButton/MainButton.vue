@@ -3,7 +3,7 @@
 </template>
 
 <script>
-//   <main-button buttonClass="secondary" value="senden" />
+//  implementation-line: <main-button buttonClass="[class = {primary, secondary}]" value="[Button-Text]" />
 export default {
   name: "MainButton",
 
@@ -42,8 +42,8 @@ export default {
   line-height: 1.5rem;
 }
 
-.secondary-color-btn:focus,
-.primary-color-btn:focus {
+.secondary:focus,
+.primary:focus {
   outline: none;
   border: 2.5px solid var(--success-color);
 }
