@@ -2,29 +2,35 @@
   <section class="question-list" id="questionList">
     <div class="user-options">
       <div class="filter-options">
-        <input
-          type="radio"
-          v-model="questionStatus"
-          name="filter"
-          id="filterAll"
-          value="All"
-        />
-        <label for="filterAll">Alle Fragen</label>
-        <input
-          type="radio"
-          v-model="questionStatus"
-          name="filter"
-          id="filterOpen"
-          value="false"
-        />
-        <label for="filterOpen">Offene Fragen</label>
-        <input
-          type="radio"
-          v-model="questionStatus"
-          name="filter"
-          id="filterClosed"
-          value="true"
-        /><label for="filterClosed">Beantwortete Fragen</label>
+        <div class="single-filter-wrapper">
+          <input
+            type="radio"
+            v-model="questionStatus"
+            name="filter"
+            id="filterAll"
+            value="All"
+          />
+          <label for="filterAll">Alle Fragen</label>
+        </div>
+        <div class="single-filter-wrapper">
+          <input
+            type="radio"
+            v-model="questionStatus"
+            name="filter"
+            id="filterOpen"
+            value="false"
+          />
+          <label for="filterOpen">Offene Fragen</label>
+        </div>
+        <div class="single-filter-wrapper">
+          <input
+            type="radio"
+            v-model="questionStatus"
+            name="filter"
+            id="filterClosed"
+            value="true"
+          /><label for="filterClosed">Beantwortete Fragen</label>
+        </div>
       </div>
     </div>
     <ul id="questions">
@@ -152,7 +158,8 @@ ul > li {
 }
 .filter-options {
   display: flex;
-  align-items: center;
+  flex-flow: column;
+  align-items: start;
   padding-left: 2rem;
   label {
     margin-right: 1rem;

@@ -207,13 +207,9 @@ li {
   }
 }
 @media only screen and (max-width: 814px) {
-  .break-row {
-    flex-basis: 100%;
-    height: 0;
-  }
   li {
     margin: 1rem 0rem 1rem 0;
-    max-width: 70%;
+    max-width: 90%;
     min-width: 50%;
     list-style-type: none;
     justify-content: space-between;
@@ -235,7 +231,7 @@ li {
       width: 90%;
       display: flex;
       justify-content: space-between;
-      flex-flow: row;
+      flex-flow: row-reverse;
       margin-bottom: 0.5rem;
       height: 3rem;
     }
