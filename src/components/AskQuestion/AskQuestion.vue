@@ -39,7 +39,7 @@
       class="question-preview"
       name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
-      v-show="previewIsVisible"
+      v-show="togglePreview"
     >
       <Markdown :source="currentQuestion.description" text-align: left />
     </div>
@@ -132,20 +132,16 @@ export default {
       this.currentQuestion.title = "";
     },
     showPreview() {
-      if (this.currentQuestion.description.length === 0) {
-        this.previewIsVisible = true;
-        this.isVisible = true;
+      if (this.currentQuestion.description.length > 0) {
+        this.previewIsVisible = !this.previewIsVisible;
       }
-      this.previewIsVisible = !this.previewIsVisible;
     },
     setNewCategory(result) {
       this.currentQuestion.category = result;
     },
     toggleText() {
-      if (!this.isVisible) {
-        this.isVisible = true;
-      } else {
-        this.isVisible = false;
+      if (this.currentQuestion.description.length > 0) {
+        this.isVisible = !this.isVisible;
       }
     },
   },
@@ -163,7 +159,16 @@ export default {
     buttonText() {
       return this.isVisible ? this.showPreviewToggle : this.hidePreviewToggle;
     },
-    
+    togglePreview() {
+      if (
+        this.currentQuestion.description.length === 0 &&
+        this.previewIsVisible === true
+      ) {
+        return !this.previewIsVisible;
+      } else {
+        return this.previewIsVisible;
+      }
+    },
   },
 };
 </script>
