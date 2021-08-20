@@ -12,6 +12,9 @@
       <label for="question-title" v-bind:class="titleSize"
         >Titel der Frage</label
       >
+      <p class="char-counter-short">
+        {{ 150 - currentQuestion.title.length }}/150
+      </p>
     </div>
     <RadioButton @getCategory="setNewCategory" />
     <div class="wrapper-question-description">
@@ -188,7 +191,6 @@ textarea {
   transform: translateY(-50%);
   color: var(--font-color);
 }
-
 .label-description {
   position: absolute;
   transition: 0.3s;
@@ -209,10 +211,17 @@ textarea {
   outline: none;
   border: 0.5px solid var(--success-color);
 }
+.char-counter-short {
+  position: absolute;
+  transform: translateY(-190%);
+  right: 1.4rem;
+  font-size: 0.7rem;
+  color: var(--placeholder-color);
+}
 .char-counter {
   position: absolute;
-  transform: translateY(-260%);
-  right: 1.8rem;
+  transform: translateY(-230%);
+  right: 1.4rem;
   font-size: 0.7rem;
   color: var(--placeholder-color);
 }
