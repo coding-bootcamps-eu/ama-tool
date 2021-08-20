@@ -37,16 +37,6 @@
         @downvote="downVote(index)"
       />
     </ul>
-    <ul id="questions">
-      <ListElement
-        v-for="(question, index) in sortedQuestions"
-        :key="index"
-        v-bind="question"
-        @upvote="voteQuestion(index)"
-        @answer="answerQuestion(index)"
-        @downvote="downVote(index)"
-      />
-    </ul>
   </section>
 </template>
 
