@@ -157,6 +157,7 @@ export default {
         return this.previewIsVisible;
       }
     },
+
     buttonText() {
       return this.previewIsVisible === true
         ? "Vorschau ausblenden"
