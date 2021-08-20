@@ -97,6 +97,7 @@ export default {
         upvotes: 0,
       },
       previewIsVisible: false,
+      text: "Vorschau einblenden",
       questionArray: [],
     };
   },
@@ -129,6 +130,9 @@ export default {
     showPreview() {
       if (this.currentQuestion.description.length > 0) {
         this.previewIsVisible = !this.previewIsVisible;
+        this.previewIsVisible === true
+          ? (this.text = "Vorschau ausblenden")
+          : (this.text = "Vorschau einblenden");
       }
     },
     setNewCategory(result) {
@@ -159,7 +163,7 @@ export default {
     },
 
     buttonText() {
-      return this.previewIsVisible === true
+      return this.togglePreview === true
         ? "Vorschau ausblenden"
         : "Vorschau einblenden";
     },
