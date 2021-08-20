@@ -1,22 +1,19 @@
 <template>
   <div>
     <MainNavigation />
-    <AskQuestion />
-    <MainFooter />
     <router-view />
+    <MainFooter />
   </div>
 </template>
 
 <script>
 import MainNavigation from "@/components/MainNavigation/MainNavigation.vue";
-import AskQuestion from "@/components/AskQuestion/AskQuestion.vue";
 import MainFooter from "@/components/MainFooter/MainFooter.vue";
 
 export default {
   name: "App",
   components: {
     MainNavigation,
-    AskQuestion,
     MainFooter,
   },
 };
