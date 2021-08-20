@@ -1,7 +1,8 @@
 const QUESTIONS = [
   {
     id: 1,
-    questionTitle: "First entry",
+    questionTitle:
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam volu",
     questionDescription: "Initialisation of data type",
     questionCat: "Allgemein",
     isDone: false,

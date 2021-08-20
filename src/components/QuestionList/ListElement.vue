@@ -1,7 +1,7 @@
 <template>
   <li>
     <div class="question-heading">
-      <h3>{{ questionTitle }}</h3>
+      <p class="question-title">{{ questionTitle }}</p>
       <div class="inner-question-wrapper">
         <p>Frage von: {{ author }}</p>
         <p>Kategorie: {{ questionCat }}</p>
@@ -13,24 +13,42 @@
         <p v-if="isDone">Erledigt</p>
         <p v-else>Beantworten</p>
       </button>
-    </div>
-    <div class="vote-wrapper">
-      <p>Votes: {{ upvotes }}</p>
-      <div class="vote-arrows-wrapper"></div>
-      <button
-        class="vote-button-up"
-        :disabled="userVoted"
-        @click="$emit('upvote')"
-      >
-        <i class="fi-rr-angle-up" v-if="!userVoted"></i>
-      </button>
-      <button
-        class="vote-button-down"
-        :disabled="!userVoted"
-        @click="$emit('downvote')"
-      >
-        <i class="fi-rr-angle-down" v-if="userVoted"></i>
-      </button>
+      <div class="vote-wrapper">
+        <p>Votes: {{ upvotes }}</p>
+        <div class="vote-arrows-wrapper"></div>
+        <button
+          class="vote-button-up"
+          :disabled="userVoted"
+          @click="$emit('upvote')"
+        >
+          <i class="fi-rr-angle-up" v-if="!userVoted"></i>
+        </button>
+        <button
+          class="vote-button-down"
+          :disabled="!userVoted"
+          @click="$emit('downvote')"
+        >
+          <i class="fi-rr-angle-down" v-if="userVoted"></i>
+        </button>
+      </div>
+      <div class="vote-wrapper-small-screen">
+        <p>Votes: {{ upvotes }}</p>
+        <div class="vote-arrows-wrapper"></div>
+        <button
+          class="vote-button-up"
+          :disabled="userVoted"
+          @click="$emit('upvote')"
+        >
+          <i class="fi-rr-angle-up" v-if="!userVoted"></i>
+        </button>
+        <button
+          class="vote-button-down"
+          :disabled="!userVoted"
+          @click="$emit('downvote')"
+        >
+          <i class="fi-rr-angle-down" v-if="userVoted"></i>
+        </button>
+      </div>
     </div>
   </li>
 </template>
@@ -89,6 +107,9 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css");
+.vote-wrapper-small-screen {
+  display: none;
+}
 li {
   margin: 1rem 4rem 1rem 0;
   list-style-type: none;
@@ -100,15 +121,15 @@ li {
   border-radius: 0.25rem;
   .question-heading {
     margin: 0.5rem 2rem 0.5rem 1rem;
-    min-width: 35%;
-    max-width: 70%;
+    min-width: 50%;
+    max-width: 70ch;
   }
   .inner-question-wrapper {
     display: flex;
     flex-flow: row;
     align-items: baseline;
     p {
-      font-size: 0.9em;
+      font-size: 0.85em;
       margin-right: 1rem;
     }
   }
@@ -121,6 +142,16 @@ li {
   div > * {
     margin: 0;
     padding: 0;
+  }
+  .question-title {
+    margin: 0;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 550;
+    border-bottom: 0.5px solid var(--primary-color);
+  }
+  .question-edit {
+    flex-flow: column-reverse;
   }
   h3,
   p {
@@ -146,6 +177,9 @@ li {
   .vote-wrapper {
     margin: 0.5rem 2rem;
     text-align: center;
+    p {
+      font-size: 0.9rem;
+    }
   }
   .vote-button-up {
     all: unset;
@@ -169,6 +203,56 @@ li {
       font-size: 1.7rem;
       color: var(--fail-color) !important;
       font-weight: bold !important;
+    }
+  }
+}
+@media only screen and (max-width: 814px) {
+  .break-row {
+    flex-basis: 100%;
+    height: 0;
+  }
+  li {
+    margin: 1rem 0rem 1rem 0;
+    max-width: 70%;
+    min-width: 50%;
+    list-style-type: none;
+    justify-content: space-between;
+    align-items: start;
+    border: 0.5px solid var(--secondary-color);
+    border-radius: 0.25rem;
+    .question-heading {
+      margin: 0.5rem 2rem 0.5rem 1rem;
+      min-width: 80%;
+      max-width: 100%;
+    }
+    button {
+      margin: 0;
+    }
+    .vote-wrapper {
+      display: none;
+    }
+    .question-edit {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      flex-flow: row;
+      margin-bottom: 0.5rem;
+      height: 3rem;
+    }
+    .inner-question-wrapper {
+      width: 100%;
+    }
+    .vote-wrapper-small-screen {
+      margin: 0 0 1rem 0;
+      display: flex;
+      flex-flow: row-reverse;
+      align-items: center;
+      p {
+        margin-left: 0.5rem;
+      }
+    }
+    .question-heading {
+      width: 92%;
     }
   }
 }

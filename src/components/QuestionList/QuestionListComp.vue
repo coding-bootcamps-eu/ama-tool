@@ -158,4 +158,10 @@ ul > li {
     margin-right: 1rem;
   }
 }
+@media only screen and (max-width: 814px) {
+  ul > li {
+    display: flex;
+    flex-flow: column;
+  }
+}
 </style>
