@@ -12,16 +12,16 @@
     </header>
     <nav>
       <ul class="header-nav">
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-elements">
           <router-link to="/">Start</router-link>
         </li>
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-elements">
           <router-link to="/questionlist">Fragen Liste</router-link>
         </li>
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-elements">
           <router-link to="/askquestion">Frage stellen</router-link>
         </li>
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-elements">
           <router-link to="/team">Team</router-link>
         </li>
       </ul>
