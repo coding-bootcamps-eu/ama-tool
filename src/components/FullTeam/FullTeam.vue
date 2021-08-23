@@ -27,7 +27,7 @@ export default {
           id: 1,
           name: "ATEF",
           pictureName: "atef",
-          text: "Der immerfröhliche, unfreiwillige Frühaufsteher, gut gelaunt, zuverlässig und am multitasken, wenn die Arbeit ruft. Schon jetzt hauptberuflicher CSS-Virtuose, der noch jedes Element in eine Flexbox gequetscht hat. Wir sind froh, dass wir Dich haben",
+          text: "Der immerfröhliche, unfreiwillige Frühaufsteher, gut gelaunt, zuverlässig und am multitasken, wenn die Arbeit ruft. Schon jetzt hauptberuflicher CSS-Virtuose, der noch jedes Element in eine Flexbox gequetscht bekommen hat. Wir sind froh, dass wir Dich haben",
         },
         {
           id: 2,
