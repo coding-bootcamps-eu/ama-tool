@@ -9,9 +9,15 @@
       </div>
     </div>
     <div class="question-edit">
-      <button class="answer-button" :disabled="isDone" @click="$emit('answer')">
-        <p v-if="isDone">Erledigt</p>
-        <p v-else>Beantworten</p>
+      <button class="answer-button" v-if="!isDone" @click="$emit('answer')">
+        <p>Beantworten</p>
+      </button>
+      <button
+        class="answer-button"
+        v-if="isDone"
+        @click="$emit('takebackanswer')"
+      >
+        <p>Zurückziehen</p>
       </button>
       <div class="vote-wrapper">
         <p>Votes: {{ upvotes }}</p>
@@ -94,15 +100,13 @@ export default {
       default: false,
     },
   },
-  emits: ["upvote", "answer", "downvote"],
+    emits: ["upvote", "answer", "downvote", "takebackanswer"],
+  computed: {
+    buttonText() {
+      return this.isDone ? this.takebackanswer(this.id) : this.isDone;
+    },
+  },
 };
-/** <button :disabled="hasVoted" @click="$emit('upvote')">
-        <p v-if="!hasVoted">Vote</p>
-        <p v-if="hasVoted">Bereits abgestimmt</p>
-      </button>
-      <button :disbaled="!hasVoted" @click="$emit('downvote')">
-        <p v-if="hasVoted">Zurückziehen</p>
-      </button>  */
 </script>
 
 <style lang="scss" scoped>
