@@ -40,6 +40,7 @@
         v-bind="question"
         @upvote="voteQuestion(index)"
         @answer="answerQuestion(index)"
+        @takebackanswer="takebackanswer(index)"
         @downvote="downVote(index)"
       />
     </ul>
@@ -66,30 +67,18 @@ export default {
   },
   methods: {
     voteQuestion(id) {
-      // User votet. Name wird in Array (hasVoted) gespeichert.
-      // Kontrolle, ob Name in Array vorhanden, wenn ja= darf nicht voten (true, false)
       this.questions[id].hasVoted.forEach((voter) => {
         if (voter != localStorage.getItem(this.storageKeyUser)) {
-          //darf voten
           this.questions[id].upvotes++;
           this.questions[id] = {
             ...this.questions[id],
             hasVoted: [localStorage.getItem(this.storageKeyUser)],
             userVoted: true,
           };
-          console.log("User hat gevoted " + this.questions[id].hasVoted);
-          this.questions.forEach((question) => {
-            console.log(question.hasVoted);
-          });
-        } else {
-          //darf nicht voten
-          console.log("Darf nicht voten");
         }
       });
     },
     downVote(id) {
-      console.log("questions array " + this.questions[id].hasVoted);
-      // User kann vote zurückziehen, wenn er schon gevotet hat. Wenn er das tut, darf er wieder voten.
       this.questions[id].hasVoted.forEach((voter) => {
         if (voter === localStorage.getItem(this.storageKeyUser)) {
           this.questions[id].upvotes--;
@@ -98,7 +87,6 @@ export default {
             userVoted: false,
           };
           let voterIndex = this.questions[id].hasVoted.indexOf(voter, 0);
-          console.log(voterIndex);
           this.questions[id].hasVoted.splice(voterIndex, 1, "0");
         }
       });
@@ -107,6 +95,12 @@ export default {
       this.questions[id] = {
         ...this.questions[id],
         isDone: true,
+      };
+    },
+    takebackanswer(id) {
+      this.questions[id] = {
+        ...this.questions[id],
+        isDone: false,
       };
     },
   },
@@ -125,12 +119,6 @@ export default {
         });
       }
     },
-
-    /**
-     *  sortedQuestions: function () {
-      return [...this.questions].sort((a, b) => a.upvotes < b.upvotes);
-    },
-     */
   },
   created() {
     this.questions = [...QUESTIONS];
@@ -141,14 +129,11 @@ export default {
     }
 
     this.questions = this.questions.slice(0).sort(compare);
-    // push empty voteslots to prevent loading a empty array
     this.questions.forEach((question) => {
       question.hasVoted.push("0");
-      console.log(question.hasVoted);
     });
     // generate user id
     localStorage.setItem(this.storageKeyUser, Math.random());
-    console.log("User ID: " + localStorage.getItem(this.storageKeyUser));
   },
 };
 </script>
@@ -158,7 +143,7 @@ ul > li {
 }
 .filter-options {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   align-items: start;
   padding-left: 2rem;
   label {
@@ -169,6 +154,15 @@ ul > li {
   ul > li {
     display: flex;
     flex-flow: column;
+  }
+  .filter-options {
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    padding-left: 2rem;
+    label {
+      margin-right: 1rem;
+    }
   }
 }
 </style>
