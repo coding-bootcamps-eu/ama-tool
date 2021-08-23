@@ -45,28 +45,31 @@
     </div>
 
     <div class="wrapper-btn-row">
-      <input
+      <button
         type="button"
         id="preview-question-btn"
         class="preview-question-btn"
         @click="showPreview"
-        :value="buttonText"
-      />
+      >
+        {{ buttonText }}
+      </button>
       <div class="empty-flex-item"></div>
-      <input
+      <button
         type="button"
         id="cancel-question-btn"
         class="cancel-question-btn"
         @click="resetInput"
-        value="ABBRECHEN"
-      />
-      <input
+      >
+        ABBRECHEN
+      </button>
+      <button
         type="button"
         id="send-question-btn"
         class="send-question-btn"
         @click="initQuestions"
-        value="SENDEN"
-      />
+      >
+        SENDEN
+      </button>
     </div>
   </div>
 </template>
