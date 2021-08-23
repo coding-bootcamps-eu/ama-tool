@@ -1,10 +1,10 @@
 <template>
   <li>
     <div class="question-heading">
-      <p class="question-title">{{ questionTitle }}</p>
+      <p class="question-title">{{ title }}</p>
       <div class="inner-question-wrapper">
         <p>Frage von: {{ author }}</p>
-        <p>Kategorie: {{ questionCat }}</p>
+        <p>Kategorie: {{ category }}</p>
         <p>Erstellt am: {{ created_at }}</p>
       </div>
     </div>
@@ -65,19 +65,15 @@ export default {
   props: {
     id: {
       type: [String, Number],
-      required: true,
     },
-    questionTitle: {
+    title: {
       type: String,
-      required: true,
     },
-    questionDescription: {
+    description: {
       type: String,
-      required: true,
     },
-    questionCat: {
+    category: {
       type: String,
-      required: true,
     },
     isDone: {
       type: Boolean,
@@ -100,7 +96,7 @@ export default {
       default: false,
     },
   },
-    emits: ["upvote", "answer", "downvote", "takebackanswer"],
+  emits: ["upvote", "answer", "downvote", "takebackanswer"],
   computed: {
     buttonText() {
       return this.isDone ? this.takebackanswer(this.id) : this.isDone;

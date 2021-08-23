@@ -49,7 +49,7 @@
 
 <script>
 import ListElement from "@/components/QuestionList/ListElement.vue";
-import QUESTIONS from "./QuestionsJS.js";
+import DataService from "@/services/DataServices";
 
 export default {
   name: "QuestionList",
@@ -66,6 +66,28 @@ export default {
     };
   },
   methods: {
+    onDataChange(items) {
+      let _questions = [];
+
+      items.forEach((item) => {
+        let id = item.key;
+        let data = item.val();
+        _questions.push({
+          id: id,
+          title: data.title,
+          description: data.description,
+          category: data.category,
+          isDone: data.isDone,
+          created_at: data.created_at,
+          author: data.author,
+          upvotes: data.upvotes,
+          hasVoted: data.hasVoted,
+        });
+      });
+      console.log(_questions);
+      this.questions = _questions;
+      console.log(this.questions);
+    },
     voteQuestion(id) {
       this.questions[id].hasVoted.forEach((voter) => {
         if (voter != localStorage.getItem(this.storageKeyUser)) {
@@ -120,8 +142,14 @@ export default {
       }
     },
   },
+  mounted() {
+    DataService.getAll().on("value", this.onDataChange);
+  },
+  beforeUnmount() {
+    DataService.getAll().off("value", this.onDataChange);
+  },
   created() {
-    this.questions = [...QUESTIONS];
+    //this.questions = [...QUESTIONS];
     function compare(a, b) {
       if (a.upvotes > b.upvotes) return -1;
       if (a.upvotes < b.upvotes) return 1;

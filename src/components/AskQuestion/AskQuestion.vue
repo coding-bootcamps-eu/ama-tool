@@ -91,7 +91,6 @@ export default {
       disabled: 0,
 
       currentQuestion: {
-        id: 1,
         title: "",
         description: "",
         category: "Simons category",
@@ -99,6 +98,7 @@ export default {
         created_at: new Date(),
         author: "randomAuthor",
         upvotes: 0,
+        hasVoted: [""],
       },
       previewIsVisible: false,
       text: "Vorschau einblenden",
@@ -111,17 +111,18 @@ export default {
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
       this.created_at = new Date();
+      console.log(this.created_at);
 
-      const questionToList = JSON.stringify({
-        id: this.currentQuestion.id,
+      const questionToList = {
         title: this.currentQuestion.title,
         description: this.currentQuestion.description,
         category: this.currentQuestion.category,
         isDone: this.currentQuestion.isDone,
-        created_at: this.currentQuestion.created_at,
+        created_at: JSON.stringify(this.created_at),
         author: this.currentQuestion.author,
         upvotes: this.currentQuestion.upvotes,
-      });
+        hasVoted: this.currentQuestion.hasVoted,
+      };
       this.questionArray.push(questionToList);
       // creates database entry with given questionToList
       DataService.create(questionToList)

@@ -10,7 +10,6 @@ class DataService {
   create(question) {
     return db.push(question);
   }
-
 }
 
 export default new DataService();
