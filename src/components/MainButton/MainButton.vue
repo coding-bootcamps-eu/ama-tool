@@ -1,9 +1,9 @@
 <template>
-  <input type="button" :class="buttonClass" />
+  <button :class="buttonClass"><slot /></button>
 </template>
 
 <script>
-//  implementation-line: <main-button buttonClass="[class = {primary, secondary}]" value="[Button-Text]" />
+//  implementation-line: <main-button class="[class-name]">testen</main-button>
 export default {
   name: "MainButton",
 
