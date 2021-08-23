@@ -30,7 +30,12 @@
           >
         </li>
       </ul>
-      <p>Copyright {{ year }}</p>
+      <p>
+        Coding Bootcamps Europe GmbH <br />
+        Alle Rechte vorbehalten <br />
+        ©
+        {{ year }}
+      </p>
       <div class="footer-social-wrapper">
         <ul>
           <li>
@@ -75,26 +80,43 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .image-footer {
   height: 1.5rem;
 }
 a {
-  text-decoration: none;
+  text-decoration: underline 1px solid var(--primary-color);
+  color: var(--font-color);
+  font-weight: bold;
 }
 li {
   list-style-type: none;
   text-align: left;
 }
 .footer-wrapper {
+  margin: 2.8rem 4rem 1rem 2.5rem;
+  padding: 0rem 0;
   display: flex;
-  justify-content: start;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--primary-color);
+  p {
+    padding: 0 1rem;
+  }
 }
 ul {
-  _padding-right: 4rem;
+  padding: 0;
+  margin: 0;
 }
 .footer-social-wrapper {
   padding: 0 0rem;
+}
+@media only screen and (max-width: 814px) {
+  .footer-wrapper {
+    margin: 2.8rem 2rem 1rem 2.5rem;
+  }
+  .footer-wrapper > * {
+    font-size: 0.8em;
+  }
 }
 </style>
