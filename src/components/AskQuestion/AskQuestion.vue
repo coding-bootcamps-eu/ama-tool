@@ -39,7 +39,7 @@
       class="question-preview"
       name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
-      v-show="previewIsVisible"
+      v-show="togglePreview"
     >
       <Markdown :source="currentQuestion.description" text-align: left />
     </div>
@@ -50,25 +50,26 @@
         id="preview-question-btn"
         class="preview-question-btn"
         @click="showPreview"
-        v-on:click="toggleText"
       >
         {{ buttonText }}
       </button>
       <div class="empty-flex-item"></div>
-      <input
+      <button
         type="button"
         id="cancel-question-btn"
         class="cancel-question-btn"
         @click="resetInput"
-        value="ABBRECHEN"
-      />
-      <input
+      >
+        ABBRECHEN
+      </button>
+      <button
         type="button"
         id="send-question-btn"
         class="send-question-btn"
         @click="initQuestions"
-        value="SENDEN"
-      />
+      >
+        SENDEN
+      </button>
     </div>
   </div>
 </template>
@@ -86,9 +87,6 @@ export default {
 
   data() {
     return {
-      isVisible: false,
-      showPreviewToggle: "Vorschau ausblenden",
-      hidePreviewToggle: "Vorschau einblenden",
       disabled: 0,
 
       currentQuestion: {
@@ -102,6 +100,7 @@ export default {
         upvotes: 0,
       },
       previewIsVisible: false,
+      text: "Vorschau einblenden",
       questionArray: [],
     };
   },
@@ -132,21 +131,15 @@ export default {
       this.currentQuestion.title = "";
     },
     showPreview() {
-      if (this.currentQuestion.description.length === 0) {
-        this.previewIsVisible = true;
-        this.isVisible = true;
+      if (this.currentQuestion.description.length > 0) {
+        this.previewIsVisible = !this.previewIsVisible;
+        this.previewIsVisible === true
+          ? (this.text = "Vorschau ausblenden")
+          : (this.text = "Vorschau einblenden");
       }
-      this.previewIsVisible = !this.previewIsVisible;
     },
     setNewCategory(result) {
       this.currentQuestion.category = result;
-    },
-    toggleText() {
-      if (!this.isVisible) {
-        this.isVisible = true;
-      } else {
-        this.isVisible = false;
-      }
     },
   },
   computed: {
@@ -160,10 +153,23 @@ export default {
         ? "label-description"
         : "small-label-title";
     },
-    buttonText() {
-      return this.isVisible ? this.showPreviewToggle : this.hidePreviewToggle;
+
+    togglePreview() {
+      if (
+        this.currentQuestion.description.length === 0 &&
+        this.previewIsVisible === true
+      ) {
+        return !this.previewIsVisible;
+      } else {
+        return this.previewIsVisible;
+      }
     },
-    
+
+    buttonText() {
+      return this.togglePreview === true
+        ? "Vorschau ausblenden"
+        : "Vorschau einblenden";
+    },
   },
 };
 </script>
