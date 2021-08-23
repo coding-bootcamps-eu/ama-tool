@@ -77,6 +77,7 @@
 <script>
 import RadioButton from "@/components/AskQuestion/RadioButton.vue";
 import Markdown from "vue3-markdown-it";
+import DataService from "@/services/DataServices";
 
 export default {
   name: "AskQuestions",
@@ -122,6 +123,15 @@ export default {
         upvotes: this.currentQuestion.upvotes,
       });
       this.questionArray.push(questionToList);
+      // creates database entry with given questionToList
+      DataService.create(questionToList)
+        .then(() => {
+          console.log("Question added to database");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
       this.currentQuestion.title = "";
       this.currentQuestion.description = "";
     },
