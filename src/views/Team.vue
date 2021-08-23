@@ -1,12 +1,14 @@
 <template>
-  <TeamMember />
+  <FullTeam />
 </template>
 
 <script>
-import { TeamMember } from "@/components/TeamMember/TeamMember.vue";
+import FullTeam from "@/components/FullTeam/FullTeam.vue";
 
 export default {
   name: "Team",
-  components: { TeamMember },
+  components: {
+    FullTeam,
+  },
 };
 </script>
