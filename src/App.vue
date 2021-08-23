@@ -31,16 +31,13 @@ export default {
   --fail-color: #ed3221;
   --font-color: #121212;
   --placeholder-color: rgba(18, 18, 18, 0.7);
-
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
 html {
-  max-width: 150ch;
-  margin: 0 auto;
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+  font-family: "Open Sans", sans-serif;
   background-color: var(--background-color);
   color: var(--font-color);
   font-size: 18px;
@@ -56,6 +53,7 @@ html {
   }
 }
 body {
-  margin: 0;
+  max-width: 150ch;
+  margin: 0 auto;
 }
 </style>
