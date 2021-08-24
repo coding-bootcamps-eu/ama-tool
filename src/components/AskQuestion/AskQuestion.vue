@@ -52,6 +52,7 @@
         id="preview-question-btn"
         class="preview-question-btn"
         @click="showPreview"
+        data-cy="preview-button"
       >
         {{ buttonText }}
       </button>
