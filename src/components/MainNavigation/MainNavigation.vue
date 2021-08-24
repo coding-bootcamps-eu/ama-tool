@@ -10,7 +10,7 @@
         <h1>AMA Tool</h1>
       </div>
     </header>
-    <nav>
+    <nav class="nav">
       <ul class="header-nav">
         <li class="nav-element">
           <router-link to="/">Start</router-link>
@@ -41,6 +41,9 @@
 h1 {
   margin-left: 2rem;
 }
+.nav {
+  visibility: visible;
+}
 nav {
   .header-nav {
     margin: 1rem 2rem 1rem 2.2rem;
@@ -66,6 +69,12 @@ nav {
       border: 2.5px solid var(--success-color);
       border-radius: 0.25rem;
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    display: none;
   }
 }
 </style>
