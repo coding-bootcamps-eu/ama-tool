@@ -35,13 +35,13 @@
     </div>
     <ul id="questions">
       <ListElement
-        v-for="(question, index) in filteredQuestions"
-        :key="index"
+        v-for="question in filteredQuestions"
+        :key="question.key"
         v-bind="question"
-        @upvote="voteQuestion(index)"
-        @answer="answerQuestion(index)"
-        @takebackanswer="takebackanswer(index)"
-        @downvote="downVote(index)"
+        @upvote="voteQuestion(question.key)"
+        @answer="answerQuestion(question.key)"
+        @takebackanswer="takebackanswer(question.key)"
+        @downvote="downVote(question.key)"
       />
     </ul>
   </section>
@@ -53,6 +53,7 @@ import DataService from "@/services/DataServices";
 
 export default {
   name: "QuestionList",
+  props: ["question"],
   el: "#questionList",
   components: {
     ListElement,
@@ -60,20 +61,26 @@ export default {
   data() {
     return {
       questions: [],
+      currentQuestion: null,
       questionStatus: "All",
       storageKeyUser: "userID",
       storageKeyVoteStatus: "voteStatus",
     };
+  },
+  watch: {
+    question: function (question) {
+      this.currentQuestion = { ...question };
+    },
   },
   methods: {
     onDataChange(items) {
       let _questions = [];
 
       items.forEach((item) => {
-        let id = item.key;
+        let key = item.key;
         let data = item.val();
         _questions.push({
-          id: id,
+          key: key,
           title: data.title,
           description: data.description,
           category: data.category,
@@ -84,16 +91,22 @@ export default {
           hasVoted: data.hasVoted,
         });
       });
-      console.log(_questions);
       this.questions = _questions;
       console.log(this.questions);
     },
-    voteQuestion(id) {
-      this.questions[id].hasVoted.forEach((voter) => {
+    voteQuestion(key) {
+      // user darf 1 mal voten. upvotes ++, userVoted  = true
+      DataService.getQuestion(key).upvotes++;
+      DataService.getQuestion(key).hasVoted.push(
+        localStorage.getItem(this.storageKeyUser)
+      );
+      this.userVoted(true);
+
+      this.questions[key].hasVoted.forEach((voter) => {
         if (voter != localStorage.getItem(this.storageKeyUser)) {
-          this.questions[id].upvotes++;
-          this.questions[id] = {
-            ...this.questions[id],
+          this.questions[key].upvotes++;
+          this.questions[key] = {
+            ...this.questions[key],
             hasVoted: [localStorage.getItem(this.storageKeyUser)],
             userVoted: true,
           };
@@ -114,12 +127,22 @@ export default {
       });
     },
     answerQuestion(id) {
+      // update database status
+      DataService.update(id, {
+        isDone: true,
+      });
+      // update DOM status
       this.questions[id] = {
         ...this.questions[id],
         isDone: true,
       };
     },
     takebackanswer(id) {
+      // update database status
+      DataService.update(id, {
+        isDone: false,
+      });
+      // update DOM status
       this.questions[id] = {
         ...this.questions[id],
         isDone: false,
@@ -149,7 +172,6 @@ export default {
     DataService.getAll().off("value", this.onDataChange);
   },
   created() {
-    //this.questions = [...QUESTIONS];
     function compare(a, b) {
       if (a.upvotes > b.upvotes) return -1;
       if (a.upvotes < b.upvotes) return 1;

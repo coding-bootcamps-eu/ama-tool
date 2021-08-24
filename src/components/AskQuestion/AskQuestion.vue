@@ -98,7 +98,7 @@ export default {
         created_at: new Date(),
         author: "randomAuthor",
         upvotes: 0,
-        hasVoted: [""],
+        hasVoted: [],
       },
       previewIsVisible: false,
       text: "Vorschau einblenden",
@@ -111,8 +111,6 @@ export default {
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
       this.created_at = new Date();
-      console.log(this.created_at);
-
       const questionToList = {
         title: this.currentQuestion.title,
         description: this.currentQuestion.description,

@@ -6,9 +6,14 @@ class DataService {
   getAll() {
     return db;
   }
-
+  getQuestion(key) {
+    return db.child(key);
+  }
   create(question) {
     return db.push(question);
+  }
+  update(key, value) {
+    return db.child(key).update(value);
   }
 }
 
