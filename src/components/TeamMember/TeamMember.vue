@@ -13,22 +13,11 @@
 <script>
 export default {
   name: "TeamMember",
-  data() {
-    return {
-      bild: require("../../assets/deniz.jpeg"),
-      pictest: this.member.name,
-    };
-  },
 
   props: {
     member: {
       Type: Object,
       required: true,
-    },
-  },
-  methods: {
-    getImageURL() {
-      //return require("../../assets/deniz" + ".jpeg");
     },
   },
 };

@@ -60,18 +60,11 @@ export default {
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        console.log(j);
         const temp = array[i];
         array[i] = array[j];
         array[j] = temp;
       }
       return array;
-    },
-    logout() {
-      this.shuffle(this.members);
-      for (let i = 0; i < this.members.length; i++) {
-        console.log(this.members[i].name);
-      }
     },
   },
 };
