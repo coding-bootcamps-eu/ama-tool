@@ -100,7 +100,7 @@ export default {
       default: false,
     },
   },
-    emits: ["upvote", "answer", "downvote", "takebackanswer"],
+  emits: ["upvote", "answer", "downvote", "takebackanswer"],
   computed: {
     buttonText() {
       return this.isDone ? this.takebackanswer(this.id) : this.isDone;

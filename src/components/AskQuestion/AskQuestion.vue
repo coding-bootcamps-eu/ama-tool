@@ -163,7 +163,6 @@ export default {
     buttonText() {
       return this.isVisible ? this.showPreviewToggle : this.hidePreviewToggle;
     },
-    
   },
 };
 </script>
