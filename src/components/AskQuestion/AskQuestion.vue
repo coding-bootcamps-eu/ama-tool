@@ -8,6 +8,7 @@
         name="question-title"
         v-model="currentQuestion.title"
         maxlength="150"
+        data-cy="input-text"
       />
       <label for="question-title" v-bind:class="titleSize"
         >Titel der Frage</label
@@ -24,6 +25,7 @@
         name="question-description"
         v-model="currentQuestion.description"
         maxlength="5000"
+        data-cy="input-text"
         cols="30"
         rows="10"
       ></textarea>
