@@ -33,7 +33,7 @@ export default {
           id: 2,
           name: "DENIZ",
           pictureName: "deniz",
-          text: "Waidmanns Heil! Der bierernst Unsitte friemeln. Die altbacken Haudegen schlampampen. Die bierernst Kokolores. Günstling und Himmelfahrtskommando stagnieren pfundig Gedudel. Lude und Silberblick bemuttern halsstarrig Weinbrandbohne. Der gemach Gaudi.",
+          text: "Ein sehr zuvorkommender und ehrgeiziger Mensch, immer darauf bedacht sein Bestes zu geben und die Gruppe so gut wie möglich zu unterstützen. Geht jedes Problem an und scheut sich nicht, auch mal Fragen zu stellen. Hatte er vorher nicht viel mit Programmierung zu tun, so kommt er mittlerweile super klar.",
         },
         {
           id: 3,
