@@ -55,5 +55,6 @@ html {
 body {
   max-width: 150ch;
   margin: 0 auto;
+  min-width: 350px;
 }
 </style>

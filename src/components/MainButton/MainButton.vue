@@ -47,4 +47,16 @@ export default {
   outline: none;
   border: 2.5px solid var(--success-color);
 }
+
+@media screen and (max-width: 600px) {
+  .secondary {
+    font-size: 10px;
+    line-height: 1rem;
+  }
+
+  .primary {
+    font-size: 10px;
+    line-height: 1rem;
+  }
+}
 </style>

@@ -183,7 +183,7 @@ textarea {
 .question-preview {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
-  padding: 0.8rem 0.3rem 0.3rem 0.3rem;
+  padding: 0.8rem 4rem 0.3rem 0.3rem;
   margin: 0.5rem;
   line-height: 1.5rem;
   font-family: "Open Sans", sans-serif;
@@ -192,6 +192,7 @@ textarea {
   min-width: 27rem;
   max-width: 40rem;
   text-align: left;
+  cursor: text;
 }
 .wrapper-question-title,
 .wrapper-question-description {
@@ -261,5 +262,17 @@ textarea {
 
 .empty-flex-item {
   flex-grow: 2;
+}
+
+@media screen and (max-width: 600px) {
+  .question-title,
+  .question-description,
+  .question-preview {
+    min-width: 18rem;
+  }
+
+  .wrapper-btn-row {
+    min-width: 18rem;
+  }
 }
 </style>
