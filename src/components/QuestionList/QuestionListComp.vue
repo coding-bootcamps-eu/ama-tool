@@ -65,6 +65,7 @@ export default {
       questionStatus: "All",
       storageKeyUser: "userID",
       storageKeyVoteStatus: "voteStatus",
+      hasVotedDOM: [],
     };
   },
   watch: {
@@ -75,7 +76,6 @@ export default {
   methods: {
     onDataChange(items) {
       let _questions = [];
-
       items.forEach((item) => {
         let key = item.key;
         let data = item.val();
@@ -92,26 +92,66 @@ export default {
         });
       });
       this.questions = _questions;
-      console.log(this.questions);
+      //console.log(this.questions);
     },
     voteQuestion(key) {
+      let dbRef = DataService.getDbRef();
       // user darf 1 mal voten. upvotes ++, userVoted  = true
-      DataService.getQuestion(key).upvotes++;
-      DataService.getQuestion(key).hasVoted.push(
-        localStorage.getItem(this.storageKeyUser)
-      );
-      this.userVoted(true);
+      // adds voter to the hasVoted list
+      // load voter array
+      dbRef
+        .child("questions")
+        .child(key)
+        .child("hasVoted")
+        .get()
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            //console.log("snapshot", snapshot);
+            const val = Object.values(snapshot.val());
+            val.forEach((value) => {
+              this.hasVotedDOM.push(value);
+            });
+          } else {
+            console.log("no data from hasVoted");
+          }
+        });
+      // check, if the user has voted, if no: let user vote, if yes, let user downvote
+      let ref = "hasVoted";
+      let voterID = localStorage.getItem(this.storageKeyUser);
+      DataService.updateVotes(key, ref, voterID);
+      if (this.hasVotedDOM.includes(voterID) != true) {
+        console.log("user darf voten");
+      } else {
+        console.log("user hat schon gevoted");
+      }
 
+      dbRef
+        .child("questions")
+        .child(key)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            DataService.update(key, {
+              upvotes: snapshot.val().upvotes + 1,
+            });
+          } else {
+            console.log("no data");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      /*
       this.questions[key].hasVoted.forEach((voter) => {
+        this.hasVotedDOM.forEach((voter) => {
         if (voter != localStorage.getItem(this.storageKeyUser)) {
-          this.questions[key].upvotes++;
           this.questions[key] = {
             ...this.questions[key],
-            hasVoted: [localStorage.getItem(this.storageKeyUser)],
             userVoted: true,
           };
-        }
-      });
+
+      });*/
     },
     downVote(id) {
       this.questions[id].hasVoted.forEach((voter) => {

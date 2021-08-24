@@ -89,7 +89,7 @@ export default {
       type: Number,
     },
     hasVoted: {
-      type: Array,
+      type: Object,
     },
     userVoted: {
       type: Boolean,

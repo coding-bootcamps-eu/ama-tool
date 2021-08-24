@@ -1,8 +1,12 @@
 import firebase from "@/firebase";
 
-const db = firebase.ref("/questions");
+let db = firebase.ref("/questions");
+let dbRef = firebase.ref();
 
 class DataService {
+  getDbRef() {
+    return dbRef;
+  }
   getAll() {
     return db;
   }
@@ -14,6 +18,15 @@ class DataService {
   }
   update(key, value) {
     return db.child(key).update(value);
+  }
+  updateVotes(key, key2, value) {
+    return db.child(key).child(key2).push(value);
+  }
+  getVoter(key, ref) {
+    return db.child(key).child(ref);
+  }
+  getRef(key) {
+    return (db = firebase.ref("/questions" + key + "/hasVoted"));
   }
 }
 
