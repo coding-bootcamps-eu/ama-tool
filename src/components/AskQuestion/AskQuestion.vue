@@ -45,31 +45,25 @@
     </div>
 
     <div class="wrapper-btn-row">
-      <button
-        type="button"
+      <main-button
         id="preview-question-btn"
-        class="preview-question-btn"
+        class="primary"
         @click="showPreview"
-      >
-        {{ buttonText }}
-      </button>
+        >{{ buttonText }}
+      </main-button>
+
       <div class="empty-flex-item"></div>
-      <button
-        type="button"
-        id="cancel-question-btn"
-        class="cancel-question-btn"
-        @click="resetInput"
-      >
-        ABBRECHEN
-      </button>
-      <button
-        type="button"
+
+      <main-button id="cancel-question-btn" class="primary" @click="resetInput"
+        >ABBRECHEN
+      </main-button>
+
+      <main-button
         id="send-question-btn"
-        class="send-question-btn"
+        class="secondary"
         @click="initQuestions"
-      >
-        SENDEN
-      </button>
+        >SENDEN
+      </main-button>
     </div>
   </div>
 </template>
@@ -264,54 +258,8 @@ textarea {
   min-width: 27rem;
   max-width: 40rem;
 }
-.preview-question-btn {
-  align-self: flex-start;
-}
+
 .empty-flex-item {
   flex-grow: 2;
-}
-.cancel-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.send-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--primary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  margin-right: 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.preview-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  margin-left: 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.cancel-question-btn:focus,
-.send-question-btn:focus,
-.preview-question-btn:focus {
-  outline: none;
-  border: 2.5px solid var(--success-color);
 }
 </style>
