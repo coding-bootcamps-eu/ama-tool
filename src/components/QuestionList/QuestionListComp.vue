@@ -96,12 +96,30 @@ export default {
     },
     voteQuestion(key) {
       // user darf 1 mal voten. upvotes ++, userVoted  = true
-      DataService.getQuestion(key).upvotes++;
-      DataService.getQuestion(key).hasVoted.push(
-        localStorage.getItem(this.storageKeyUser)
-      );
-      this.userVoted(true);
+      // adds voter to the hasVoted list
+      let ref = "hasVoted";
+      let voter = localStorage.getItem(this.storageKeyUser);
+      DataService.updateVotes(key, ref, voter);
+      let dbRef = DataService.getDbRef();
+      dbRef
+        .child("questions")
+        .child(key)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            console.log(snapshot.val().hasVoted);
+            DataService.update(key, {
+              upvotes: snapshot.val().upvotes + 1,
+            });
+          } else {
+            console.log("no data");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
 
+      /*
       this.questions[key].hasVoted.forEach((voter) => {
         if (voter != localStorage.getItem(this.storageKeyUser)) {
           this.questions[key].upvotes++;
@@ -111,7 +129,7 @@ export default {
             userVoted: true,
           };
         }
-      });
+      });*/
     },
     downVote(id) {
       this.questions[id].hasVoted.forEach((voter) => {
