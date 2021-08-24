@@ -98,7 +98,7 @@ export default {
         created_at: new Date(),
         author: "randomAuthor",
         upvotes: 0,
-        hasVoted: [],
+        hasVoted: ["", ""],
       },
       previewIsVisible: false,
       text: "Vorschau einblenden",
