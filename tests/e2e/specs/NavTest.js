@@ -9,7 +9,7 @@ describe("Test navigation", () => {
     cy.get("[data-cy='nav-elements']").click({ multiple: true });
   });
   it("Navigation elements should be focusable", () => {
-    /* need to find out */
+    /* cypress can't test focus */
   });
   it("Navigation should go to correct URL", () => {
     cy.visit("/");
