@@ -73,6 +73,11 @@ nav {
 }
 
 @media screen and (max-width: 600px) {
+  header {
+    padding-bottom: 5rem;
+    border-bottom: 0.5px solid var(--primary-color);
+    margin-bottom: 1rem;
+  }
   .nav {
     display: none;
   }

@@ -47,20 +47,23 @@
     <div class="wrapper-btn-row">
       <main-button
         id="preview-question-btn"
-        class="primary"
+        buttonClass="primary"
         @click="showPreview"
         >{{ buttonText }}
       </main-button>
 
       <div class="empty-flex-item"></div>
 
-      <main-button id="cancel-question-btn" class="primary" @click="resetInput"
+      <main-button
+        id="cancel-question-btn"
+        buttonClass="primary"
+        @click="resetInput"
         >ABBRECHEN
       </main-button>
 
       <main-button
         id="send-question-btn"
-        class="secondary"
+        buttonClass="secondary"
         @click="initQuestions"
         >SENDEN
       </main-button>
@@ -265,14 +268,27 @@ textarea {
 }
 
 @media screen and (max-width: 600px) {
+  .wrapper {
+    align-items: flex-start;
+  }
+
   .question-title,
   .question-description,
   .question-preview {
     min-width: 18rem;
+    width: 77vw;
+    margin-left: 2.54rem;
+  }
+  .label-description {
+    left: 2.8rem;
+  }
+  .label-title {
+    left: 2.8rem;
   }
 
   .wrapper-btn-row {
     min-width: 18rem;
+    margin-left: 2.54rem;
   }
 }
 </style>
