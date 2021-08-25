@@ -28,7 +28,7 @@ jobs:
       - run: npm run serve
       - run: npm run test:e2e:ci
       - env:
-          DISCORD_WEBHOOK: https://discord.com/api/webhooks/880034634447089684/hUn52TdNeyhu8xAg5C0XKoglckxYMy-sFHLhfYXKYOrLp9uUPIifbAq7MqztJCAi45Pg
+          DISCORD_WEBHOOK: https://discord.com/api/webhooks/880027250144210997/URrCN8USQn4Le3WDqcSw88wQipeuxLI4ckWQARi-wdrlqFnWVY_ZlV-ih3mQ7acksYba
         uses: "Ilshidur/action-discord@0.3.2"
         with:
           args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
