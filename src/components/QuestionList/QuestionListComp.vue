@@ -2,33 +2,36 @@
   <section class="question-list" id="questionList">
     <div class="user-options">
       <div class="filter-options">
-        <div class="single-filter-wrapper">
+        <div class="single-filter-wrapper" data-cy="single-filter-wrapper">
           <input
             type="radio"
             v-model="questionStatus"
             name="filter"
             id="filterAll"
             value="All"
+            data-cy="input-radio"
           />
           <label for="filterAll">Alle Fragen</label>
         </div>
-        <div class="single-filter-wrapper">
+        <div class="single-filter-wrapper" data-cy="single-filter-wrapper">
           <input
             type="radio"
             v-model="questionStatus"
             name="filter"
             id="filterOpen"
             value="false"
+            data-cy="input-radio"
           />
           <label for="filterOpen">Offene Fragen</label>
         </div>
-        <div class="single-filter-wrapper">
+        <div class="single-filter-wrapper" data-cy="single-filter-wrapper">
           <input
             type="radio"
             v-model="questionStatus"
             name="filter"
             id="filterClosed"
             value="true"
+            data-cy="input-radio"
           /><label for="filterClosed">Beantwortete Fragen</label>
         </div>
       </div>

@@ -9,13 +9,19 @@
       </div>
     </div>
     <div class="question-edit">
-      <button class="answer-button" v-if="!isDone" @click="$emit('answer')">
+      <button
+        data-cy="answer-btw"
+        class="answer-button"
+        v-if="!isDone"
+        @click="$emit('answer')"
+      >
         <p>Beantworten</p>
       </button>
       <button
         class="answer-button"
         v-if="isDone"
         @click="$emit('takebackanswer')"
+        data-cy="withdraw-btw"
       >
         <p>Zurückziehen</p>
       </button>
@@ -26,6 +32,7 @@
           class="vote-button-up"
           :disabled="userVoted"
           @click="$emit('upvote')"
+          data-cy="vote-button-up"
         >
           <i class="fi-rr-angle-up" v-if="!userVoted"></i>
         </button>
