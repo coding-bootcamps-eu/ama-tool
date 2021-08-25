@@ -6,7 +6,6 @@ describe("Test navigation", () => {
   it("Input forms should be focusable", () => {
     cy.get("[data-cy='input-text']").first().focus();
     cy.get("[data-cy='input-text']").last().focus();
-    //TODO:need to add test for correct focus-color (green)
   });
   //tests some input cases to make sure it's possible to format the text.
   it("All input fields should accept text with their maximum length when clicked on", () => {
@@ -22,17 +21,16 @@ describe("Test navigation", () => {
       .last()
       .click()
       .type(
-        "Test typing in question description..{backspace}{enter}{enter}Hello World!"
+        "# Test typing in question description..{backspace}{enter}{enter}Hello World!"
       );
     //TODO:count the chars, not more than 5000;
   });
   it("Radiobuttons should be clickable", () => {
-    cy.get("[data-cy='input-radio']").first().click();
-    //TODO:need to test the other radiobuttons
+    cy.get("[data-cy='input-radio']").click({ multiple: true });
   });
-  it("Preview button should be clickable and get toggled and is disabled when nothing is typed in description", () => {
+  it("Preview button should be clickable, get toggled and is disabled when nothing is typed in description", () => {
     cy.get("[data-cy='preview-button']").click();
-    //TODO:need to test toggling the preview button
+    //TODO:need to test toggling the preview button (wird der text richtig angezeigt)
     //TODO:button does nothing if nothing is typed in description
   });
 });
