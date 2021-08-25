@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-wrapper">
     <div ref="sideNav" class="bm-menu">
       <nav class="bm-item-list">
         <slot>
@@ -198,11 +198,15 @@ export default {
 </script>
 
 <style>
+.nav-wrapper {
+  height: 0;
+}
 .bm-burger-button {
   display: none;
   position: absolute;
   width: 2rem;
   height: 2rem;
+  top: -5rem;
   cursor: pointer;
   border-radius: 1rem;
 }

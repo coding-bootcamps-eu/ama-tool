@@ -9,6 +9,14 @@
         />
         <h1>AMA Tool</h1>
       </div>
+      <div class="narrow-header-wrapper">
+        <img
+          class="header-logo"
+          alt="Coding Bootcamp Europe Logo"
+          src="@/assets/cbe-logo-plain.png"
+        />
+        <h1>AMA Tool</h1>
+      </div>
     </header>
     <nav class="nav">
       <ul class="header-nav">
@@ -35,6 +43,11 @@
   align-items: center;
   margin-left: 2.54rem;
 }
+
+.narrow-header-wrapper {
+  display: none;
+}
+
 .header-logo {
   height: 3rem;
 }
@@ -74,13 +87,25 @@ nav {
 
 @media screen and (max-width: 600px) {
   header {
-    _padding-bottom: 5rem;
     border-bottom: 0.5px solid var(--primary-color);
     margin-bottom: 1rem;
   }
   .header-wrapper {
+    display: none;
+  }
+
+  h1 {
+    margin: 0 2rem;
+  }
+
+  .narrow-header-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     margin-left: 1rem;
-    justify-content: flex-start;
+    margin-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .nav {
     display: none;
