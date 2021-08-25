@@ -45,31 +45,28 @@
     </div>
 
     <div class="wrapper-btn-row">
-      <button
-        type="button"
+      <main-button
         id="preview-question-btn"
-        class="preview-question-btn"
+        buttonClass="primary"
         @click="showPreview"
-      >
-        {{ buttonText }}
-      </button>
+        >{{ buttonText }}
+      </main-button>
+
       <div class="empty-flex-item"></div>
-      <button
-        type="button"
+
+      <main-button
         id="cancel-question-btn"
-        class="cancel-question-btn"
+        buttonClass="primary"
         @click="resetInput"
-      >
-        ABBRECHEN
-      </button>
-      <button
-        type="button"
+        >ABBRECHEN
+      </main-button>
+
+      <main-button
         id="send-question-btn"
-        class="send-question-btn"
+        buttonClass="secondary"
         @click="initQuestions"
-      >
-        SENDEN
-      </button>
+        >SENDEN
+      </main-button>
     </div>
   </div>
 </template>
@@ -189,7 +186,7 @@ textarea {
 .question-preview {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
-  padding: 0.8rem 0.3rem 0.3rem 0.3rem;
+  padding: 0.8rem 4rem 0.3rem 0.3rem;
   margin: 0.5rem;
   line-height: 1.5rem;
   font-family: "Open Sans", sans-serif;
@@ -198,6 +195,7 @@ textarea {
   min-width: 27rem;
   max-width: 40rem;
   text-align: left;
+  cursor: text;
 }
 .wrapper-question-title,
 .wrapper-question-description {
@@ -264,54 +262,34 @@ textarea {
   min-width: 27rem;
   max-width: 40rem;
 }
-.preview-question-btn {
-  align-self: flex-start;
-}
+
 .empty-flex-item {
   flex-grow: 2;
 }
-.cancel-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.send-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--primary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  margin-right: 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.preview-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  margin-left: 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.cancel-question-btn:focus,
-.send-question-btn:focus,
-.preview-question-btn:focus {
-  outline: none;
-  border: 2.5px solid var(--success-color);
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    align-items: flex-start;
+  }
+
+  .question-title,
+  .question-description,
+  .question-preview {
+    min-width: 16rem;
+    width: 82vw;
+    margin-left: 1rem;
+  }
+  .label-description {
+    left: 1.3rem;
+  }
+  .label-title {
+    left: 1.3rem;
+  }
+
+  .wrapper-btn-row {
+    min-width: 16rem;
+    width: 82vw;
+    margin-left: 1rem;
+  }
 }
 </style>
