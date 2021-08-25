@@ -1,54 +1,56 @@
 <template>
   <div class="home">
-    <button @click="githubSignin">Github Signin</button>
-    <button @click="githubSignout">Github Signout</button>
+    <div class="login">
+      <p v-if="user">
+        {{ user.displayName }}
+        <button @click="singnOut">Logout</button>
+      </p>
+      <button v-else @click="signInGit" style="" class="btn-git-login">
+        GitHub-Login <i class="fa fa-github"></i>
+      </button>
+    </div>
   </div>
 </template>
 
+//
 <script>
 // @ is an alias to /src
-
+import firebase from "firebase/app";
 export default {
   name: "Home",
   data() {
-    return {
-      snackbar: false,
-      snackbarText: "No error message",
-    };
+    return { user: null };
   },
-  // methods: {
-  //   githubSignin() {
-  //     // With popup.
-  //     var provider = new firebase.auth.GithubAuthProvider();
-  //     provider.addScope("repo");
-  //     firebase
-  //       .auth()
-  //       .signInWithPopup(provider)
-  //       .then(function (result) {
-  //         // This gives you a GitHub Access Token.
-  //         var token = result.credential.accessToken;
-  //         // The signed-in user info.
-  //         var user = result.user;
-  //       })
-  //       .catch(function (error) {
-  //         // Handle Errors here.
-  //         var errorCode = error.code;
-  //         var errorMessage = error.message;
-  //         // The email of the user's account used.
-  //         var email = error.email;
-  //         // The firebase.auth.AuthCredential type that was used.
-  //         var credential = error.credential;
-  //         if (errorCode === "auth/account-exists-with-different-credential") {
-  //           alert(
-  //             "You have signed up with a different provider for that email."
-  //           );
-  //           // Handle linking here if your app allows it.
-  //         } else {
-  //           console.error(error);
-  //         }
-  //       });
-  //   },
-  //   githubSignout() {},
-  // },
+  methods: {
+    async signInGit() {
+      var provider = new firebase.auth.GithubAuthProvider();
+
+      const result = await firebase.auth().signInWithPopup(provider);
+      console.log(result.user);
+      this.user = result.user;
+    },
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          // Sign-out successful.
+        });
+      console.log("loggedOut");
+    },
+  },
 };
 </script>
+//
+<style lang="scss" scoped>
+.login {
+  margin: 0 2rem 0 0;
+}
+.btn-git-login {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  border: 2.5px solid;
+  border-radius: 0.25rem;
+}
+</style>

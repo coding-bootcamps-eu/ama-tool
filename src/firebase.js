@@ -1,5 +1,6 @@
 const firebase = require("firebase/app");
 require("firebase/database");
+require("firebase/auth");
 
 var firebaseConfig = {
   apiKey: "AIzaSyB4TLJ46tytlPKiT9c0sobcePupnIH22Jo",
@@ -13,6 +14,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.default.initializeApp(firebaseConfig);
+// Initialize the FirebaseUI Widget using Firebase.
+
 let db = firebase.default.database();
 
 export default db;

@@ -9,7 +9,7 @@
 <script>
 import MainNavigation from "@/components/MainNavigation/MainNavigation.vue";
 import MainFooter from "@/components/MainFooter/MainFooter.vue";
-
+import "@/firebase";
 export default {
   name: "App",
   components: {
