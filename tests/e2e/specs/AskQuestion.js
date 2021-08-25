@@ -8,22 +8,27 @@ describe("Test navigation", () => {
     cy.get("[data-cy='input-text']").last().focus();
   });
   //tests some input cases to make sure it's possible to format the text.
-  it("All input fields should accept text with their maximum length when clicked on", () => {
+  it("All input fields should accept text when clicked on", () => {
     cy.get("[data-cy='input-text']")
       .first()
       .click()
       .type("Test typing in question title..{backspace}");
-    //TODO:count the chars, not more than 150
-    //   .then((chars) => {
-    //     cy.wrap(chars).length <= 150;
-    //   });
     cy.get("[data-cy='input-text']")
       .last()
       .click()
       .type(
         "# Test typing in question description..{backspace}{enter}{enter}*Hello World!*{enter}Test text."
       );
-    //TODO:count the chars, not more than 5000;
+  });
+  it("Input text should only have their maximum length", () => {
+    cy.get("[data-cy='input-text']")
+      .first()
+      .its("length")
+      .should("be.lte", 150);
+    cy.get("[data-cy='input-text']")
+      .last()
+      .its("length")
+      .should("be.lte", 5000);
   });
   it("Radiobuttons should be clickable", () => {
     cy.get("[data-cy='input-radio']").click({ multiple: true });
