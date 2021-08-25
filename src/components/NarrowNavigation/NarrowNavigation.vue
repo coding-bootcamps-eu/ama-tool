@@ -24,7 +24,7 @@
           :style="{
             position: 'absolute',
             width: '3px',
-            height: '14px',
+            height: '25px',
             transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)',
           }"
         >
@@ -203,17 +203,17 @@ export default {
   position: absolute;
   width: 2rem;
   height: 2rem;
-  left: 3rem;
-  top: 5rem;
   cursor: pointer;
+  border-radius: 1rem;
 }
 
 .bm-burger-bars {
-  background-color: #373a47;
+  background-color: var(--secondary-color);
+  border-radius: 2rem;
 }
 .line-style {
   position: absolute;
-  height: 20%;
+  height: 30%;
   left: 0;
   right: 0;
 }
@@ -227,8 +227,8 @@ export default {
   background: #bdc3c7;
 }
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  height: 2rem;
+  width: 2rem;
 }
 .bm-cross-button.hidden {
   display: none;
@@ -241,7 +241,6 @@ export default {
   top: 0;
   left: 0;
   background-color: #fafafa; /* Black*/
-  border-radius: 0.25rem;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
@@ -266,7 +265,10 @@ export default {
 }
 @media screen and (max-width: 600px) {
   .bm-burger-button {
-    display: inline;
+    display: block;
+    position: relative;
+    _top: -5rem;
+    margin: 1.4rem;
   }
 }
 </style>

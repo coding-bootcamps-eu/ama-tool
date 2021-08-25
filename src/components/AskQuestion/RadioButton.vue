@@ -216,10 +216,18 @@ input[type="radio"]:checked + .category-sonstiges-input {
 @media screen and (max-width: 600px) {
   .button-area {
     min-width: 18rem;
+    margin-left: 1rem;
+    gap: 5px 5px;
   }
 
   label {
     width: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button-area {
+    min-width: 16rem;
   }
 }
 </style>

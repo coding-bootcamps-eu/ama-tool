@@ -52,11 +52,13 @@ export default {
   .secondary {
     font-size: 10px;
     line-height: 1rem;
+    margin: 0.2rem;
   }
 
   .primary {
     font-size: 10px;
     line-height: 1rem;
+    margin: 0.2rem;
   }
 }
 </style>

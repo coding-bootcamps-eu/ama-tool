@@ -74,9 +74,13 @@ nav {
 
 @media screen and (max-width: 600px) {
   header {
-    padding-bottom: 5rem;
+    _padding-bottom: 5rem;
     border-bottom: 0.5px solid var(--primary-color);
     margin-bottom: 1rem;
+  }
+  .header-wrapper {
+    margin-left: 1rem;
+    justify-content: flex-start;
   }
   .nav {
     display: none;

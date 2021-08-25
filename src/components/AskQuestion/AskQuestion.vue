@@ -275,20 +275,21 @@ textarea {
   .question-title,
   .question-description,
   .question-preview {
-    min-width: 18rem;
-    width: 77vw;
-    margin-left: 2.54rem;
+    min-width: 16rem;
+    width: 82vw;
+    margin-left: 1rem;
   }
   .label-description {
-    left: 2.8rem;
+    left: 1.3rem;
   }
   .label-title {
-    left: 2.8rem;
+    left: 1.3rem;
   }
 
   .wrapper-btn-row {
-    min-width: 18rem;
-    margin-left: 2.54rem;
+    min-width: 16rem;
+    width: 82vw;
+    margin-left: 1rem;
   }
 }
 </style>
