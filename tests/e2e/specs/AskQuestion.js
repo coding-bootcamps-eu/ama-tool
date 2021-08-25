@@ -21,7 +21,7 @@ describe("Test navigation", () => {
       .last()
       .click()
       .type(
-        "# Test typing in question description..{backspace}{enter}{enter}Hello World!"
+        "# Test typing in question description..{backspace}{enter}{enter}*Hello World!*{enter}Test text."
       );
     //TODO:count the chars, not more than 5000;
   });
@@ -29,8 +29,11 @@ describe("Test navigation", () => {
     cy.get("[data-cy='input-radio']").click({ multiple: true });
   });
   it("Preview button should be clickable, get toggled and is disabled when nothing is typed in description", () => {
-    cy.get("[data-cy='preview-button']").click();
-    //TODO:need to test toggling the preview button (wird der text richtig angezeigt)
+    cy.get("[data-cy='preview-button']")
+      .contains("einblenden")
+      .click()
+      .contains("ausblenden");
+    cy.get("[data-cy='preview-button']");
     //TODO:button does nothing if nothing is typed in description
   });
 });
