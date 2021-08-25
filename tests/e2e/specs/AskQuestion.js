@@ -28,12 +28,14 @@ describe("Test navigation", () => {
   it("Radiobuttons should be clickable", () => {
     cy.get("[data-cy='input-radio']").click({ multiple: true });
   });
-  it("Preview button should be clickable, get toggled and is disabled when nothing is typed in description", () => {
+  it("Preview button should be clickable and get toggled", () => {
     cy.get("[data-cy='preview-button']")
       .contains("einblenden")
       .click()
       .contains("ausblenden");
-    cy.get("[data-cy='preview-button']");
-    //TODO:button does nothing if nothing is typed in description
+  });
+  it("Preview button should be disabled when nothing is typed in description", () => {
+    cy.get("[data-cy='input-text']").last().click().clear();
+    cy.get("[data-cy='preview-button']").click().contains("einblenden");
   });
 });
