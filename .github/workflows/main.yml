@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run devserver &
-      - run: npm run test:e2e:ci
+      - run: npm run test:e2e
       - env:
           DISCORD_WEBHOOK: https://discord.com/api/webhooks/880027250144210997/URrCN8USQn4Le3WDqcSw88wQipeuxLI4ckWQARi-wdrlqFnWVY_ZlV-ih3mQ7acksYba
         uses: "Ilshidur/action-discord@0.3.2"
