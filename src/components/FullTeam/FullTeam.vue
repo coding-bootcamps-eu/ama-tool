@@ -45,7 +45,7 @@ export default {
           id: 4,
           name: "SIMON",
           pictureName: "simon",
-          text: "Moinsen! Die Gedudel friemeln das nichtsnutzig Schnösel. Der ausgemergelt Schluckspecht stibitzen. Der hochnäsig Lümmel. Schmock und Schlawiner verhaspeln fidel Wuchtbrumme. Der Augenschmaus erquicken die pompös Groschengrab. Der hold Schlawiner",
+          text: "Weil Toner und Tinte nicht mehr passten, haut Simon nun top motiviert in die Tasten. Fliegende Kometen & Dartpfeile sind seine Spezialität. Aber auch vor End2End Testing schreckt er nicht mehr zurück. Stets mit einem lustigen Spruch auf den Lippen, ist er ein Muss für jedes Team! War schön mit dir!",
         },
         {
           id: 5,
