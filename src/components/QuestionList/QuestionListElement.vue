@@ -1,5 +1,6 @@
 <template>
   <li>
+    <p>{{ isUserAllowedToVote }}</p>
     <div class="question-heading">
       <p class="question-title">{{ questionTitle }}</p>
       <div class="inner-question-wrapper">
@@ -36,10 +37,10 @@
       </button>
       <button
         class="vote-button-down"
-        :disabled="!isUserAllowedToVote"
+        :disabled="isUserAllowedToVote"
         @click="$emit('downvote')"
       >
-        <i class="fi-rr-angle-down" v-if="isUserAllowedToVote"></i>
+        <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
       </button>
     </div>
   </li>
@@ -81,7 +82,12 @@ export default {
       type: Number,
     },
     usersVotedQuestion: {
-      type: Object,
+      hasVoted: {
+        type: Boolean,
+      },
+      userID: {
+        type: [Number, String],
+      },
     },
     userVoted: {
       type: Boolean,
@@ -98,6 +104,7 @@ export default {
     isUserAllowedToVote() {
       // bennenung des rumpfes so, dass er als "lückentext" dient
       const votedValues = Object.values(this.usersVotedQuestion);
+      console.log("voted values: ", votedValues);
       const found = votedValues.find(
         (vote) =>
           vote.userID === localStorage.getItem("userID") &&

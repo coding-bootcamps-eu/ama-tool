@@ -89,9 +89,11 @@ export default {
       });
       this.questionsDOM = _questions;
     },
+
     getUserID() {
       return localStorage.getItem(this.storageKeyUserID);
     },
+
     createUsersVotedArray(questionKey) {
       let questionsDbRef = DataService.getAll();
       questionsDbRef
@@ -109,9 +111,8 @@ export default {
           }
         });
     },
+
     isUserAllowedToVote(userIDInc) {
-      // wenn user id nicht vorhanden, user darf voten
-      // wenn user id vorhanden, prüfe hasVoted status
       const voterFound = this.usersVotedQuestionDOM.find((vote) => {
         vote.userID === userIDInc && vote.hasVoted === true;
       });
@@ -121,9 +122,15 @@ export default {
         return false; // darf nicht wählen
       }
     },
+
     voteQuestion(questionKey, userIDInc) {
       this.createUsersVotedArray(questionKey);
       if (this.isUserAllowedToVote(userIDInc) === true) {
+        let ref = "usersVotedQuestion";
+        DataService.updateVotes(questionKey, ref, {
+          hasVoted: true,
+          userID: userIDInc,
+        });
         let questionsDbRef = DataService.getAll();
         questionsDbRef
           .child(questionKey)
@@ -132,10 +139,6 @@ export default {
             if (snapshot.exists()) {
               DataService.update(questionKey, {
                 questionUpvotes: snapshot.val().questionUpvotes + 1,
-                usersVotedQuestion: {
-                  hasVoted: true,
-                  userID: userIDInc,
-                },
               });
             } else {
               console.log("no data");
@@ -146,9 +149,14 @@ export default {
           });
       }
     },
+
     downVote(questionKey, userIDInc) {
       this.createUsersVotedArray(questionKey);
-
+      let ref = "usersVotedQuestion";
+      DataService.updateVotes(questionKey, ref, {
+        hasVoted: false,
+        userID: userIDInc,
+      });
       let questionsDbRef = DataService.getAll();
       questionsDbRef
         .child(questionKey)
@@ -170,14 +178,13 @@ export default {
           console.error(error);
         });
     },
-    /**
-     * When emit"answer" is triggered, take the questionKey and update questionIsDone status
-     */
+
     answerQuestion(questionKey) {
       DataService.update(questionKey, {
         questionIsDone: true,
       });
     },
+
     takebackanswer(questionKey) {
       DataService.update(questionKey, {
         questionIsDone: false,
