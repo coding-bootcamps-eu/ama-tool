@@ -1,12 +1,12 @@
-name: CI
+name: discord message
 
 on:
   pull_request:
     branches: ["dev"]
 
 jobs:
+  
   build:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - uses: sarisia/actions-status-discord@v1
-        if: always()
+        if: github.event.pull_request.merged == true
         env:
           DISCORD_WEBHOOK: ${{ secrets.WEBHOOK }}
           # for more input: https://github.com/marketplace/actions/actions-status-discord#environment-variables
