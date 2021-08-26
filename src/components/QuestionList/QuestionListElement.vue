@@ -1,6 +1,5 @@
 <template>
   <li>
-    <p>{{ isUserAllowedToVote }}</p>
     <div class="question-heading">
       <p class="question-title">{{ questionTitle }}</p>
       <div class="inner-question-wrapper">
