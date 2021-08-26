@@ -21,7 +21,7 @@ export default {
           id: 0,
           name: "INGA",
           pictureName: "inga",
-          text: "Servus! Die Kleintierzuchtverein jauchzen die töricht Libero. Das altbacken Stümper betören. Flausen und Schindluder anschwärzen rosig Pantoffelheld. Die Jubelperser lustwandeln die butterweich Pantoffelheld. Springinsfeld und Kokolores erquicken grobschlächtig Kohlroulade. ",
+          text: "Die Designerin: Schneller als Lucky Lukes den Colt zieht, haut sie Prototypen raus, entdeckt jede Ecke und Kante, kennt jede Komplementärfarbe, hat die passende Schriftart- und Größe im Kopf und teilt glücklicherweiße ihr Wissen. Ein verdientes und wichtiges Member unserer Class#2",
         },
         {
           id: 1,
@@ -39,19 +39,19 @@ export default {
           id: 3,
           name: "HERR LUX",
           pictureName: "lux",
-          text: "Das nichtsnutzig Freikörperkultur auftakeln. Die Fräulein ergötzen das verhärmt Groschengrab. Der altbacken Hatz. Die pompös Kummerspeck erquicken. Lausbub und Rädelsführer frickeln schamlos Augenschmaus. Höchste Eisenbahn!",
+          text: "Zwar wird er nicht geschrieben wie das Tier “Luchs”,aber: “In Gebieten, in denen der Luchs umherschweift, sind diese sehr aufmerksam.” Dies kann man auch auf Christian übertragen, in neuen Gebieten wie “VUE” testet er viel herum und findet immer wieder neue Wege und Lösungen. Einfach LUXtastisch",
         },
         {
           id: 4,
           name: "SIMON",
           pictureName: "simon",
-          text: "Moinsen! Die Gedudel friemeln das nichtsnutzig Schnösel. Der ausgemergelt Schluckspecht stibitzen. Der hochnäsig Lümmel. Schmock und Schlawiner verhaspeln fidel Wuchtbrumme. Der Augenschmaus erquicken die pompös Groschengrab. Der hold Schlawiner",
+          text: "Weil Toner und Tinte nicht mehr passten, haut Simon nun top motiviert in die Tasten. Fliegende Kometen & Dartpfeile sind seine Spezialität. Aber auch vor End2End Testing schreckt er nicht mehr zurück. Stets mit einem lustigen Spruch auf den Lippen, ist er ein Muss für jedes Team! War schön mit dir!",
         },
         {
           id: 5,
           name: "GLISS",
           pictureName: "gliss",
-          text: "Das blümerant Schlüpfer. Die butterweich Flausen. Donnerwetter und Waschweib grämen altbacken Mettigel. Der garstig Schenkelbürste. Gamaschen und Kleintierzuchtverein flanieren altbacken Lümmeltüte. Das rosig Lichtspieltheater. Heidewitzka!",
+          text: "Ruhe und Pokerface sind sein Markenzeichen, hat immer ein Trumpf im Ärmel und einen guten Rat parat. Geduldig, ausdauernd und fokussiert, kriegt er jedes Problem gelöst. Mit Dir zu coden und zu diskutieren ist immer eine wahre Freude. Allerdings mit Dir zu wetten ist niemals eine gute Idee.",
         },
       ],
     };
