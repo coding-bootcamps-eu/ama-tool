@@ -66,6 +66,7 @@ export default {
       questionFilterStatus: "All",
       storageKeyUserID: "userID",
       storageKeyVoteStatus: "voteStatus",
+      userID: null,
     };
   },
   watch: {
@@ -216,6 +217,7 @@ export default {
   },
   created() {
     // generate user id
+
     localStorage.setItem(this.storageKeyUserID, Math.random());
   },
   mounted() {

@@ -18,10 +18,11 @@
 // @ is an alias to /src
 import firebase from "firebase/app";
 export default {
-  name: "Home",
+  name: "UserLogin",
   data() {
     return {
       user: null,
+      userID: null,
     };
   },
   methods: {
@@ -29,14 +30,15 @@ export default {
       const provider = new firebase.auth.GithubAuthProvider();
 
       const result = await firebase.auth().signInWithPopup(provider);
-      console.log(result.user);
+      console.log(result.user.uid);
       this.user = result.user;
+      this.userID = result.user.uid;
     },
     async signInGgle() {
       const provider = new firebase.auth.GoogleAuthProvider();
 
       const result = await firebase.auth().signInWithPopup(provider);
-      console.log(result.user); // needed for further steps
+      console.log(result.user.uid); // needed for further steps
       this.user = result.user;
     },
     signOut() {

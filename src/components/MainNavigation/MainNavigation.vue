@@ -17,6 +17,7 @@
         />
         <h1>AMA Tool</h1>
       </div>
+      <user-login></user-login>
     </header>
     <nav class="nav">
       <ul class="header-nav">
