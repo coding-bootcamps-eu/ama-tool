@@ -3,11 +3,8 @@ describe("Test navigation", () => {
     cy.visit("/askquestion");
     cy.url().should("exist").should("include", "/askquestion");
   });
-  it("Input forms should be focusable", () => {
-    cy.get("[data-cy='input-text-title']").focus();
-    cy.get("[data-cy='input-text-description']").focus();
-  });
   //tests some input cases to make sure it's possible to format the text.
+  //in preparation to test sending question to database, is needed to test the markdown-preview
   it("All input fields should accept text when clicked on", () => {
     cy.get("[data-cy='input-text-title']")
       .click()
