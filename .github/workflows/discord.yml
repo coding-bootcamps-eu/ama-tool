@@ -29,5 +29,5 @@ jobs:
           # for more input: https://github.com/marketplace/actions/actions-status-discord#environment-variables
         with:
           nodetail: true
-          title: "We did it!"
-          description: ${{ github.actor }} triggered ${{ github.event_name }}
+          title: "Recent changes in dev-branch!"
+          description: ${{ github.actor }} has triggered ${{ github.event_name }}-event
