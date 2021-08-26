@@ -88,6 +88,7 @@ export default {
         });
       });
       this.questionsDOM = _questions;
+      this.questionsDOM = this.questionsDOM.slice(0).sort(this.compareVotes);
     },
 
     getUserID() {
@@ -189,6 +190,11 @@ export default {
       DataService.update(questionKey, {
         questionIsDone: false,
       });
+    },
+    compareVotes(a, b) {
+      if (a.questionUpvotes > b.questionUpvotes) return -1;
+      if (a.questionUpvotes < b.questionUpvotes) return 1;
+      return 0;
     },
   },
   computed: {
