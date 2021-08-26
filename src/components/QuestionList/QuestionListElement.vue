@@ -103,17 +103,14 @@ export default {
     isUserAllowedToVote() {
       // bennenung des rumpfes so, dass er als "lückentext" dient
       const votedValues = Object.values(this.usersVotedQuestion);
-      console.log("voted values: ", votedValues);
       const found = votedValues.find(
         (vote) =>
           vote.userID === localStorage.getItem("userID") &&
           vote.hasVoted === true
       );
       if (found === undefined) {
-        console.log("true", found);
         return true;
       } else {
-        console.log("false", found);
         return false;
       }
     },
