@@ -97,9 +97,10 @@ export default {
 
     createUsersVotedArray(questionKey) {
       let questionsDbRef = DataService.getAll();
+      let questionsChildRef = "usersVotedQuestion";
       questionsDbRef
         .child(questionKey)
-        .child("usersVotedQuestion")
+        .child(questionsChildRef)
         .get()
         .then((snapshot) => {
           if (snapshot.exists()) {
@@ -108,7 +109,7 @@ export default {
               this.usersVotedQuestionDOM.push(value);
             });
           } else {
-            console.log("no data");
+            console.error("no data");
           }
         });
     },
@@ -142,7 +143,7 @@ export default {
                 questionUpvotes: snapshot.val().questionUpvotes + 1,
               });
             } else {
-              console.log("no data");
+              console.error("no data");
             }
           })
           .catch((error) => {
@@ -172,7 +173,7 @@ export default {
               },
             });
           } else {
-            console.log("no data");
+            console.error("no data");
           }
         })
         .catch((error) => {
@@ -203,11 +204,11 @@ export default {
       if (questionFilterStatus === "All") {
         return this.questionsDOM;
       } else if (questionFilterStatus === "false") {
-        return this.questionsDOM.filter(function (question) {
+        return this.questionsDOM.filter((question) => {
           return question.questionIsDone === false;
         });
       } else {
-        return this.questionsDOM.filter(function (question) {
+        return this.questionsDOM.filter((question) => {
           return question.questionIsDone === true;
         });
       }
