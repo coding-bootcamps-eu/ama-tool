@@ -4,29 +4,23 @@ describe("Test navigation", () => {
     cy.url().should("exist").should("include", "/askquestion");
   });
   it("Input forms should be focusable", () => {
-    cy.get("[data-cy='input-text']").first().focus();
-    cy.get("[data-cy='input-text']").last().focus();
+    cy.get("[data-cy='input-text-title']").focus();
+    cy.get("[data-cy='input-text-description']").focus();
   });
   //tests some input cases to make sure it's possible to format the text.
   it("All input fields should accept text when clicked on", () => {
-    cy.get("[data-cy='input-text']")
-      .first()
+    cy.get("[data-cy='input-text-title']")
       .click()
       .type("Test typing in question title..{backspace}");
-    cy.get("[data-cy='input-text']")
-      .last()
+    cy.get("[data-cy='input-text-description']")
       .click()
       .type(
         "# Test typing in question description..{backspace}{enter}{enter}*Hello World!*{enter}Test text."
       );
   });
   it("Input text should only have their maximum length", () => {
-    cy.get("[data-cy='input-text']")
-      .first()
-      .its("length")
-      .should("be.lte", 150);
-    cy.get("[data-cy='input-text']")
-      .last()
+    cy.get("[data-cy='input-text-title']").its("length").should("be.lte", 150);
+    cy.get("[data-cy='input-text-description']")
       .its("length")
       .should("be.lte", 5000);
   });
@@ -40,7 +34,7 @@ describe("Test navigation", () => {
       .contains("ausblenden");
   });
   it("Preview button should be disabled when nothing is typed in description", () => {
-    cy.get("[data-cy='input-text']").last().click().clear();
+    cy.get("[data-cy='input-text-description']").click().clear();
     cy.get("[data-cy='preview-button']").click().contains("einblenden");
   });
 });
