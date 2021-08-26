@@ -4,16 +4,6 @@ describe("Testing the range Fragen List", () => {
     cy.url().should("exist").should("include", "/questionlis");
   });
 
-  it("Testing the focus by the radio button and answer button", () => {
-    cy.get("[data-cy='input-radio-alle-fragen']").focus();
-    cy.get("[data-cy='input-radio-offene-fragen']").focus();
-    cy.get("[data-cy='input-radio-beantwortete-fragen']").focus();
-
-    cy.get("[data-cy='answer-btw']").eq(0).focus();
-    cy.get("[data-cy='answer-btw']").eq(1).focus();
-    cy.get("[data-cy='answer-btw']").eq(2).focus();
-  });
-
   it("Test Check the answers", () => {
     /* we wait of the firebase */
   });
