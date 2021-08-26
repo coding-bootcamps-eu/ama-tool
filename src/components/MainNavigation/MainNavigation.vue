@@ -24,6 +24,9 @@
         <li class="nav-element">
           <router-link to="/team">Team</router-link>
         </li>
+        <li class="nav-element">
+          <router-link to="/login">Login</router-link>
+        </li>
       </ul>
     </nav>
   </div>
