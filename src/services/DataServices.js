@@ -18,8 +18,8 @@ class DataService {
   update(key, value) {
     return db.child(key).update(value);
   }
-  updateVotes(key, key2, value) {
-    return db.child(key).child(key2).push(value);
+  updateVotes(questionID, voteReference, voteObject) {
+    return db.child(questionID).child(voteReference).push(voteObject);
   }
   getVoter(key, ref) {
     return db.child(key).child(ref);

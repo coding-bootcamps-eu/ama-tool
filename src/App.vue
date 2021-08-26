@@ -1,6 +1,7 @@
 <template>
   <div>
     <MainNavigation />
+    <NarrowNavigation />
     <router-view />
     <MainFooter />
   </div>
@@ -10,11 +11,13 @@
 import MainNavigation from "@/components/MainNavigation/MainNavigation.vue";
 import MainFooter from "@/components/MainFooter/MainFooter.vue";
 import "@/firebase";
+import NarrowNavigation from "@/components/NarrowNavigation/NarrowNavigation.vue";
 export default {
   name: "App",
   components: {
     MainNavigation,
     MainFooter,
+    NarrowNavigation,
   },
 };
 </script>
@@ -55,5 +58,11 @@ html {
 body {
   max-width: 150ch;
   margin: 0 auto;
+  min-width: 350px;
+}
+@media screen and (max-width: 600px) {
+  body {
+    width: 95%;
+  }
 }
 </style>
