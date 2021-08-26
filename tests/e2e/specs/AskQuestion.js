@@ -28,10 +28,9 @@ describe("Test navigation", () => {
     cy.get("[data-cy='input-radio']").click({ multiple: true });
   });
   it("Preview button should be clickable and get toggled", () => {
-    cy.get("[data-cy='preview-button']")
-      .contains("einblenden")
-      .click()
-      .contains("ausblenden");
+    cy.get("[data-cy='preview-button']").contains("einblenden").click();
+    cy.get("[data-cy='question-preview']").should("exist");
+    cy.get("[data-cy='preview-button']").contains("ausblenden").click();
   });
   it("Preview button should be disabled when nothing is typed in description", () => {
     cy.get("[data-cy='input-text-description']").click().clear();

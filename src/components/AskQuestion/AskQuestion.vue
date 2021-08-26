@@ -42,6 +42,7 @@
       name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
       v-show="togglePreview"
+      data-cy="question-preview"
     >
       <Markdown :source="currentQuestion.description" text-align: left />
     </div>
