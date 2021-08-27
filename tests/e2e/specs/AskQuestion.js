@@ -1,4 +1,45 @@
 describe("Test navigation", () => {
+  beforeEach("checkDatabaseConnection", () => {
+    cy.intercept(
+      "POST",
+      "https://ama-tool-ea7e0-default-rtdb.europe-west1.firebasedatabase.app",
+      {
+        statusCode: 200,
+        body: [
+          {
+            userID: 1,
+            questionTitle: "Test Title 1",
+            questionDescription: "Test Description 1",
+            questionCategory: "HTML",
+          },
+          {
+            userID: 0,
+            questionTitle: "Test Title 2",
+            questionDescription: "Test Description 2",
+            questionCategory: "CSS",
+          },
+          {
+            userID: 1,
+            questionTitle: "Test Title 3",
+            questionDescription: "Test Description 3",
+            questionCategory: "JavaScript",
+          },
+          {
+            userID: 0,
+            questionTitle: "Test Title 4",
+            questionDescription: "Test Description 4",
+            questionCategory: "VUE",
+          },
+          {
+            userID: 1,
+            questionTitle: "Test Title 5",
+            questionDescription: "Test Description 5",
+            questionCategory: "Sonstiges",
+          },
+        ],
+      }
+    );
+  });
   it("Ask-question side should exist", () => {
     cy.visit("/askquestion");
     cy.url().should("exist").should("include", "/askquestion");
