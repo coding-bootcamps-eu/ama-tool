@@ -6,14 +6,14 @@
         id="question-title"
         class="question-title"
         name="question-title"
-        v-model="currentQuestion.title"
+        v-model="currentQuestion.questionTitle"
         maxlength="150"
       />
       <label for="question-title" v-bind:class="titleSize"
         >Titel der Frage</label
       >
       <p class="char-counter-short">
-        {{ 150 - currentQuestion.title.length }}/150
+        {{ 150 - currentQuestion.questionTitle.length }}/150
       </p>
     </div>
     <RadioButton @getCategory="setNewCategory" />
@@ -22,7 +22,7 @@
         id="question-description"
         class="question-description"
         name="question-description"
-        v-model="currentQuestion.description"
+        v-model="currentQuestion.questionDescription"
         maxlength="5000"
         cols="30"
         rows="10"
@@ -31,7 +31,7 @@
         >Beschreibung der Frage</label
       >
       <p class="char-counter">
-        {{ 5000 - currentQuestion.description.length }}/5000
+        {{ 5000 - currentQuestion.questionDescription.length }}/5000
       </p>
     </div>
     <div
@@ -41,7 +41,11 @@
       placeholder="Bitte beschreibe deine Frage genauer."
       v-show="togglePreview"
     >
-      <Markdown :source="currentQuestion.description" text-align: left />
+      <Markdown
+        :source="currentQuestion.questionDescription"
+        text-align:
+        left
+      />
     </div>
 
     <div class="wrapper-btn-row">
@@ -72,8 +76,10 @@
 </template>
 
 <script>
-import RadioButton from "@/components/AskQuestion/RadioButton.vue";
 import Markdown from "vue3-markdown-it";
+
+import RadioButton from "@/components/AskQuestion/RadioButton.vue";
+import DataService from "@/services/DataServices";
 
 export default {
   name: "AskQuestions",
@@ -87,14 +93,19 @@ export default {
       disabled: 0,
 
       currentQuestion: {
-        id: 1,
-        title: "",
-        description: "",
-        category: "Simons category",
-        isDone: false,
-        created_at: new Date(),
-        author: "randomAuthor",
-        upvotes: 0,
+        questionTitle: "",
+        questionDescription: "",
+        questionCategory: "Simons category",
+        questionIsDone: false,
+        questionCreated_at: new Date(),
+        questionAuthor: "randomAuthor",
+        questionUpvotes: 0,
+        usersVotedQuestion: [
+          {
+            userID: 0,
+            hasVoted: false,
+          },
+        ],
       },
       previewIsVisible: false,
       text: "Vorschau einblenden",
@@ -106,29 +117,35 @@ export default {
       // initiated with send-button. questionToList will be new stringify-Entry and will be pushed in array - later new DB-entry.
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
-      this.created_at = new Date();
-
-      const questionToList = JSON.stringify({
-        id: this.currentQuestion.id,
-        title: this.currentQuestion.title,
-        description: this.currentQuestion.description,
-        category: this.currentQuestion.category,
-        isDone: this.currentQuestion.isDone,
-        created_at: this.currentQuestion.created_at,
-        author: this.currentQuestion.author,
-        upvotes: this.currentQuestion.upvotes,
-      });
+      this.questionCreated_at = new Date();
+      const questionToList = {
+        questionTitle: this.currentQuestion.questionTitle,
+        questionDescription: this.currentQuestion.questionDescription,
+        questionCategory: this.currentQuestion.questionCategory,
+        questionIsDone: this.currentQuestion.questionIsDone,
+        questionCreated_at: JSON.stringify(this.questionCreated_at),
+        questionAuthor: this.currentQuestion.questionAuthor,
+        questionUpvotes: this.currentQuestion.questionUpvotes,
+        usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
+      };
       this.questionArray.push(questionToList);
-      this.currentQuestion.title = "";
-      this.currentQuestion.description = "";
+      // creates database entry with given questionToList
+      DataService.create(questionToList)
+        .then(() => {})
+        .catch((e) => {
+          console.error(e);
+        });
+
+      this.currentQuestion.questionTitle = "";
+      this.currentQuestion.questionDescription = "";
     },
     resetInput() {
       // resets the written values (Todo: re-routing; Reset more values?!)
-      this.currentQuestion.description = "";
-      this.currentQuestion.title = "";
+      this.currentQuestion.questionDescription = "";
+      this.currentQuestion.questionTitle = "";
     },
     showPreview() {
-      if (this.currentQuestion.description.length > 0) {
+      if (this.currentQuestion.questionDescription.length > 0) {
         this.previewIsVisible = !this.previewIsVisible;
         this.previewIsVisible === true
           ? (this.text = "Vorschau ausblenden")
@@ -136,24 +153,24 @@ export default {
       }
     },
     setNewCategory(result) {
-      this.currentQuestion.category = result;
+      this.currentQuestion.questionCategory = result;
     },
   },
   computed: {
     titleSize() {
-      return this.currentQuestion.title.length === 0
+      return this.currentQuestion.questionTitle.length === 0
         ? "label-title"
         : "small-label-title";
     },
     descriptionSize() {
-      return this.currentQuestion.description.length === 0
+      return this.currentQuestion.questionDescription.length === 0
         ? "label-description"
         : "small-label-title";
     },
 
     togglePreview() {
       if (
-        this.currentQuestion.description.length === 0 &&
+        this.currentQuestion.questionDescription.length === 0 &&
         this.previewIsVisible === true
       ) {
         return !this.previewIsVisible;
