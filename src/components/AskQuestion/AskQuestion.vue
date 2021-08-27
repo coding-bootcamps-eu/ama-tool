@@ -98,7 +98,7 @@ export default {
         questionCategory: "Keine Kategorie",
         questionIsDone: false,
         questionCreated_at: new Date(),
-        questionAuthor: "Kein Author",
+        questionAuthor: "Kein*e Autor*in",
         questionUpvotes: 0,
         usersVotedQuestion: [
           {
