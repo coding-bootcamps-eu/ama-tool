@@ -141,6 +141,7 @@ label {
   display: flex;
   width: 60vw;
   max-width: 40rem;
+  margin-left: 0.5rem;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -159,6 +160,7 @@ input[type="radio"] {
 .category-html-input {
   border: solid 2.5px #cf5635;
   background-color: #fafafa;
+  cursor: pointer;
 }
 input[type="radio"]:checked + .category-html-input {
   border: solid 2.5px #cf5635;
@@ -169,6 +171,7 @@ input[type="radio"]:checked + .category-html-input {
 .category-css-input {
   border: solid 2.5px #2f71b1;
   background-color: #fafafa;
+  cursor: pointer;
 }
 input[type="radio"]:checked + .category-css-input {
   border: solid 2.5px #2f71b1;
@@ -179,6 +182,7 @@ input[type="radio"]:checked + .category-css-input {
 .category-javascript-input {
   border: solid 2.5px #f0da4e;
   background-color: #fafafa;
+  cursor: pointer;
 }
 input[type="radio"]:checked + .category-javascript-input {
   border: solid 2.5px #f0da4e;
@@ -189,6 +193,7 @@ input[type="radio"]:checked + .category-javascript-input {
 .category-vue-input {
   border: solid 2.5px #63b687;
   background-color: #fafafa;
+  cursor: pointer;
 }
 input[type="radio"]:checked + .category-vue-input {
   border: solid 2.5px #63b687;
@@ -199,6 +204,7 @@ input[type="radio"]:checked + .category-vue-input {
 .category-tooling-input {
   border: solid 2.5px #5fdaff;
   background-color: #fafafa;
+  cursor: pointer;
 }
 input[type="radio"]:checked + .category-tooling-input {
   border: solid 2.5px #5fdaff;
@@ -209,6 +215,7 @@ input[type="radio"]:checked + .category-tooling-input {
 .category-sonstiges-input {
   border: solid 2.5px #ae43fd;
   background-color: #fafafa;
+  cursor: pointer;
 }
 input[type="radio"]:checked + .category-sonstiges-input {
   border: solid 2.5px #ae43fd;
@@ -223,9 +230,29 @@ input[type="radio"]:checked + .category-sonstiges-input {
 @media screen and (max-width: 1080px) {
   .button-area {
     display: grid;
+    margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px 25px;
+    gap: 10px 15px;
     justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .button-area {
+    min-width: 18rem;
+    width: 82vw;
+    margin-left: 1rem;
+    gap: 5px 5px;
+  }
+
+  label {
+    width: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button-area {
+    min-width: 16rem;
   }
 }
 </style>

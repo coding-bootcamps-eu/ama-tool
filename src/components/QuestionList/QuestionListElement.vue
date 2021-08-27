@@ -3,97 +3,90 @@
     <div class="question-heading">
       <p class="question-title">{{ questionTitle }}</p>
       <div class="inner-question-wrapper">
-        <p>Frage von: {{ author }}</p>
-        <p>Kategorie: {{ questionCat }}</p>
-        <p>Erstellt am: {{ created_at }}</p>
+        <p>Frage von: {{ questionAuthor }}</p>
+        <p>Kategorie: {{ questionCategory }}</p>
+        <p>Erstellt am: {{ questionCreated_at }}</p>
       </div>
     </div>
     <div class="question-edit">
-      <button class="answer-button" v-if="!isDone" @click="$emit('answer')">
+      <button
+        class="answer-button"
+        v-if="!questionIsDone"
+        @click="$emit('answer')"
+      >
         <p>Beantworten</p>
       </button>
       <button
         class="answer-button"
-        v-if="isDone"
+        v-if="questionIsDone"
         @click="$emit('takebackanswer')"
       >
         <p>Zurückziehen</p>
       </button>
-      <div class="vote-wrapper">
-        <p>Votes: {{ upvotes }}</p>
-        <div class="vote-arrows-wrapper"></div>
-        <button
-          class="vote-button-up"
-          :disabled="userVoted"
-          @click="$emit('upvote')"
-        >
-          <i class="fi-rr-angle-up" v-if="!userVoted"></i>
-        </button>
-        <button
-          class="vote-button-down"
-          :disabled="!userVoted"
-          @click="$emit('downvote')"
-        >
-          <i class="fi-rr-angle-down" v-if="userVoted"></i>
-        </button>
-      </div>
-      <div class="vote-wrapper-small-screen">
-        <p>Votes: {{ upvotes }}</p>
-        <div class="vote-arrows-wrapper"></div>
-        <button
-          class="vote-button-up"
-          :disabled="userVoted"
-          @click="$emit('upvote')"
-        >
-          <i class="fi-rr-angle-up" v-if="!userVoted"></i>
-        </button>
-        <button
-          class="vote-button-down"
-          :disabled="!userVoted"
-          @click="$emit('downvote')"
-        >
-          <i class="fi-rr-angle-down" v-if="userVoted"></i>
-        </button>
-      </div>
+    </div>
+    <div class="vote-wrapper">
+      <p>Votes: {{ questionUpvotes }}</p>
+      <div class="vote-arrows-wrapper"></div>
+      <button
+        class="vote-button-up"
+        :disabled="!isUserAllowedToVote"
+        @click="$emit('upvote')"
+      >
+        <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
+      </button>
+      <button
+        class="vote-button-down"
+        :disabled="isUserAllowedToVote"
+        @click="$emit('downvote')"
+      >
+        <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+      </button>
     </div>
   </li>
 </template>
 
 <script>
+/**  */
 export default {
-  name: "ListElement",
+  name: "QuestionListElement",
+  data() {
+    return {
+      usersVoted: [],
+    };
+  },
   props: {
-    id: {
+    questionKey: {
       type: [String, Number],
-      required: true,
     },
     questionTitle: {
       type: String,
-      required: true,
     },
     questionDescription: {
       type: String,
-      required: true,
     },
-    questionCat: {
+    questionCategory: {
       type: String,
-      required: true,
     },
-    isDone: {
+    questionIsDone: {
       type: Boolean,
       default: false,
     },
-    created_at: {
+    questionCreated_at: {
       type: [String, Date],
     },
-    author: {
+    questionAuthor: {
       type: String,
     },
-    upvotes: {
+    questionUpvotes: {
       type: Number,
     },
-    hasVoted: {
-      type: Array,
+    usersVotedQuestion: {
+      hasVoted: {
+        type: Boolean,
+      },
+      userID: {
+        type: [Number, String],
+      },
     },
     userVoted: {
       type: Boolean,
@@ -103,7 +96,23 @@ export default {
   emits: ["upvote", "answer", "downvote", "takebackanswer"],
   computed: {
     buttonText() {
-      return this.isDone ? this.takebackanswer(this.id) : this.isDone;
+      return this.questionIsDone
+        ? this.takebackanswer(this.questionKey)
+        : this.questionIsDone;
+    },
+    isUserAllowedToVote() {
+      // bennenung des rumpfes so, dass er als "lückentext" dient
+      const votedValues = Object.values(this.usersVotedQuestion);
+      const found = votedValues.find(
+        (vote) =>
+          vote.userID === localStorage.getItem("userID") &&
+          vote.hasVoted === true
+      );
+      if (found === undefined) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 };
