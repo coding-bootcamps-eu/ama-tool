@@ -6,14 +6,14 @@
         id="question-title"
         class="question-title"
         name="question-title"
-        v-model="currentQuestion.title"
+        v-model="currentQuestion.questionTitle"
         maxlength="150"
       />
       <label for="question-title" v-bind:class="titleSize"
         >Titel der Frage</label
       >
       <p class="char-counter-short">
-        {{ 150 - currentQuestion.title.length }}/150
+        {{ 150 - currentQuestion.questionTitle.length }}/150
       </p>
     </div>
     <RadioButton @getCategory="setNewCategory" />
@@ -22,7 +22,7 @@
         id="question-description"
         class="question-description"
         name="question-description"
-        v-model="currentQuestion.description"
+        v-model="currentQuestion.questionDescription"
         maxlength="5000"
         cols="30"
         rows="10"
@@ -31,7 +31,7 @@
         >Beschreibung der Frage</label
       >
       <p class="char-counter">
-        {{ 5000 - currentQuestion.description.length }}/5000
+        {{ 5000 - currentQuestion.questionDescription.length }}/5000
       </p>
     </div>
     <div
@@ -39,43 +39,47 @@
       class="question-preview"
       name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
-      v-show="previewIsVisible"
+      v-show="togglePreview"
     >
-      <Markdown :source="currentQuestion.description" text-align: left />
+      <Markdown
+        :source="currentQuestion.questionDescription"
+        text-align:
+        left
+      />
     </div>
 
     <div class="wrapper-btn-row">
-      <button
-        type="button"
+      <main-button
         id="preview-question-btn"
-        class="preview-question-btn"
+        buttonClass="primary"
         @click="showPreview"
-        v-on:click="toggleText"
-      >
-        {{ buttonText }}
-      </button>
+        >{{ buttonText }}
+      </main-button>
+
       <div class="empty-flex-item"></div>
-      <input
-        type="button"
+
+      <main-button
         id="cancel-question-btn"
-        class="cancel-question-btn"
+        buttonClass="primary"
         @click="resetInput"
-        value="ABBRECHEN"
-      />
-      <input
-        type="button"
+        >ABBRECHEN
+      </main-button>
+
+      <main-button
         id="send-question-btn"
-        class="send-question-btn"
+        buttonClass="secondary"
         @click="initQuestions"
-        value="SENDEN"
-      />
+        >SENDEN
+      </main-button>
     </div>
   </div>
 </template>
 
 <script>
-import RadioButton from "@/components/AskQuestion/RadioButton.vue";
 import Markdown from "vue3-markdown-it";
+
+import RadioButton from "@/components/AskQuestion/RadioButton.vue";
+import DataService from "@/services/DataServices";
 
 export default {
   name: "AskQuestions",
@@ -86,22 +90,25 @@ export default {
 
   data() {
     return {
-      isVisible: false,
-      showPreviewToggle: "Vorschau ausblenden",
-      hidePreviewToggle: "Vorschau einblenden",
       disabled: 0,
 
       currentQuestion: {
-        id: 1,
-        title: "",
-        description: "",
-        category: "Simons category",
-        isDone: false,
-        created_at: new Date(),
-        author: "randomAuthor",
-        upvotes: 0,
+        questionTitle: "",
+        questionDescription: "",
+        questionCategory: "Simons category",
+        questionIsDone: false,
+        questionCreated_at: new Date(),
+        questionAuthor: "randomAuthor",
+        questionUpvotes: 0,
+        usersVotedQuestion: [
+          {
+            userID: 0,
+            hasVoted: false,
+          },
+        ],
       },
       previewIsVisible: false,
+      text: "Vorschau einblenden",
       questionArray: [],
     };
   },
@@ -110,60 +117,73 @@ export default {
       // initiated with send-button. questionToList will be new stringify-Entry and will be pushed in array - later new DB-entry.
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
-      this.created_at = new Date();
-
-      const questionToList = JSON.stringify({
-        id: this.currentQuestion.id,
-        title: this.currentQuestion.title,
-        description: this.currentQuestion.description,
-        category: this.currentQuestion.category,
-        isDone: this.currentQuestion.isDone,
-        created_at: this.currentQuestion.created_at,
-        author: this.currentQuestion.author,
-        upvotes: this.currentQuestion.upvotes,
-      });
+      this.questionCreated_at = new Date();
+      const questionToList = {
+        questionTitle: this.currentQuestion.questionTitle,
+        questionDescription: this.currentQuestion.questionDescription,
+        questionCategory: this.currentQuestion.questionCategory,
+        questionIsDone: this.currentQuestion.questionIsDone,
+        questionCreated_at: JSON.stringify(this.questionCreated_at),
+        questionAuthor: this.currentQuestion.questionAuthor,
+        questionUpvotes: this.currentQuestion.questionUpvotes,
+        usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
+      };
       this.questionArray.push(questionToList);
-      this.currentQuestion.title = "";
-      this.currentQuestion.description = "";
+      // creates database entry with given questionToList
+      DataService.create(questionToList)
+        .then(() => {})
+        .catch((e) => {
+          console.error(e);
+        });
+
+      this.currentQuestion.questionTitle = "";
+      this.currentQuestion.questionDescription = "";
     },
     resetInput() {
       // resets the written values (Todo: re-routing; Reset more values?!)
-      this.currentQuestion.description = "";
-      this.currentQuestion.title = "";
+      this.currentQuestion.questionDescription = "";
+      this.currentQuestion.questionTitle = "";
     },
     showPreview() {
-      if (this.currentQuestion.description.length === 0) {
-        this.previewIsVisible = true;
-        this.isVisible = true;
+      if (this.currentQuestion.questionDescription.length > 0) {
+        this.previewIsVisible = !this.previewIsVisible;
+        this.previewIsVisible === true
+          ? (this.text = "Vorschau ausblenden")
+          : (this.text = "Vorschau einblenden");
       }
-      this.previewIsVisible = !this.previewIsVisible;
     },
     setNewCategory(result) {
-      this.currentQuestion.category = result;
-    },
-    toggleText() {
-      if (!this.isVisible) {
-        this.isVisible = true;
-      } else {
-        this.isVisible = false;
-      }
+      this.currentQuestion.questionCategory = result;
     },
   },
   computed: {
     titleSize() {
-      return this.currentQuestion.title.length === 0
+      return this.currentQuestion.questionTitle.length === 0
         ? "label-title"
         : "small-label-title";
     },
     descriptionSize() {
-      return this.currentQuestion.description.length === 0
+      return this.currentQuestion.questionDescription.length === 0
         ? "label-description"
         : "small-label-title";
     },
-    buttonText() {
-      return this.isVisible ? this.showPreviewToggle : this.hidePreviewToggle;
+
+    togglePreview() {
+      if (
+        this.currentQuestion.questionDescription.length === 0 &&
+        this.previewIsVisible === true
+      ) {
+        return !this.previewIsVisible;
+      } else {
+        return this.previewIsVisible;
+      }
     },
-    
+
+    buttonText() {
+      return this.togglePreview === true
+        ? "Vorschau ausblenden"
+        : "Vorschau einblenden";
+    },
   },
 };
 </script>
@@ -183,7 +203,7 @@ textarea {
 .question-preview {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
-  padding: 0.8rem 0.3rem 0.3rem 0.3rem;
+  padding: 0.8rem 4rem 0.3rem 0.3rem;
   margin: 0.5rem;
   line-height: 1.5rem;
   font-family: "Open Sans", sans-serif;
@@ -192,6 +212,7 @@ textarea {
   min-width: 27rem;
   max-width: 40rem;
   text-align: left;
+  cursor: text;
 }
 .wrapper-question-title,
 .wrapper-question-description {
@@ -258,54 +279,34 @@ textarea {
   min-width: 27rem;
   max-width: 40rem;
 }
-.preview-question-btn {
-  align-self: flex-start;
-}
+
 .empty-flex-item {
   flex-grow: 2;
 }
-.cancel-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.send-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--primary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  margin-right: 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.preview-question-btn {
-  color: var(--background-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
-  border: 2.5px solid transparent;
-  border-radius: 0.25rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
-  margin-left: 0;
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  line-height: 1.5rem;
-}
-.cancel-question-btn:focus,
-.send-question-btn:focus,
-.preview-question-btn:focus {
-  outline: none;
-  border: 2.5px solid var(--success-color);
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    align-items: flex-start;
+  }
+
+  .question-title,
+  .question-description,
+  .question-preview {
+    min-width: 16rem;
+    width: 82vw;
+    margin-left: 1rem;
+  }
+  .label-description {
+    left: 1.3rem;
+  }
+  .label-title {
+    left: 1.3rem;
+  }
+
+  .wrapper-btn-row {
+    min-width: 16rem;
+    width: 82vw;
+    margin-left: 1rem;
+  }
 }
 </style>

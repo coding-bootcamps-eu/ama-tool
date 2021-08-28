@@ -1,0 +1,33 @@
+name: discord message
+
+on:
+  push:
+    branches: ["dev"]
+  pull_request:
+    branches: ["dev"]
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - uses: sarisia/actions-status-discord@v1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.WEBHOOK }}
+          # for more input: https://github.com/marketplace/actions/actions-status-discord#environment-variables
+        with:
+          nodetail: true
+          title: "Recent changes in dev-branch!"
+          description: ${{ github.actor }} has triggered ${{ github.event_name }}-event
