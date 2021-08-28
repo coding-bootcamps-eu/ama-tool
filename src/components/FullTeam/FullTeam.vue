@@ -1,4 +1,5 @@
 <template>
+  <div class="rect" id="rect"></div>
   <div class="team">
     <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
       <TeamMember class="member" :member="member" />
@@ -65,7 +66,17 @@ export default {
         array[j] = temp;
       }
       return array;
+      //const fireposition = Math.floor(Math.random() * 50);
+      //console.log(fireposition);
     },
+  },
+  mounted() {
+    const moveRect = document.getElementById("rect");
+    const firePositionX = 150 + Math.floor(Math.random() * 100);
+    const firePositionY = 50 + Math.floor(Math.random() * 100);
+
+    moveRect.style.top = firePositionX.toString() + "px";
+    moveRect.style.left = firePositionY.toString() + "px";
   },
 };
 </script>
@@ -76,10 +87,17 @@ export default {
   margin-right: 2.2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.member {
+  margin: 1rem;
+}
 
-  .member {
-    margin: 1rem;
-  }
+.rect {
+  position: absolute;
+  border: 2px solid black;
+  height: 4rem;
+  width: 4rem;
+  _top: 100px;
 }
 
 @media screen and (max-width: 700px) {

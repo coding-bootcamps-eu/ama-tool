@@ -4,6 +4,8 @@
       class="member-picture"
       :src="require(`../../assets/${this.member.pictureName}.jpeg`).default"
       alt="schade"
+      @mouseover="movePicture"
+      @mouseleave="renderPicture"
     />
     <h2 class="member-name">{{ member.name }}</h2>
     <p class="member-description">{{ member.text }}</p>
@@ -20,6 +22,14 @@ export default {
       required: true,
     },
   },
+  methods: {
+    movePicture() {
+      event.target.style.transform = "scale(1.3) rotate(360deg)";
+    },
+    renderPicture() {
+      event.target.style.transform = "scale(1)";
+    },
+  },
 };
 </script>
 
@@ -32,6 +42,7 @@ export default {
   border: 4px solid var(--primary-color);
   height: 12.5rem;
   width: auto;
+  transition: transform 4s;
 }
 
 .member-name {
