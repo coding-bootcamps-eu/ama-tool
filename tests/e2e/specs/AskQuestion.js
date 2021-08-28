@@ -40,6 +40,12 @@ describe("Test navigation", () => {
       }
     );
   });
+  it("Database connection should exist", () => {
+    cy.visit(
+      "https://ama-tool-ea7e0-default-rtdb.europe-west1.firebasedatabase.app"
+    );
+    cy.url().should("exist");
+  });
   it("Ask-question side should exist", () => {
     cy.visit("/askquestion");
     cy.url().should("exist").should("include", "/askquestion");
