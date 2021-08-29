@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <section>
     <div id="button-area" class="button-area">
       <div>
         <input
@@ -82,7 +82,7 @@
         >
       </div>
     </div>
-  </body>
+  </section>
 </template>
 
 <script>
@@ -105,10 +105,7 @@ label {
   display: inline-block;
   position: relative;
   width: 6rem;
-  _height: 1rem;
   border-radius: 0.25rem;
-  _margin: 0.6rem;
-  _padding: 0.5rem;
   font-size: 0.85rem;
 }
 
@@ -116,7 +113,6 @@ label {
   display: flex;
   width: 60vw;
   max-width: 40rem;
-  margin-left: 0.5rem;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -202,7 +198,7 @@ input[type="radio"]:checked + .category-sonstiges-input {
   margin-left: 1.25rem;
   font-family: "Open Sans", sans-serif;
 }
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1120px) {
   .button-area {
     display: grid;
     margin: 0 auto;
