@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     movePicture() {
-      event.target.style.transform = "scale(1.3) rotate(360deg)";
+      event.target.style.transform = "scale(1.3) rotate(15deg)";
     },
     renderPicture() {
       event.target.style.transform = "scale(1)";

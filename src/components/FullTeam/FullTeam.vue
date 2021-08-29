@@ -1,8 +1,17 @@
 <template>
-  <div class="rect" id="rect"></div>
-  <div class="team">
+  <div
+    class="rect"
+    id="rect"
+    @mouseover="showFire = true"
+    @mouseleave="showFire = false"
+  >
+    <transition name="fadeFire">
+      <img v-show="showFire" class="campfire" src="@/assets/campfire.gif" />
+    </transition>
+  </div>
+  <div class="team" id="team">
     <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
-      <TeamMember class="member" :member="member" />
+      <TeamMember v-show="!showFire" class="member" :member="member" />
     </div>
   </div>
 </template>
@@ -17,6 +26,8 @@ export default {
   },
   data() {
     return {
+      showFire: false,
+      showTeam: !this.showFire,
       members: [
         {
           id: 0,
@@ -65,9 +76,8 @@ export default {
         array[i] = array[j];
         array[j] = temp;
       }
+
       return array;
-      //const fireposition = Math.floor(Math.random() * 50);
-      //console.log(fireposition);
     },
   },
   mounted() {
@@ -90,6 +100,7 @@ export default {
 }
 .member {
   margin: 1rem;
+  opacity: 1;
 }
 
 .rect {
@@ -97,7 +108,16 @@ export default {
   border: 2px solid black;
   height: 4rem;
   width: 4rem;
-  _top: 100px;
+}
+
+.fadeFire-enter-active,
+.fadeFire-leave-active {
+  transition: opacity 3s ease;
+}
+
+.fadeFire-enter-from,
+.fadeFire-leave-to {
+  opacity: 0;
 }
 
 @media screen and (max-width: 700px) {
