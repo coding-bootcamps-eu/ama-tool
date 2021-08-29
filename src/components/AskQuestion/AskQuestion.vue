@@ -95,7 +95,7 @@ export default {
       currentQuestion: {
         questionTitle: "",
         questionDescription: "",
-        questionCategory: "Simons category",
+        questionCategory: "",
         questionIsDone: false,
         questionCreated_at: new Date(),
         questionAuthor: "randomAuthor",
@@ -113,32 +113,68 @@ export default {
     };
   },
   methods: {
+    validateQuestion() {
+      if (
+        this.currentQuestion.questionTitle.length < 10 ||
+        this.countWords(this.currentQuestion.questionTitle) < 2
+      ) {
+        console.log("wrong title");
+        return false;
+      } else if (
+        this.currentQuestion.questionDescription.length < 10 ||
+        this.countWords(this.currentQuestion.questionDescription) < 2
+      ) {
+        console.log("wrong description");
+        return false;
+      } else if (this.currentQuestion.questionCategory === "") {
+        console.log("no category");
+        return false;
+      } else {
+        return true;
+      }
+    },
     initQuestions() {
       // initiated with send-button. questionToList will be new stringify-Entry and will be pushed in array - later new DB-entry.
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
-      this.questionCreated_at = new Date();
-      const questionToList = {
-        questionTitle: this.currentQuestion.questionTitle,
-        questionDescription: this.currentQuestion.questionDescription,
-        questionCategory: this.currentQuestion.questionCategory,
-        questionIsDone: this.currentQuestion.questionIsDone,
-        questionCreated_at: JSON.stringify(this.questionCreated_at),
-        questionAuthor: this.currentQuestion.questionAuthor,
-        questionUpvotes: this.currentQuestion.questionUpvotes,
-        usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
-      };
-      this.questionArray.push(questionToList);
-      // creates database entry with given questionToList
-      DataService.create(questionToList)
-        .then(() => {})
-        .catch((e) => {
-          console.error(e);
-        });
+      let validation = this.validateQuestion();
+      if (!validation) {
+        console.log("no validation");
+      } else {
+        this.questionCreated_at = new Date();
+        const questionToList = {
+          questionTitle: this.currentQuestion.questionTitle,
+          questionDescription: this.currentQuestion.questionDescription,
+          questionCategory: this.currentQuestion.questionCategory,
+          questionIsDone: this.currentQuestion.questionIsDone,
+          questionCreated_at: JSON.stringify(this.questionCreated_at),
+          questionAuthor: this.currentQuestion.questionAuthor,
+          questionUpvotes: this.currentQuestion.questionUpvotes,
+          usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
+        };
+        this.questionArray.push(questionToList);
+        // creates database entry with given questionToList
+        DataService.create(questionToList)
+          .then(() => {})
+          .catch((e) => {
+            console.error(e);
+          });
 
-      this.currentQuestion.questionTitle = "";
-      this.currentQuestion.questionDescription = "";
+        this.currentQuestion.questionTitle = "";
+        this.currentQuestion.questionDescription = "";
+      }
     },
+
+    countWords(text) {
+      let count = 0;
+      for (let i = 0; i < text.length; i++) {
+        if (" " === text.charAt(i)) {
+          count++;
+        }
+      }
+      return count;
+    },
+
     resetInput() {
       // resets the written values (Todo: re-routing; Reset more values?!)
       this.currentQuestion.questionDescription = "";

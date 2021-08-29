@@ -95,7 +95,6 @@ export default {
   methods: {
     getCategory() {
       this.$emit("getCategory", event.target.value);
-      console.log(event.target.value);
     },
   },
 };
