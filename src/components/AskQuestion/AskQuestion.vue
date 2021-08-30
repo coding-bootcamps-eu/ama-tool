@@ -74,20 +74,18 @@
     </div>
     <div
       id="question-validation"
-      class="question-validation"
+      class="question-validation no-valid-feedback"
       name="question-validation"
       v-show="validation === false"
     >
-      <label class="no-valid-feedback">Fehlerhafte Angaben:</label>
-      <p class="valid-feedback" v-show="!this.validTitle">
+      <label>Fehlerhafte Angaben:</label>
+      <p v-show="!this.validTitle">
         Der Titel benötigt mindestens 10 Zeichen und drei Wörter
       </p>
-      <p class="valid-feedback" v-show="!this.validDescription">
+      <p v-show="!this.validDescription">
         Die Beschreibung benötigt mindestens 10 Zeichen und drei Wörter
       </p>
-      <p class="valid-feedback" v-show="!this.validCategory">
-        Es wurde keine Kategorie gewählt
-      </p>
+      <p v-show="!this.validCategory">Es wurde keine Kategorie gewählt</p>
     </div>
     <div
       id="question-validation"
