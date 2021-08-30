@@ -1,28 +1,30 @@
 <template>
-  <div
-    class="rect"
-    id="rect"
-    @mouseover="showFire = true"
-    @mouseleave="showFire = false"
-  >
-    <transition name="fadeFire">
-      <img v-show="showFire" class="campfire" src="@/assets/campfire.gif" />
-    </transition>
-  </div>
-  <div
-    class="rectTent"
-    id="rectTent"
-    @mouseover="showTent = true"
-    @mouseleave="showTent = false"
-  >
-    <transition name="fadetent">
-      <img v-show="showTent" class="camptent" src="@/assets/tent.webp" />
-    </transition>
-  </div>
+  <div class="wrapper">
+    <div
+      class="rect"
+      id="rect"
+      @mouseover="showFire = true"
+      @mouseleave="showFire = false"
+    >
+      <transition name="fadeFire">
+        <img v-show="showFire" class="campfire" src="@/assets/campfire.gif" />
+      </transition>
+    </div>
+    <div
+      class="rectTent"
+      id="rectTent"
+      @mouseover="showTent = true"
+      @mouseleave="showTent = false"
+    >
+      <transition name="fadetent">
+        <img v-show="showTent" class="camptent" src="@/assets/tent.webp" />
+      </transition>
+    </div>
 
-  <div class="team" id="team">
-    <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
-      <TeamMember v-show="showFullTeam" class="member" :member="member" />
+    <div class="team" id="team">
+      <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
+        <TeamMember v-show="showFullTeam" class="member" :member="member" />
+      </div>
     </div>
   </div>
 </template>
@@ -115,6 +117,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrapper {
+  min-height: 20rem;
+}
 .team {
   margin-left: 2rem;
   margin-right: 2.2rem;
@@ -128,16 +133,16 @@ export default {
 
 .rect {
   position: absolute;
-  border: 2px solid black;
-  height: 4rem;
-  width: 4rem;
+  border: 0.5px solid transparent;
+  height: 2rem;
+  width: 2rem;
 }
 
 .rectTent {
   position: absolute;
-  border: 2px solid black;
-  height: 4rem;
-  width: 4rem;
+  border: 0.5px solid transparent;
+  height: 2rem;
+  width: 2rem;
 }
 
 .fadeFire-enter-active,
