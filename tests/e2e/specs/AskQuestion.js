@@ -80,4 +80,12 @@ describe("Test navigation", () => {
     cy.get("[data-cy='input-text-description']").click().clear();
     cy.get("[data-cy='preview-button']").click().contains("einblenden");
   });
+  it("Database should only send when something is typed", () => {
+    //fails if nothing is typed
+    cy.get("[data-cy='input-text-title']").should("not.have.value", "");
+    cy.get("[data-cy='input-text-description']")
+      .type("text to pass test")
+      .should("not.have.value", "");
+    cy.get("[data-cy='send-button']").click();
+  });
 });

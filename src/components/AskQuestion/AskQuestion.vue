@@ -72,6 +72,7 @@
       <main-button
         id="send-question-btn"
         buttonClass="secondary"
+        data-cy="send-button"
         @click="initQuestions"
         >SENDEN
       </main-button>
