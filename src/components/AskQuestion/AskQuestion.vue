@@ -77,7 +77,7 @@
 
 <script>
 import Markdown from "vue3-markdown-it";
-import "highlight.js/styles/stackoverflow-light.css";
+import "highlight.js/styles/github.css";
 
 import RadioButton from "@/components/AskQuestion/RadioButton.vue";
 import DataService from "@/services/DataServices";
