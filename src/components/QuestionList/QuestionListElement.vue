@@ -128,9 +128,7 @@ li {
   list-style-type: none;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(106, 28, 195, 1) 0px 0.5px 1px 0px,
-    rgba(169, 112, 235, 1) 0px 1px 3px 1px;
-  _border: 0.5px solid var(--primary-color);
+  border: 0.5px solid var(--primary-color);
   border-radius: 0.25rem;
   .question-heading {
     margin: 0.5rem 2rem 0.5rem 1rem;

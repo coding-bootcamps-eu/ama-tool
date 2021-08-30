@@ -7,10 +7,6 @@
     <button v-else @click="signInGit" class="btn-git-login">
       GitHub-Login <i class="fa fa-github"></i>
     </button>
-    <!-- will be implemented later -->
-    <!-- <button @click="signInGgle" class="btn-ggl-login">
-      Google-Login <i class="fa fa-google"></i>
-    </button> -->
   </div>
 </template>
 
@@ -26,28 +22,31 @@ export default {
     };
   },
   methods: {
+    getUserName() {
+      return this.user.displayName;
+    },
+    startSession(userToken){
+      this.$session.start();
+      this.$session.set("jwt", userToken);
+    },
     async signInGit() {
       const provider = new firebase.auth.GithubAuthProvider();
-
       const result = await firebase.auth().signInWithPopup(provider);
-      console.log(result.user.uid);
+      this.startSession(result);
+      console.log(result.user.displayName);
       this.user = result.user;
       this.userID = result.user.uid;
-    },
-    async signInGgle() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-
-      const result = await firebase.auth().signInWithPopup(provider);
-      console.log(result.user.uid); // needed for further steps
-      this.user = result.user;
     },
     signOut() {
       firebase
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace("/");
+          this.$router.replace("/about");
           // Sign-out successful.
+        })
+        .catch((error) => {
+          console.error(error);
         });
     },
   },
@@ -64,6 +63,7 @@ export default {
   background-color: var(--background-color);
   border: 2.5px solid;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
 .btn-ggl-login {
   font-size: 1.2rem;
@@ -71,6 +71,7 @@ export default {
   background-color: var(--background-color);
   border: 2.5px solid;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
 .btn-git-logout {
   font-size: 1rem;
@@ -78,5 +79,6 @@ export default {
   background-color: var(--background-color);
   border: 2.5px solid;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
 </style>
