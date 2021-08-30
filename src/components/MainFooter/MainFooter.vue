@@ -126,4 +126,11 @@ ul {
     font-size: 0.8em;
   }
 }
+@media only screen and (max-width: 600px) {
+  .footer-wrapper {
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-start;
+  }
+}
 </style>
