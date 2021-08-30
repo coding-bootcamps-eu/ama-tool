@@ -9,9 +9,20 @@
       <img v-show="showFire" class="campfire" src="@/assets/campfire.gif" />
     </transition>
   </div>
+  <div
+    class="rectTent"
+    id="rectTent"
+    @mouseover="showTent = true"
+    @mouseleave="showTent = false"
+  >
+    <transition name="fadetent">
+      <img v-show="showTent" class="camptent" src="@/assets/tent.webp" />
+    </transition>
+  </div>
+
   <div class="team" id="team">
     <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
-      <TeamMember v-show="!showFire" class="member" :member="member" />
+      <TeamMember v-show="showFullTeam" class="member" :member="member" />
     </div>
   </div>
 </template>
@@ -27,7 +38,7 @@ export default {
   data() {
     return {
       showFire: false,
-      showTeam: !this.showFire,
+      showTent: false,
       members: [
         {
           id: 0,
@@ -80,6 +91,11 @@ export default {
       return array;
     },
   },
+  computed: {
+    showFullTeam() {
+      return !this.showTent & !this.showFire ? true : false;
+    },
+  },
   mounted() {
     const moveRect = document.getElementById("rect");
     const firePositionX = 150 + Math.floor(Math.random() * 100);
@@ -87,6 +103,13 @@ export default {
 
     moveRect.style.top = firePositionX.toString() + "px";
     moveRect.style.left = firePositionY.toString() + "px";
+
+    const moveTent = document.getElementById("rectTent");
+    const tentPositionX = 100 + Math.floor(Math.random() * 100);
+    const tentPositionY = 350 + Math.floor(Math.random() * 100);
+
+    moveTent.style.top = tentPositionX.toString() + "px";
+    moveTent.style.left = tentPositionY.toString() + "px";
   },
 };
 </script>
@@ -104,6 +127,13 @@ export default {
 }
 
 .rect {
+  position: absolute;
+  border: 2px solid black;
+  height: 4rem;
+  width: 4rem;
+}
+
+.rectTent {
   position: absolute;
   border: 2px solid black;
   height: 4rem;
