@@ -27,7 +27,7 @@ export default {
       event.target.style.transform = "scale(1.3) rotate(15deg)";
     },
     renderPicture() {
-      event.target.style.transform = "scale(1)";
+      event.target.style.transform = "scale(1) rotate(-15deg)";
     },
   },
 };
@@ -42,6 +42,7 @@ export default {
   border: 4px solid var(--primary-color);
   height: 12.5rem;
   width: auto;
+  transform: rotate(-15deg);
   transition: transform 4s;
 }
 
