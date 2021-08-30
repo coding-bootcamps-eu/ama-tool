@@ -1,49 +1,17 @@
 describe("Test navigation", () => {
   beforeEach("checkDatabaseConnection", () => {
-    cy.intercept(
-      "POST",
-      "https://ama-tool-ea7e0-default-rtdb.europe-west1.firebasedatabase.app",
-      {
-        statusCode: 200,
-        body: [
-          {
-            userID: 1,
-            questionTitle: "Test Title 1",
-            questionDescription: "Test Description 1",
-            questionCategory: "HTML",
-          },
-          {
-            userID: 0,
-            questionTitle: "Test Title 2",
-            questionDescription: "Test Description 2",
-            questionCategory: "CSS",
-          },
-          {
-            userID: 1,
-            questionTitle: "Test Title 3",
-            questionDescription: "Test Description 3",
-            questionCategory: "JavaScript",
-          },
-          {
-            userID: 0,
-            questionTitle: "Test Title 4",
-            questionDescription: "Test Description 4",
-            questionCategory: "VUE",
-          },
-          {
-            userID: 1,
-            questionTitle: "Test Title 5",
-            questionDescription: "Test Description 5",
-            questionCategory: "Sonstiges",
-          },
-        ],
-      }
-    );
+    cy.intercept("create", {
+      statusCode: 201,
+      body: {
+        userID: 1,
+        questionTitle: "Test Title 1",
+        questionDescription: "Test Description 1",
+        questionCategory: "HTML",
+      },
+    });
   });
   it("Database connection should exist", () => {
-    cy.visit(
-      "https://ama-tool-ea7e0-default-rtdb.europe-west1.firebasedatabase.app"
-    );
+    cy.visit("http://localhost:8080/");
     cy.url().should("exist");
   });
   it("Ask-question side should exist", () => {
@@ -62,7 +30,7 @@ describe("Test navigation", () => {
   it("All input fields should accept text when clicked on", () => {
     cy.get("[data-cy='input-text-title']")
       .click()
-      .type("Test typing in question title..{backspace}");
+      .type("TEeST typing in question title..{backspace}");
     cy.get("[data-cy='input-text-description']")
       .click()
       .type(
