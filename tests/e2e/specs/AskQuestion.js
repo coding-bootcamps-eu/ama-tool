@@ -50,6 +50,13 @@ describe("Test navigation", () => {
     cy.visit("/askquestion");
     cy.url().should("exist").should("include", "/askquestion");
   });
+  it("should test focus of input fields and buttons", () => {
+    //fails if .focus() isn't included in the test
+    cy.get("[data-cy='input-text-title']").focus().should("have.focus");
+    cy.get("[data-cy='input-text-description']").focus().should("have.focus");
+    cy.get("[data-cy='preview-button']").focus().should("have.focus");
+    cy.get("[data-cy='send-button']").focus().should("have.focus");
+  });
   //tests some input cases to make sure it's possible to format the text.
   //in preparation to test sending question to database, is needed to test the markdown-preview
   it("All input fields should accept text when clicked on", () => {
@@ -69,6 +76,7 @@ describe("Test navigation", () => {
       .should("be.lte", 5000);
   });
   it("Radiobuttons should be clickable", () => {
+    //cant test focus beacuse the styled label it getting clicked, labels aren't focusable
     cy.get("[data-cy='input-radio']").click({ multiple: true });
   });
   it("Preview button should be clickable and get toggled", () => {
