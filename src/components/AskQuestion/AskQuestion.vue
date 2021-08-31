@@ -95,10 +95,10 @@ export default {
       currentQuestion: {
         questionTitle: "",
         questionDescription: "",
-        questionCategory: "Simons category",
+        questionCategory: "Keine Kategorie",
         questionIsDone: false,
         questionCreated_at: new Date(),
-        questionAuthor: "randomAuthor",
+        questionAuthor: "Kein*e Autor*in",
         questionUpvotes: 0,
         usersVotedQuestion: [
           {
@@ -117,13 +117,17 @@ export default {
       // initiated with send-button. questionToList will be new stringify-Entry and will be pushed in array - later new DB-entry.
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
-      this.questionCreated_at = new Date();
+      let fullDate = new Date();
+      let month = fullDate.getMonth() + 1;
+      let day = fullDate.getDate();
+      let year = fullDate.getFullYear();
+      this.questionCreated_at = `${day}.${month}.${year}`;
       const questionToList = {
         questionTitle: this.currentQuestion.questionTitle,
         questionDescription: this.currentQuestion.questionDescription,
         questionCategory: this.currentQuestion.questionCategory,
         questionIsDone: this.currentQuestion.questionIsDone,
-        questionCreated_at: JSON.stringify(this.questionCreated_at),
+        questionCreated_at: this.questionCreated_at,
         questionAuthor: this.currentQuestion.questionAuthor,
         questionUpvotes: this.currentQuestion.questionUpvotes,
         usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
