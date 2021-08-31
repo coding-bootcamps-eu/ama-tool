@@ -10,6 +10,8 @@
           <router-link to="/askquestion">Frage stellen</router-link>
 
           <router-link to="/team">Team</router-link>
+
+          <user-login></user-login>
         </slot>
       </nav>
       <span

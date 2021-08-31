@@ -32,8 +32,6 @@ export default {
       sessionStorage.setItem("user", result.user);
       sessionStorage.setItem("userID", result.user.uid);
       sessionStorage.setItem("userName", result.user.displayName);
-      console.log("user: ", result.user);
-      console.log("user ID:", sessionStorage.getItem("userID"));
       this.user = result.user;
       this.userID = result.user.uid;
     },
@@ -66,6 +64,7 @@ export default {
   border: 2.5px solid;
   border-radius: 0.25rem;
   cursor: pointer;
+  padding: .4rem;
 }
 .btn-ggl-login {
   font-size: 1.2rem;

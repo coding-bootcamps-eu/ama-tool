@@ -17,7 +17,7 @@
         />
         <h1>AMA Tool</h1>
       </div>
-      <user-login></user-login>
+      
     </header>
     <nav class="nav">
       <ul class="header-nav">
@@ -33,8 +33,8 @@
         <li class="nav-element">
           <router-link to="/team">Team</router-link>
         </li>
-        <li class="nav-element">
-          <router-link to="/login">Login</router-link>
+        <li class="nav-login">
+          <user-login></user-login>
         </li>
       </ul>
     </nav>
@@ -64,10 +64,11 @@ h1 {
 nav {
   .header-nav {
     margin: 1rem 2rem 1rem 2.2rem;
-    padding: 0rem 2rem 2rem 0rem;
+    padding: 0rem 2rem 1rem 0rem;
     display: flex;
     flex-flow: row;
     list-style-type: none;
+    align-items: baseline;
     border-bottom: 0.5px solid var(--primary-color);
   }
   li a {
@@ -86,6 +87,9 @@ nav {
       border: 2.5px solid var(--success-color);
       border-radius: 0.25rem;
     }
+  }
+  button{
+    padding: .4rem !important;
   }
 }
 
