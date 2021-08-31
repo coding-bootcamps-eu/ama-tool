@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClass"><slot /></button>
+  <button data-cy="answer-button" :class="buttonClass"><slot /></button>
 </template>
 
 <script>
