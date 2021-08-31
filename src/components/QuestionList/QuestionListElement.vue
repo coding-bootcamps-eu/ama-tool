@@ -18,44 +18,72 @@
         {{ questionTitle }}
       </router-link>
       <div class="inner-question-wrapper">
-        <p>Frage von: {{ questionAuthor }}</p>
-        <p>Kategorie: {{ questionCategory }}</p>
-        <p>Erstellt am: {{ questionCreated_at }}</p>
+        <span class="who-asked">
+          Frage von: <br />
+          {{ questionAuthor }}
+        </span>
+        <span class="question-category">
+          Kategorie: <br />
+          {{ questionCategory }}
+        </span>
+        <span class="date">
+          Erstellt am:<br />
+          {{ questionCreated_at }}
+        </span>
       </div>
     </div>
     <div class="question-edit">
-      <button
-        class="answer-button"
+      <main-button
+        id="answer-question-btn"
+        buttonClass="secondary"
         v-if="!questionIsDone"
         @click="$emit('answer')"
-      >
-        <p>Beantworten</p>
-      </button>
-      <button
-        class="answer-button"
+        >BEANTWORTEN
+      </main-button>
+      <main-button
+        id="takeback-question-btn"
+        buttonClass="secondary"
         v-if="questionIsDone"
         @click="$emit('takebackanswer')"
-      >
-        <p>Zurückziehen</p>
-      </button>
-    </div>
-    <div class="vote-wrapper">
-      <p>Votes: {{ questionUpvotes }}</p>
-      <div class="vote-arrows-wrapper"></div>
-      <button
-        class="vote-button-up"
-        :disabled="!isUserAllowedToVote"
-        @click="$emit('upvote')"
-      >
-        <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
-      </button>
-      <button
-        class="vote-button-down"
-        :disabled="isUserAllowedToVote"
-        @click="$emit('downvote')"
-      >
-        <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
-      </button>
+        >ZURÜCKZIEHEN
+      </main-button>
+
+      <div class="vote-wrapper">
+        <p>Votes: {{ questionUpvotes }}</p>
+        <div class="vote-arrows-wrapper"></div>
+        <button
+          class="vote-button-up"
+          :disabled="!isUserAllowedToVote"
+          @click="$emit('upvote')"
+        >
+          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
+        </button>
+        <button
+          class="vote-button-down"
+          :disabled="isUserAllowedToVote"
+          @click="$emit('downvote')"
+        >
+          <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+        </button>
+      </div>
+      <div class="vote-wrapper-small-screen">
+        <p>Votes: {{ questionUpvotes }}</p>
+        <div class="vote-arrows-wrapper"></div>
+        <button
+          class="vote-button-up"
+          :disabled="!isUserAllowedToVote"
+          @click="$emit('upvote')"
+        >
+          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
+        </button>
+        <button
+          class="vote-button-down"
+          :disabled="isUserAllowedToVote"
+          @click="$emit('downvote')"
+        >
+          <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+        </button>
+      </div>
     </div>
   </li>
 </template>
@@ -143,9 +171,7 @@ li {
   list-style-type: none;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(106, 28, 195, 1) 0px 0.5px 1px 0px,
-    rgba(169, 112, 235, 1) 0px 1px 3px 1px;
-  _border: 0.5px solid var(--primary-color);
+  border: 0.5px solid var(--primary-color);
   border-radius: 0.25rem;
   .question-heading {
     margin: 0.5rem 2rem 0.5rem 1rem;
@@ -156,9 +182,12 @@ li {
     display: flex;
     flex-flow: row;
     align-items: baseline;
-    p {
+    justify-content: space-between;
+    span {
       font-size: 0.85em;
       margin-right: 1rem;
+      display: inline;
+      text-align: justify;
     }
   }
   div {
@@ -191,17 +220,6 @@ li {
   }
   button {
     margin: 1rem;
-  }
-  .answer-button {
-    padding: 0 0.5rem;
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    p {
-      margin: 0;
-      font-weight: bold;
-    }
   }
   .vote-wrapper {
     margin: 0.5rem 2rem;
