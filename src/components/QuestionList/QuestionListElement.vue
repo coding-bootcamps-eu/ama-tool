@@ -1,7 +1,22 @@
 <template>
   <li>
     <div class="question-heading">
-      <p class="question-title">{{ questionTitle }}</p>
+      <router-link
+        class="question-title"
+        :to="{
+          name: 'details',
+          params: {
+            questionKey,
+            questionTitle,
+            questionDescription,
+            questionAuthor,
+            questionCategory,
+            questionCreated_at,
+          },
+        }"
+      >
+        {{ questionTitle }}
+      </router-link>
       <div class="inner-question-wrapper">
         <p>Frage von: {{ questionAuthor }}</p>
         <p>Kategorie: {{ questionCategory }}</p>
@@ -23,9 +38,6 @@
       >
         <p>Zurückziehen</p>
       </button>
-      <router-link :to="{ name: 'details', params: { id } }">
-        {{ questionTitle }}
-      </router-link>
     </div>
     <div class="vote-wrapper">
       <p>Votes: {{ questionUpvotes }}</p>
@@ -55,7 +67,6 @@ export default {
   data() {
     return {
       usersVoted: [],
-      id: 1,
     };
   },
   props: {
@@ -165,6 +176,7 @@ li {
     padding: 0.5rem 0;
     font-size: 1.1rem;
     font-weight: 550;
+    text-decoration: none;
     border-bottom: 0.5px solid var(--primary-color);
   }
   .question-edit {

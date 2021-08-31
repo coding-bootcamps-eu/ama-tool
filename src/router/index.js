@@ -47,7 +47,7 @@ const routes = [
           ),
       },
       {
-        path: "/questionlist/:id",
+        path: "/questionlist/:questionKey",
         name: "details",
         component: () =>
           import(
