@@ -124,7 +124,7 @@ export default {
         questionCategory: "Keine Kategorie",
         questionIsDone: false,
         questionCreated_at: new Date(),
-        questionAuthor: "kein*e Autor*in",
+        questionAuthor: "Kein*e Autor*in",
         questionUpvotes: 0,
         usersVotedQuestion: [
           {
@@ -170,12 +170,29 @@ export default {
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
       let validation = this.validateQuestion();
       if (validation) {
-        let fullDate = new Date();
-        let month = fullDate.getMonth() + 1 + ".";
-        let day = fullDate.getDate() + ".";
-        let year = fullDate.getFullYear();
-        this.questionCreated_at = day + month + year;
-
+      let fullDate = new Date();
+      let month = fullDate.getMonth() + 1;
+      let day = fullDate.getDate();
+      let year = fullDate.getFullYear();
+      this.questionCreated_at = `${day}.${month}.${year}`;
+      const questionToList = {
+        questionTitle: this.currentQuestion.questionTitle,
+        questionDescription: this.currentQuestion.questionDescription,
+        questionCategory: this.currentQuestion.questionCategory,
+        questionIsDone: this.currentQuestion.questionIsDone,
+        questionCreated_at: this.questionCreated_at,
+        questionAuthor: this.currentQuestion.questionAuthor,
+        questionUpvotes: this.currentQuestion.questionUpvotes,
+        usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
+      };
+      this.questionArray.push(questionToList);
+      // creates database entry with given questionToList
+      DataService.create(questionToList)
+        .then(() => {})
+        .catch((e) => {
+          console.error(e);
+        });
+        };
         const questionToList = {
           questionTitle: this.currentQuestion.questionTitle,
           questionDescription: this.currentQuestion.questionDescription,
