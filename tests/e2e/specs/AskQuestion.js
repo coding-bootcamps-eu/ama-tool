@@ -1,14 +1,18 @@
 describe("Test navigation", () => {
   beforeEach("checkDatabaseConnection", () => {
-    cy.intercept("create", {
-      statusCode: 201,
-      body: {
-        userID: 1,
-        questionTitle: "Test Title 1",
-        questionDescription: "Test Description 1",
-        questionCategory: "HTML",
-      },
-    });
+    cy.intercept(
+      "create",
+      "https://ama-test-79524-default-rtdb.europe-west1.firebasedatabase.app/",
+      {
+        statusCode: 201,
+        body: {
+          userID: 1,
+          questionTitle: "Test Title 1",
+          questionDescription: "Test Description 1",
+          questionCategory: "HTML",
+        },
+      }
+    );
   });
   it("Database connection should exist", () => {
     cy.visit("http://localhost:8080/");
