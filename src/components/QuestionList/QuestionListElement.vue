@@ -23,6 +23,9 @@
       >
         <p>Zurückziehen</p>
       </button>
+      <router-link :to="{ name: 'details', params: { id } }">
+        {{ questionTitle }}
+      </router-link>
     </div>
     <div class="vote-wrapper">
       <p>Votes: {{ questionUpvotes }}</p>
@@ -52,6 +55,7 @@ export default {
   data() {
     return {
       usersVoted: [],
+      id: 1,
     };
   },
   props: {

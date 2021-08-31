@@ -32,12 +32,31 @@ const routes = [
   },
   {
     path: "/questionlist",
-    name: "QuestionList",
+    name: "AllQuestions",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Questions/QuestionList.vue"
+        /* webpackChunkName: "about" */ "../views/Questions/AllQuestions.vue"
       ),
+    children: [
+      {
+        path: "",
+        name: "QuestionList",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "../views/Questions/QuestionList.vue"
+          ),
+      },
+      {
+        path: "/questionlist/:id",
+        name: "details",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "../views/Questions/QuestionDetails.vue"
+          ),
+      },
+    ],
   },
+
   {
     path: "/imprint",
     name: "Imprint",
