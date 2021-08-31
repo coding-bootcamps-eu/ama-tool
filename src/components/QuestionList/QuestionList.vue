@@ -93,11 +93,15 @@ export default {
     },
 
     getUserID() {
+      if(this.isUserSet() === true){
+        return sessionStorage.getItem(this.storageKeyUserID);}
+    },
+    isUserSet(){
       if(sessionStorage.getItem(this.storageKeyUserID) != null){
-        return sessionStorage.getItem(this.storageKeyUserID);
+        return true
       }else{
-        window.alert("Bitte logge dich ein!")
-      }
+        false
+      };
     },
 
     createUsersVotedArray(questionKey) {
