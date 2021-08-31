@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <header>
+  <header>
+    <div>
       <div class="header-wrapper">
         <img
           class="header-logo"
@@ -17,28 +17,24 @@
         />
         <h1>AMA Tool</h1>
       </div>
-      <user-login></user-login>
-    </header>
-    <nav class="nav">
-      <ul class="header-nav">
-        <li class="nav-element">
-          <router-link to="/">Start</router-link>
-        </li>
-        <li class="nav-element">
-          <router-link to="/questionlist">Fragen Liste</router-link>
-        </li>
-        <li class="nav-element">
-          <router-link to="/askquestion">Frage stellen</router-link>
-        </li>
-        <li class="nav-element">
-          <router-link to="/team">Team</router-link>
-        </li>
-        <li class="nav-element">
-          <router-link to="/login">Login</router-link>
-        </li>
-      </ul>
-    </nav>
-  </div>
+      <nav class="nav">
+        <ul class="header-nav">
+          <li class="nav-element">
+            <router-link to="/">Start</router-link>
+          </li>
+          <li class="nav-element">
+            <router-link to="/questionlist">Fragen Liste</router-link>
+          </li>
+          <li class="nav-element">
+            <router-link to="/askquestion">Frage stellen</router-link>
+          </li>
+          <li class="nav-element">
+            <router-link to="/team">Team</router-link>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <style lang="scss" scoped>
@@ -99,7 +95,9 @@ nav {
   }
 
   h1 {
-    margin: 0 2rem;
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    line-height: 2rem;
   }
 
   .narrow-header-wrapper {
