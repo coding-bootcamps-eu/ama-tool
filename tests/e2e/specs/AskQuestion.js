@@ -4,7 +4,8 @@ describe("Test navigation", () => {
     cy.url().should("exist");
   });
   it("Ask-question side should exist", () => {
-    cy.visit("/askquestion");
+    //needed to add absolute path to avoid port changes
+    cy.visit("http://localhost:8080/askquestion");
     cy.url().should("exist").should("include", "/askquestion");
   });
   it("should test focus of input fields and buttons", () => {
@@ -19,7 +20,7 @@ describe("Test navigation", () => {
   it("All input fields should accept text when clicked on", () => {
     cy.get("[data-cy='input-text-title']")
       .click()
-      .type("TTTTest typing in question title..{backspace}");
+      .type("Test typing in question title..{backspace}");
     cy.get("[data-cy='input-text-description']")
       .click()
       .type(
