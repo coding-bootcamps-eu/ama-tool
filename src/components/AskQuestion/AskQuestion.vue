@@ -79,6 +79,9 @@
       v-show="validation === false"
     >
       <label>Fehlerhafte Angaben:</label>
+      <p v-show="!this.validUser">
+        Bitte logge dich ein. 
+      </p>
       <p v-show="!this.validTitle">
         Der Titel benötigt mindestens 10 Zeichen und drei Wörter
       </p>
@@ -117,6 +120,7 @@ export default {
       validTitle: true,
       validDescription: true,
       validCategory: true,
+      validUser: true,
       validation: "",
       currentQuestion: {
         questionTitle: "",
@@ -140,6 +144,11 @@ export default {
   },
   methods: {
     validateQuestion() {
+      if (sessionStorage.getItem("userID") === null){
+        this.validUser = false;
+      }else {
+        this.validUser = true;
+      }
       if (
         this.currentQuestion.questionTitle.length < 10 ||
         this.countWords(this.currentQuestion.questionTitle) < 2
@@ -152,11 +161,11 @@ export default {
       ) {
         this.validDescription = false;
       } else this.validDescription = true;
-      if (this.currentQuestion.questionCategory === "") {
+      if (this.currentQuestion.questionCategory === "Keine Kategorie") {
         this.validCategory = false;
       } else this.validCategory = true;
 
-      if (!this.validTitle || !this.validDescription || !this.validCategory) {
+      if (!this.validTitle || !this.validDescription || !this.validCategory || !this.validUser) {
         this.validation = false;
         return false;
       } else {
@@ -200,7 +209,7 @@ export default {
            window.alert("Bitte logge dich ein!");
         }   
       }else{
-        //not validated
+        //not validated message
       }
     },
     countWords(text) {

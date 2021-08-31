@@ -34,12 +34,19 @@
           <router-link to="/team">Team</router-link>
         </li>
         <li class="nav-login">
-          <user-login></user-login>
+          <UserLogin />
         </li>
       </ul>
     </nav>
   </div>
 </template>
+<script>
+import UserLogin from "@/components/UserLogin/UserLogin.vue";
+export default {
+  name: "MainNavigation",
+  components: {UserLogin},
+}
+</script>
 
 <style lang="scss" scoped>
 .header-wrapper {

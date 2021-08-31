@@ -11,7 +11,7 @@
 
           <router-link to="/team">Team</router-link>
 
-          <user-login></user-login>
+          <UserLogin/>
         </slot>
       </nav>
       <span
@@ -51,8 +51,10 @@
 </template>
 
 <script>
+import UserLogin from "@/components/UserLogin/UserLogin.vue";
 export default {
   name: "menubar",
+  components: {UserLogin},
   data() {
     return {
       isSideBarOpen: false,
