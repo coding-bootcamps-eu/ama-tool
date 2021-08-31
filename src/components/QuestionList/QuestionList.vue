@@ -1,5 +1,4 @@
 <template>
-<!--  
   <section class="question-list" id="questionList">
     <div class="user-options">
       <div class="filter-options">
@@ -51,6 +50,7 @@
 <script>
 import QuestionListElement from "@/components/QuestionList/QuestionListElement.vue";
 import DataService from "@/services/DataServices";
+
 export default {
   name: "QuestionList",
   props: ["question"],
@@ -90,9 +90,11 @@ export default {
       this.questionsDOM = _questions;
       this.questionsDOM = this.questionsDOM.slice(0).sort(this.compareVotes);
     },
+
     getUserID() {
       return localStorage.getItem(this.storageKeyUserID);
     },
+
     createUsersVotedArray(questionKey) {
       let questionsDbRef = DataService.getAll();
       let questionsChildRef = "usersVotedQuestion";
@@ -111,6 +113,7 @@ export default {
           }
         });
     },
+
     isUserAllowedToVote(userIDInc) {
       const voterFound = this.usersVotedQuestionDOM.find((vote) => {
         vote.userID === userIDInc && vote.hasVoted === true;
@@ -121,6 +124,7 @@ export default {
         return false; // darf nicht wählen
       }
     },
+
     voteQuestion(questionKey, userIDInc) {
       this.createUsersVotedArray(questionKey);
       if (this.isUserAllowedToVote(userIDInc) === true) {
@@ -147,6 +151,7 @@ export default {
           });
       }
     },
+
     downVote(questionKey, userIDInc) {
       this.createUsersVotedArray(questionKey);
       let ref = "usersVotedQuestion";
@@ -175,11 +180,13 @@ export default {
           console.error(error);
         });
     },
+
     answerQuestion(questionKey) {
       DataService.update(questionKey, {
         questionIsDone: true,
       });
     },
+
     takebackanswer(questionKey) {
       DataService.update(questionKey, {
         questionIsDone: false,
