@@ -72,6 +72,29 @@
         >SENDEN
       </main-button>
     </div>
+    <div
+      id="question-validation"
+      class="question-validation no-valid-feedback"
+      name="question-validation"
+      v-show="validation === false"
+    >
+      <label>Fehlerhafte Angaben:</label>
+      <p v-show="!this.validTitle">
+        Der Titel benötigt mindestens 10 Zeichen und drei Wörter
+      </p>
+      <p v-show="!this.validDescription">
+        Die Beschreibung benötigt mindestens 10 Zeichen und drei Wörter
+      </p>
+      <p v-show="!this.validCategory">Es wurde keine Kategorie gewählt</p>
+    </div>
+    <div
+      id="question-validation"
+      class="question-validation valid-feedback"
+      name="question-validation"
+      v-show="validation === true"
+    >
+      <label>Deine Frage wurde erfolgreich gesendet!</label>
+    </div>
   </div>
 </template>
 
@@ -93,6 +116,8 @@ export default {
       disabled: 0,
       validTitle: true,
       validDescription: true,
+      validCategory: true,
+      validation: "",
       currentQuestion: {
         questionTitle: "",
         questionDescription: "",
@@ -119,20 +144,23 @@ export default {
         this.currentQuestion.questionTitle.length < 10 ||
         this.countWords(this.currentQuestion.questionTitle) < 2
       ) {
-        console.log("wrong title");
         this.validTitle = false;
-        return false;
-      } else if (
+      } else this.validTitle = true;
+      if (
         this.currentQuestion.questionDescription.length < 10 ||
         this.countWords(this.currentQuestion.questionDescription) < 2
       ) {
-        console.log("wrong description");
         this.validDescription = false;
-        return false;
-      } else if (this.currentQuestion.questionCategory === "") {
-        console.log("no category");
+      } else this.validDescription = true;
+      if (this.currentQuestion.questionCategory === "") {
+        this.validCategory = false;
+      } else this.validCategory = true;
+
+      if (!this.validTitle || !this.validDescription || !this.validCategory) {
+        this.validation = false;
         return false;
       } else {
+        this.validation = true;
         return true;
       }
     },
@@ -141,9 +169,7 @@ export default {
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
       let validation = this.validateQuestion();
-      if (!validation) {
-        console.log("no validation");
-      } else {
+      if (validation) {
       let fullDate = new Date();
       let month = fullDate.getMonth() + 1;
       let day = fullDate.getDate();
@@ -185,6 +211,9 @@ export default {
       // resets the written values (Todo: re-routing; Reset more values?!)
       this.currentQuestion.questionDescription = "";
       this.currentQuestion.questionTitle = "";
+      this.validation = "";
+      this.validTitle = true;
+      this.validDescription = true;
     },
     showPreview() {
       if (this.currentQuestion.questionDescription.length > 0) {
@@ -250,7 +279,8 @@ textarea {
 }
 .question-title,
 .question-description,
-.question-preview {
+.question-preview,
+.question-validation {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
   padding: 0.8rem 4rem 0.3rem 0.3rem;
@@ -325,6 +355,15 @@ textarea {
   color: var(--placeholder-color);
 }
 
+.no-valid-feedback {
+  color: var(--fail-color);
+}
+
+.valid-feedback {
+  color: var(--success-color);
+  text-align: center;
+}
+
 /* -------- Styling of the buttons -------- */
 .wrapper-btn-row {
   display: flex;
@@ -346,7 +385,8 @@ textarea {
 
   .question-title,
   .question-description,
-  .question-preview {
+  .question-preview,
+  .question-validation {
     min-width: 16rem;
     width: 82vw;
     margin-left: 1rem;
