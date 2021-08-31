@@ -60,7 +60,7 @@ h1 {
 }
 nav {
   .header-nav {
-    margin: 1rem 2rem 1rem 2.2rem;
+    margin: 1rem 4rem 1rem 2.5rem;
     padding: 0rem 2rem 2rem 0rem;
     display: flex;
     flex-flow: row;
@@ -86,15 +86,24 @@ nav {
   }
 }
 
+@media only screen and (max-width: 814px) {
+  nav {
+    .header-nav {
+      margin: 1rem 2rem 1rem 2.5rem;
+    }
+  }
+}
+
 @media screen and (max-width: 600px) {
   header {
     border-bottom: 0.5px solid var(--primary-color);
     margin-bottom: 1rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
   }
   .header-wrapper {
     display: none;
   }
-
   h1 {
     margin: 0 1rem;
     font-size: 1.8rem;
@@ -106,7 +115,7 @@ nav {
     flex-direction: row-reverse;
     align-items: center;
     margin-left: 1rem;
-    margin-right: 2rem;
+    margin-right: 0rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }

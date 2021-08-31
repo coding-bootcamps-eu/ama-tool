@@ -167,7 +167,7 @@ export default {
   display: none;
 }
 li {
-  margin: 1rem 4rem 1rem 0;
+  margin: 1rem 0rem 1rem 0;
   list-style-type: none;
   justify-content: space-between;
   align-items: center;
@@ -256,7 +256,6 @@ li {
 @media only screen and (max-width: 814px) {
   li {
     margin: 1rem 0rem 1rem 0;
-    max-width: 90%;
     min-width: 50%;
     list-style-type: none;
     justify-content: space-between;

@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <ul id="questions">
+    <ul id="questions" class="questions">
       <QuestionListElement
         v-for="question in filteredQuestions"
         :key="question.questionKey"
@@ -239,6 +239,12 @@ ul > li {
     margin-right: 1rem;
   }
 }
+.questions {
+  margin-left: 2.5rem;
+  margin-right: 4rem;
+  padding-left: 0;
+  padding-right: 0;
+}
 @media only screen and (max-width: 814px) {
   ul > li {
     display: flex;
@@ -252,6 +258,15 @@ ul > li {
     label {
       margin-right: 1rem;
     }
+  }
+  .questions {
+    margin-left: 2.5rem;
+    margin-right: 2rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .questions {
+    margin-left: 1rem;
   }
 }
 </style>

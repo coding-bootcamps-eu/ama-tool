@@ -1,17 +1,26 @@
 <template>
   <section>
-    <h2 class="question-heading">
-      {{ this.questionAuthor }} fragt am {{ this.questionCreated_at }} zum Thema
-      {{ this.questionCategory }}
-    </h2>
     <h3 class="question-title">Frage: {{ this.questionTitle }}</h3>
-    <p>Beschreibung: {{ this.questionDescription }}</p>
+    <div id="question-description" name="question-description">
+      <Markdown
+        class="question-description"
+        :source="this.questionDescription"
+        text-align:
+        left
+      />
+    </div>
   </section>
 </template>
 
 <script>
+import Markdown from "vue3-markdown-it";
+import "highlight.js/styles/github.css";
+
 export default {
   name: "QuestionDetails",
+  components: {
+    Markdown,
+  },
   data() {
     return {
       question: "",
@@ -32,11 +41,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
-  margin: 1rem 0rem 1rem 0;
-  max-width: 90%;
-  min-width: 50%;
-  border: 0.5px solid var(--secondary-color);
+.question-title {
+  color: var(--primary-color);
+  margin: 1.5rem 4rem 1rem 2.5rem;
+}
+
+.question-description {
+  border: 0.5px solid var(--primary-color);
   border-radius: 0.25rem;
+  padding: 0.8rem 2rem 0.3rem 0.3rem;
+  margin: 1.5rem 4rem 1rem 2.5rem;
+  line-height: 1.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  text-align: left;
+  cursor: text;
+}
+@media only screen and (max-width: 814px) {
+  .question-description {
+    margin: 2.8rem 2rem 1rem 2.5rem;
+  }
+  .question-title {
+    margin: 1.5rem 2rem 1rem 2.5rem;
+    font-size: 1.85rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .question-description {
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+  }
+  .question-title {
+    margin: 1.5rem 2rem 1rem 1rem;
+    font-size: 1.4rem;
+  }
 }
 </style>
