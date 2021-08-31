@@ -19,21 +19,21 @@ export default {
     return {
       user: null,
       userID: null,
+      userName: null,
     };
   },
   methods: {
     getUserName() {
       return this.user.displayName;
     },
-    startSession(userToken){
-      this.$session.start();
-      this.$session.set("jwt", userToken);
-    },
     async signInGit() {
       const provider = new firebase.auth.GithubAuthProvider();
       const result = await firebase.auth().signInWithPopup(provider);
-      this.startSession(result);
-      console.log(result.user.displayName);
+      sessionStorage.setItem("user", result.user);
+      sessionStorage.setItem("userID", result.user.uid);
+      sessionStorage.setItem("userName", result.user.displayName);
+      console.log("user: ", result.user);
+      console.log("user ID:", sessionStorage.getItem("userID"));
       this.user = result.user;
       this.userID = result.user.uid;
     },
@@ -42,7 +42,9 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace("/about");
+          this.user = null;
+          sessionStorage.clear();
+          this.$router.replace("/home");
           // Sign-out successful.
         })
         .catch((error) => {

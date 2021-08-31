@@ -93,7 +93,11 @@ export default {
     },
 
     getUserID() {
-      return localStorage.getItem(this.storageKeyUserID);
+      if(sessionStorage.getItem(this.storageKeyUserID) != null){
+        return sessionStorage.getItem(this.storageKeyUserID);
+      }else{
+        window.alert("Bitte logge dich ein!")
+      }
     },
 
     createUsersVotedArray(questionKey) {
@@ -214,11 +218,6 @@ export default {
         });
       }
     },
-  },
-  created() {
-    // generate user id
-
-    localStorage.setItem(this.storageKeyUserID, Math.random());
   },
   mounted() {
     DataService.getAll().on("value", this.onDataChange);

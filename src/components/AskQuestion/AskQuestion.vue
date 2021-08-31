@@ -122,17 +122,19 @@ export default {
       let day = fullDate.getDate();
       let year = fullDate.getFullYear();
       this.questionCreated_at = `${day}.${month}.${year}`;
+      this.questionAuthor = sessionStorage.getItem("userName");
       const questionToList = {
         questionTitle: this.currentQuestion.questionTitle,
         questionDescription: this.currentQuestion.questionDescription,
         questionCategory: this.currentQuestion.questionCategory,
         questionIsDone: this.currentQuestion.questionIsDone,
         questionCreated_at: this.questionCreated_at,
-        questionAuthor: this.currentQuestion.questionAuthor,
+        questionAuthor: this.questionAuthor,
         questionUpvotes: this.currentQuestion.questionUpvotes,
         usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
       };
-      this.questionArray.push(questionToList);
+      if(sessionStorage.getItem("userName")!= null){
+        this.questionArray.push(questionToList);
       // creates database entry with given questionToList
       DataService.create(questionToList)
         .then(() => {})
@@ -142,6 +144,10 @@ export default {
 
       this.currentQuestion.questionTitle = "";
       this.currentQuestion.questionDescription = "";
+      }else{
+        window.alert("Bitte logge dich ein!");
+      }
+      
     },
     resetInput() {
       // resets the written values (Todo: re-routing; Reset more values?!)
