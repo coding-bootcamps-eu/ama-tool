@@ -1,19 +1,4 @@
 describe("Test navigation", () => {
-  beforeEach("checkDatabaseConnection", () => {
-    cy.intercept(
-      "create",
-      "https://ama-test-79524-default-rtdb.europe-west1.firebasedatabase.app/",
-      {
-        statusCode: 201,
-        body: {
-          userID: 1,
-          questionTitle: "Test Title 1",
-          questionDescription: "Test Description 1",
-          questionCategory: "HTML",
-        },
-      }
-    );
-  });
   it("Database connection should exist", () => {
     cy.visit("http://localhost:8080/");
     cy.url().should("exist");
@@ -34,7 +19,7 @@ describe("Test navigation", () => {
   it("All input fields should accept text when clicked on", () => {
     cy.get("[data-cy='input-text-title']")
       .click()
-      .type("TEeST typing in question title..{backspace}");
+      .type("TTTTest typing in question title..{backspace}");
     cy.get("[data-cy='input-text-description']")
       .click()
       .type(

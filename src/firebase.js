@@ -24,13 +24,12 @@ var firebaseTestConfig = {
 };
 
 // Initialize Firebase
-if (environmentalVariableTest === true) {
+if (process.env.NODE_ENV === "test") {
   firebase.default.initializeApp(firebaseTestConfig);
 } else {
   firebase.default.initializeApp(firebaseConfig);
 }
 
-firebase.default.initializeApp(firebaseConfig);
 let db = firebase.default.database();
 
 export default db;
