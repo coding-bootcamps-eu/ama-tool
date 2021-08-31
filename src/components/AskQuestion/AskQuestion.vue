@@ -118,10 +118,10 @@ export default {
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
       let fullDate = new Date();
-      let month = fullDate.getMonth() + 1 + ".";
-      let day = fullDate.getDate() + ".";
+      let month = fullDate.getMonth() + 1;
+      let day = fullDate.getDate();
       let year = fullDate.getFullYear();
-      this.questionCreated_at = day + month + year;
+      this.questionCreated_at = `${day}.${month}.${year}`;
       const questionToList = {
         questionTitle: this.currentQuestion.questionTitle,
         questionDescription: this.currentQuestion.questionDescription,
