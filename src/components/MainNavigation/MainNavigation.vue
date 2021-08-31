@@ -88,9 +88,6 @@ nav {
       border-radius: 0.25rem;
     }
   }
-  button{
-    padding: .4rem !important;
-  }
 }
 
 @media screen and (max-width: 600px) {
