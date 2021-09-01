@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li data-cy="list-element">
     <div class="question-heading">
       <p class="question-title">{{ questionTitle }}</p>
       <div class="inner-question-wrapper">
@@ -40,9 +40,12 @@
           class="vote-button-up"
           :disabled="!isUserAllowedToVote"
           @click="$emit('upvote')"
-          data-cy="vote-button-up"
         >
-          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
+          <i
+            class="fi-rr-angle-up"
+            data-cy="vote-arrow"
+            v-if="isUserAllowedToVote"
+          ></i>
         </button>
         <button
           class="vote-button-down"
