@@ -33,7 +33,11 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <ul id="questions" class="questions">
+=======
+    <ol id="questions">
+>>>>>>> dev
       <QuestionListElement
         v-for="question in filteredQuestions"
         :key="question.questionKey"
@@ -43,7 +47,7 @@
         @takebackanswer="takebackanswer(question.questionKey)"
         @downvote="downVote(question.questionKey, getUserID())"
       />
-    </ul>
+    </ol>
   </section>
 </template>
 
@@ -66,6 +70,7 @@ export default {
       questionFilterStatus: "All",
       storageKeyUserID: "userID",
       storageKeyVoteStatus: "voteStatus",
+      userID: null,
     };
   },
   watch: {
@@ -92,7 +97,15 @@ export default {
     },
 
     getUserID() {
-      return localStorage.getItem(this.storageKeyUserID);
+      if(this.isUserSet() === true){
+        return sessionStorage.getItem(this.storageKeyUserID);}
+    },
+    isUserSet(){
+      if(sessionStorage.getItem(this.storageKeyUserID) != null){
+        return true
+      }else{
+        false
+      };
     },
 
     createUsersVotedArray(questionKey) {
@@ -214,12 +227,9 @@ export default {
       }
     },
   },
-  created() {
-    // generate user id
-    localStorage.setItem(this.storageKeyUserID, Math.random());
-  },
   mounted() {
     DataService.getAll().on("value", this.onDataChange);
+    document.title = "AMA-Fragenliste";
   },
   beforeUnmount() {
     DataService.getAll().off("value", this.onDataChange);
@@ -227,7 +237,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-ul > li {
+ol > li {
   display: flex;
 }
 .filter-options {
@@ -246,7 +256,7 @@ ul > li {
   padding-right: 0;
 }
 @media only screen and (max-width: 814px) {
-  ul > li {
+  ol > li {
     display: flex;
     flex-flow: column;
   }

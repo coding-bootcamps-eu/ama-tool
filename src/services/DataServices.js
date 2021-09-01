@@ -1,5 +1,4 @@
 import firebase from "@/firebase";
-
 let db = firebase.ref("/questions");
 let dbRef = firebase.ref();
 

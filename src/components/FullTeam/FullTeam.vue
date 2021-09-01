@@ -5,21 +5,13 @@
       id="rect"
       @mouseover="showFire = true"
       @mouseleave="showFire = false"
-    >
-      <transition name="fadeFire">
-        <img v-show="showFire" class="campfire" src="@/assets/campfire.gif" />
-      </transition>
-    </div>
+    ></div>
     <div
       class="rectTent"
       id="rectTent"
       @mouseover="showTent = true"
       @mouseleave="showTent = false"
-    >
-      <transition name="fadetent">
-        <img v-show="showTent" class="camptent" src="@/assets/tent.webp" />
-      </transition>
-    </div>
+    ></div>
 
     <div class="team" id="team">
       <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
@@ -93,6 +85,7 @@ export default {
       return array;
     },
   },
+
   computed: {
     showFullTeam() {
       return !this.showTent & !this.showFire ? true : false;
@@ -112,6 +105,7 @@ export default {
 
     moveTent.style.top = tentPositionX.toString() + "px";
     moveTent.style.left = tentPositionY.toString() + "px";
+    document.title = "AMA-Team";
   },
 };
 </script>
