@@ -79,9 +79,6 @@
       v-show="validation === false"
     >
       <label>Fehlerhafte Angaben:</label>
-      <p v-show="!this.validUser">
-        Bitte logge dich ein. 
-      </p>
       <p v-show="!this.validTitle">
         Der Titel benötigt mindestens 10 Zeichen und drei Wörter
       </p>
@@ -113,14 +110,12 @@ export default {
     RadioButton,
     Markdown,
   },
-
   data() {
     return {
       disabled: 0,
       validTitle: true,
       validDescription: true,
       validCategory: true,
-      validUser: true,
       validation: "",
       currentQuestion: {
         questionTitle: "",
@@ -143,12 +138,14 @@ export default {
     };
   },
   methods: {
-    validateQuestion() {
-      if (sessionStorage.getItem("userID") === null){
-        this.validUser = false;
-      }else {
-        this.validUser = true;
+    isUserLoggedIn() {
+      if (sessionStorage.getItem("userID") != null) {
+        return true;
+      } else {
+        return false;
       }
+    },
+    validateQuestion() {
       if (
         this.currentQuestion.questionTitle.length < 10 ||
         this.countWords(this.currentQuestion.questionTitle) < 2
@@ -165,7 +162,12 @@ export default {
         this.validCategory = false;
       } else this.validCategory = true;
 
-      if (!this.validTitle || !this.validDescription || !this.validCategory || !this.validUser) {
+      if (
+        !this.validTitle ||
+        !this.validDescription ||
+        !this.validCategory ||
+        !this.validUser
+      ) {
         this.validation = false;
         return false;
       } else {
@@ -179,37 +181,33 @@ export default {
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
       let validation = this.validateQuestion();
       if (validation) {
-        if (sessionStorage.getItem("userName")!= null){
-           let fullDate = new Date();
-          let month = fullDate.getMonth() + 1;
-          let day = fullDate.getDate();
-          let year = fullDate.getFullYear();
-          this.questionCreated_at = `${day}.${month}.${year}`;
-          this.questionAuthor = sessionStorage.getItem("userName");
-          const questionToList = {
-            questionTitle: this.currentQuestion.questionTitle,
-            questionDescription: this.currentQuestion.questionDescription,
-            questionCategory: this.currentQuestion.questionCategory,
-            questionIsDone: this.currentQuestion.questionIsDone,
-            questionCreated_at: this.questionCreated_at,
-            questionAuthor: this.questionAuthor,
-            questionUpvotes: this.currentQuestion.questionUpvotes,
-            usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
-          };
-            this.questionArray.push(questionToList);
-          // creates database entry with given questionToList
-          DataService.create(questionToList)
-            .then(() => {})
-            .catch((e) => {
-              console.error(e);
-            });
-            this.currentQuestion.questionTitle = "";
-            this.currentQuestion.questionDescription = "";
-        }else{
-           window.alert("Bitte logge dich ein!");
-        }   
-      }else{
-        //not validated message
+        let fullDate = new Date();
+        let month = fullDate.getMonth() + 1;
+        let day = fullDate.getDate();
+        let year = fullDate.getFullYear();
+        this.questionCreated_at = `${day}.${month}.${year}`;
+        this.questionAuthor = sessionStorage.getItem("userName");
+        const questionToList = {
+          questionTitle: this.currentQuestion.questionTitle,
+          questionDescription: this.currentQuestion.questionDescription,
+          questionCategory: this.currentQuestion.questionCategory,
+          questionIsDone: this.currentQuestion.questionIsDone,
+          questionCreated_at: this.questionCreated_at,
+          questionAuthor: this.questionAuthor,
+          questionUpvotes: this.currentQuestion.questionUpvotes,
+          usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
+        };
+        this.questionArray.push(questionToList);
+        // creates database entry with given questionToList
+        DataService.create(questionToList)
+          .then(() => {})
+          .catch((e) => {
+            console.error(e);
+          });
+        this.currentQuestion.questionTitle = "";
+        this.currentQuestion.questionDescription = "";
+      } else {
+        // not validat message
       }
     },
     countWords(text) {
