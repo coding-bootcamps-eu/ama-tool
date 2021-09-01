@@ -66,6 +66,7 @@ export default {
       questionFilterStatus: "All",
       storageKeyUserID: "userID",
       storageKeyVoteStatus: "voteStatus",
+      userID: null,
     };
   },
   watch: {
@@ -92,7 +93,15 @@ export default {
     },
 
     getUserID() {
-      return localStorage.getItem(this.storageKeyUserID);
+      if(this.isUserSet() === true){
+        return sessionStorage.getItem(this.storageKeyUserID);}
+    },
+    isUserSet(){
+      if(sessionStorage.getItem(this.storageKeyUserID) != null){
+        return true
+      }else{
+        false
+      };
     },
 
     createUsersVotedArray(questionKey) {
@@ -213,10 +222,6 @@ export default {
         });
       }
     },
-  },
-  created() {
-    // generate user id
-    localStorage.setItem(this.storageKeyUserID, Math.random());
   },
   mounted() {
     DataService.getAll().on("value", this.onDataChange);
