@@ -35,14 +35,16 @@
 
       <div class="vote-wrapper">
         <p>Votes: {{ questionUpvotes }}</p>
-        <div class="vote-arrows-wrapper"></div>
+        
+        <div class="vote-arrows-wrapper">
         <button
           class="vote-button-up"
           :disabled="!isUserAllowedToVote"
           @click="$emit('upvote')"
-        >
+        > 
           <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
         </button>
+        <p v-show="!isUserLoggedIn">Logge dich bitte ein!</p>
         <button
           class="vote-button-down"
           :disabled="isUserAllowedToVote"
@@ -50,10 +52,11 @@
         >
           <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
         </button>
+        </div>
       </div>
       <div class="vote-wrapper-small-screen">
         <p>Votes: {{ questionUpvotes }}</p>
-        <div class="vote-arrows-wrapper"></div>
+        <div class="vote-arrows-wrapper">
         <button
           class="vote-button-up"
           :disabled="!isUserAllowedToVote"
@@ -68,6 +71,7 @@
         >
           <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
         </button>
+        </div>
       </div>
     </div>
   </li>
@@ -133,7 +137,7 @@ export default {
       const votedValues = Object.values(this.usersVotedQuestion);
       const found = votedValues.find(
         (vote) =>
-          vote.userID === localStorage.getItem("userID") &&
+          vote.userID === sessionStorage.getItem("userID") &&
           vote.hasVoted === true
       );
       if (found === undefined) {
@@ -142,6 +146,13 @@ export default {
         return false;
       }
     },
+    isUserLoggedIn(){
+      if(sessionStorage.getItem("userID")!= null){
+        return true;
+      }else{
+        return false;
+      }
+    }
   },
 };
 </script>
@@ -276,6 +287,7 @@ li {
       align-items: center;
       p {
         margin-left: 0.5rem;
+        font-size: 0.9rem;
       }
     }
     .question-heading {

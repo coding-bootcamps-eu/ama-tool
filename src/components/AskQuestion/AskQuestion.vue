@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-show="userValidation" class="wrapper">
     <div class="wrapper-question-title">
       <input
         type="text"
@@ -96,6 +96,12 @@
       <label>Deine Frage wurde erfolgreich gesendet!</label>
     </div>
   </div>
+  <div v-show="!userValidation" class="no-user-view">
+    <img src="@/assets/github.png" />
+    <p class="no-valid-user">
+      Um eine Frage zu stellen, bitte mit dem Github-Profil einloggen
+    </p>
+  </div>
 </template>
 
 <script>
@@ -111,13 +117,13 @@ export default {
     RadioButton,
     Markdown,
   },
-
   data() {
     return {
       disabled: 0,
       validTitle: true,
       validDescription: true,
       validCategory: true,
+      validUser: this.userValidation,
       validation: "",
       currentQuestion: {
         questionTitle: "",
@@ -139,7 +145,17 @@ export default {
       questionArray: [],
     };
   },
+  mounted() {
+    document.title = "AMA-Frage stellen";
+  },
   methods: {
+    isUserLoggedIn() {
+      if (sessionStorage.getItem("userID") != null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     validateQuestion() {
       if (
         this.currentQuestion.questionTitle.length < 10 ||
@@ -153,7 +169,7 @@ export default {
       ) {
         this.validDescription = false;
       } else this.validDescription = true;
-      if (this.currentQuestion.questionCategory === "") {
+      if (this.currentQuestion.questionCategory === "Keine Kategorie") {
         this.validCategory = false;
       } else this.validCategory = true;
 
@@ -176,13 +192,21 @@ export default {
         let day = fullDate.getDate();
         let year = fullDate.getFullYear();
         this.questionCreated_at = `${day}.${month}.${year}`;
+<<<<<<< HEAD
+=======
+        this.questionAuthor = sessionStorage.getItem("userName");
+>>>>>>> dev
         const questionToList = {
           questionTitle: this.currentQuestion.questionTitle,
           questionDescription: this.currentQuestion.questionDescription,
           questionCategory: this.currentQuestion.questionCategory,
           questionIsDone: this.currentQuestion.questionIsDone,
           questionCreated_at: this.questionCreated_at,
+<<<<<<< HEAD
           questionAuthor: this.currentQuestion.questionAuthor,
+=======
+          questionAuthor: this.questionAuthor,
+>>>>>>> dev
           questionUpvotes: this.currentQuestion.questionUpvotes,
           usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
         };
@@ -195,9 +219,10 @@ export default {
           });
         this.currentQuestion.questionTitle = "";
         this.currentQuestion.questionDescription = "";
+      } else {
+        // not validat message
       }
     },
-
     countWords(text) {
       let count = 0;
       for (let i = 0; i < text.length; i++) {
@@ -207,7 +232,6 @@ export default {
       }
       return count;
     },
-
     resetInput() {
       // resets the written values (Todo: re-routing; Reset more values?!)
       this.currentQuestion.questionDescription = "";
@@ -246,6 +270,10 @@ export default {
       return this.validDescription
         ? "question-description"
         : "question-description red-border";
+    },
+
+    userValidation() {
+      return sessionStorage.getItem("userID") === null ? false : true;
     },
 
     togglePreview() {
@@ -377,6 +405,17 @@ textarea {
 
 .empty-flex-item {
   flex-grow: 2;
+}
+
+.no-user-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-valid-user {
+  margin-left: 1rem;
+  color: var(--font-color);
 }
 
 @media screen and (max-width: 600px) {
