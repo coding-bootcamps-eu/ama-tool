@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li data-cy="list-element">
     <div class="question-heading">
       <router-link
         class="question-title"
@@ -50,42 +50,46 @@
 
       <div class="vote-wrapper">
         <p>Votes: {{ questionUpvotes }}</p>
-        
+
         <div class="vote-arrows-wrapper">
-        <button
-          class="vote-button-up"
-          :disabled="!isUserAllowedToVote"
-          @click="$emit('upvote')"
-        > 
-          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
-        </button>
-        <p v-show="!isUserLoggedIn">Logge dich bitte ein!</p>
-        <button
-          class="vote-button-down"
-          :disabled="isUserAllowedToVote"
-          @click="$emit('downvote')"
-        >
-          <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
-        </button>
+          <button
+            class="vote-button-up"
+            :disabled="!isUserAllowedToVote"
+            @click="$emit('upvote')"
+          >
+            <i
+              class="fi-rr-angle-up"
+              data-cy="vote-arrow"
+              v-if="isUserAllowedToVote"
+            ></i>
+          </button>
+          <p v-show="!isUserLoggedIn">Logge dich bitte ein!</p>
+          <button
+            class="vote-button-down"
+            :disabled="isUserAllowedToVote"
+            @click="$emit('downvote')"
+          >
+            <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+          </button>
         </div>
       </div>
       <div class="vote-wrapper-small-screen">
         <p>Votes: {{ questionUpvotes }}</p>
         <div class="vote-arrows-wrapper">
-        <button
-          class="vote-button-up"
-          :disabled="!isUserAllowedToVote"
-          @click="$emit('upvote')"
-        >
-          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
-        </button>
-        <button
-          class="vote-button-down"
-          :disabled="isUserAllowedToVote"
-          @click="$emit('downvote')"
-        >
-          <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
-        </button>
+          <button
+            class="vote-button-up"
+            :disabled="!isUserAllowedToVote"
+            @click="$emit('upvote')"
+          >
+            <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
+          </button>
+          <button
+            class="vote-button-down"
+            :disabled="isUserAllowedToVote"
+            @click="$emit('downvote')"
+          >
+            <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -161,13 +165,13 @@ export default {
         return false;
       }
     },
-    isUserLoggedIn(){
-      if(sessionStorage.getItem("userID")!= null){
+    isUserLoggedIn() {
+      if (sessionStorage.getItem("userID") != null) {
         return true;
-      }else{
+      } else {
         return false;
       }
-    }
+    },
   },
 };
 </script>

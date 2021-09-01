@@ -8,6 +8,7 @@
         name="question-title"
         v-model="currentQuestion.questionTitle"
         maxlength="150"
+        data-cy="input-text-title"
       />
       <label for="question-title" v-bind:class="titleSize"
         >Titel der Frage</label
@@ -24,6 +25,7 @@
         name="question-description"
         v-model="currentQuestion.questionDescription"
         maxlength="5000"
+        data-cy="input-text-description"
         cols="30"
         rows="10"
       ></textarea>
@@ -40,6 +42,7 @@
       name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
       v-show="togglePreview"
+      data-cy="question-preview"
     >
       <Markdown
         :source="currentQuestion.questionDescription"
@@ -53,6 +56,7 @@
         id="preview-question-btn"
         buttonClass="primary"
         @click="showPreview"
+        data-cy="preview-button"
         >{{ buttonText }}
       </main-button>
 
@@ -68,6 +72,7 @@
       <main-button
         id="send-question-btn"
         buttonClass="secondary"
+        data-cy="send-button"
         @click="initQuestions"
         >SENDEN
       </main-button>
