@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-show="userValidation" class="wrapper">
     <div class="wrapper-question-title">
       <input
         type="text"
@@ -96,6 +96,12 @@
       <label>Deine Frage wurde erfolgreich gesendet!</label>
     </div>
   </div>
+  <div v-show="!userValidation" class="no-user-view">
+    <img src="@/assets/github.png" />
+    <p class="no-valid-user">
+      Um eine Frage zu stellen, bitte mit dem Github-Profil einloggen
+    </p>
+  </div>
 </template>
 
 <script>
@@ -116,6 +122,7 @@ export default {
       validTitle: true,
       validDescription: true,
       validCategory: true,
+      validUser: this.userValidation,
       validation: "",
       currentQuestion: {
         questionTitle: "",
@@ -162,12 +169,7 @@ export default {
         this.validCategory = false;
       } else this.validCategory = true;
 
-      if (
-        !this.validTitle ||
-        !this.validDescription ||
-        !this.validCategory ||
-        !this.validUser
-      ) {
+      if (!this.validTitle || !this.validDescription || !this.validCategory) {
         this.validation = false;
         return false;
       } else {
@@ -257,6 +259,10 @@ export default {
       return this.validDescription
         ? "question-description"
         : "question-description red-border";
+    },
+
+    userValidation() {
+      return sessionStorage.getItem("userID") === null ? false : true;
     },
 
     togglePreview() {
@@ -388,6 +394,17 @@ textarea {
 
 .empty-flex-item {
   flex-grow: 2;
+}
+
+.no-user-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-valid-user {
+  margin-left: 1rem;
+  color: var(--font-color);
 }
 
 @media screen and (max-width: 600px) {
