@@ -1,21 +1,8 @@
 <template>
   <div class="wrapper">
-    <div
-      class="rect"
-      id="rect"
-      @mouseover="showFire = true"
-      @mouseleave="showFire = false"
-    ></div>
-    <div
-      class="rectTent"
-      id="rectTent"
-      @mouseover="showTent = true"
-      @mouseleave="showTent = false"
-    ></div>
-
     <div class="team" id="team">
       <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
-        <TeamMember v-show="showFullTeam" class="member" :member="member" />
+        <TeamMember class="member" :member="member" />
       </div>
     </div>
   </div>
@@ -31,8 +18,6 @@ export default {
   },
   data() {
     return {
-      showFire: false,
-      showTent: false,
       members: [
         {
           id: 0,
@@ -85,28 +70,6 @@ export default {
       return array;
     },
   },
-
-  computed: {
-    showFullTeam() {
-      return !this.showTent & !this.showFire ? true : false;
-    },
-  },
-  mounted() {
-    const moveRect = document.getElementById("rect");
-    const firePositionX = 150 + Math.floor(Math.random() * 100);
-    const firePositionY = 50 + Math.floor(Math.random() * 100);
-
-    moveRect.style.top = firePositionX.toString() + "px";
-    moveRect.style.left = firePositionY.toString() + "px";
-
-    const moveTent = document.getElementById("rectTent");
-    const tentPositionX = 100 + Math.floor(Math.random() * 100);
-    const tentPositionY = 350 + Math.floor(Math.random() * 100);
-
-    moveTent.style.top = tentPositionX.toString() + "px";
-    moveTent.style.left = tentPositionY.toString() + "px";
-    document.title = "AMA-Team";
-  },
 };
 </script>
 
@@ -123,30 +86,6 @@ export default {
 .member {
   margin: 1rem;
   opacity: 1;
-}
-
-.rect {
-  position: absolute;
-  border: 0.5px solid transparent;
-  height: 2rem;
-  width: 2rem;
-}
-
-.rectTent {
-  position: absolute;
-  border: 0.5px solid transparent;
-  height: 2rem;
-  width: 2rem;
-}
-
-.fadeFire-enter-active,
-.fadeFire-leave-active {
-  transition: opacity 3s ease;
-}
-
-.fadeFire-enter-from,
-.fadeFire-leave-to {
-  opacity: 0;
 }
 
 @media screen and (max-width: 700px) {

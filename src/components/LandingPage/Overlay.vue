@@ -31,10 +31,14 @@ export default {
   background-color: var(--background-color);
   opacity: 0.9;
   z-index: 2;
-  cursor: pointer;
+  cursor: auto;
 }
 
 .textBananen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 50%;
   left: 50%;
