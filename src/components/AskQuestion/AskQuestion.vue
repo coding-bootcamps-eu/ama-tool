@@ -192,21 +192,14 @@ export default {
         let day = fullDate.getDate();
         let year = fullDate.getFullYear();
         this.questionCreated_at = `${day}.${month}.${year}`;
-<<<<<<< HEAD
-=======
         this.questionAuthor = sessionStorage.getItem("userName");
->>>>>>> dev
         const questionToList = {
           questionTitle: this.currentQuestion.questionTitle,
           questionDescription: this.currentQuestion.questionDescription,
           questionCategory: this.currentQuestion.questionCategory,
           questionIsDone: this.currentQuestion.questionIsDone,
           questionCreated_at: this.questionCreated_at,
-<<<<<<< HEAD
-          questionAuthor: this.currentQuestion.questionAuthor,
-=======
           questionAuthor: this.questionAuthor,
->>>>>>> dev
           questionUpvotes: this.currentQuestion.questionUpvotes,
           usersVotedQuestion: this.currentQuestion.usersVotedQuestion,
         };
