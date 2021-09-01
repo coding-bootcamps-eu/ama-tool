@@ -1,11 +1,6 @@
 <template>
-  <div class="overlay" v-show="showText">
-    <div class="textBananen" @click="showOverlay">ESST MEHR BANANEN !!🍌🍌</div>
-  </div>
-  <div>
-    <button class="button-element" @click="showOverlay">
-      Dir Raucht der Kopf?
-    </button>
+  <div class="overlay">
+    <div class="textBananen"><slot></slot></div>
   </div>
 </template>
 <script>
@@ -16,12 +11,8 @@ export default {
       showText: false,
     };
   },
-  methods: {
-    showOverlay() {
-      return (this.showText = !this.showText);
-    },
-  },
 };
+// ESST MEHR BANANEN !!🍌🍌
 </script>
 
 <style scoped>
@@ -37,7 +28,8 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0.5, 0.5, 0.5, 0.5);
+  background-color: var(--background-color);
+  opacity: 0.9;
   z-index: 2;
   cursor: pointer;
 }
@@ -52,17 +44,5 @@ export default {
   -ms-transform: translate(-60%, -60%);
   line-height: 2.5rem;
   cursor: pointer;
-}
-
-.button-element {
-  height: 35px;
-  text-align: center;
-  width: 150px;
-  cursor: pointer;
-  margin-top: 50px;
-  border: 0.5px solid var(--primary-color);
-  border-radius: 0.25rem;
-  background-color: #fafafa;
-  margin-top: 30px;
 }
 </style>
