@@ -10,8 +10,8 @@
 <script>
 import MainNavigation from "@/components/MainNavigation/MainNavigation.vue";
 import MainFooter from "@/components/MainFooter/MainFooter.vue";
+import "@/firebase";
 import NarrowNavigation from "@/components/NarrowNavigation/NarrowNavigation.vue";
-
 export default {
   name: "App",
   components: {

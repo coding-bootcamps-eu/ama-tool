@@ -1,11 +1,14 @@
 <template>
-  <div class="home"></div>
+  <LandingPage />
 </template>
 
 <script>
-// @ is an alias to /src
+import LandingPage from "@/components/LandingPage/LandingPage.vue";
 
 export default {
   name: "Home",
+  components: {
+    LandingPage,
+  },
 };
 </script>

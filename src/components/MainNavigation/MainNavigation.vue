@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <div>
+  <div>
+    <header>
       <div class="header-wrapper">
         <img
           class="header-logo"
@@ -17,25 +17,35 @@
         />
         <h1>AMA Tool</h1>
       </div>
-      <nav class="nav">
-        <ul class="header-nav">
-          <li class="nav-element" data-cy="nav-element-start">
-            <router-link to="/">Start</router-link>
-          </li>
-          <li class="nav-element" data-cy="nav-element-list">
-            <router-link to="/questionlist">Fragen Liste</router-link>
-          </li>
-          <li class="nav-element" data-cy="nav-element-ask">
-            <router-link to="/askquestion">Frage stellen</router-link>
-          </li>
-          <li class="nav-element" data-cy="nav-element-team">
-            <router-link to="/team">Team</router-link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    </header>
+    <nav class="nav">
+      <ul class="header-nav">
+        <li class="nav-element" data-cy="nav-element-start">
+          <router-link to="/">Start</router-link>
+        </li>
+        <li class="nav-element" data-cy="nav-element-list">
+          <router-link to="/questionlist">Fragen Liste</router-link>
+        </li>
+        <li class="nav-element" data-cy="nav-element-ask">
+          <router-link to="/askquestion">Frage stellen</router-link>
+        </li>
+        <li class="nav-element" data-cy="nav-element-team">
+          <router-link to="/team">Team</router-link>
+        </li>
+        <li class="nav-login">
+          <UserLogin />
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
+<script>
+import UserLogin from "@/components/UserLogin/UserLogin.vue";
+export default {
+  name: "MainNavigation",
+  components: { UserLogin },
+};
+</script>
 
 <style lang="scss" scoped>
 .header-wrapper {
@@ -60,10 +70,11 @@ h1 {
 nav {
   .header-nav {
     margin: 1rem 2rem 1rem 2.2rem;
-    padding: 0rem 2rem 2rem 0rem;
+    padding: 0rem 2rem 1rem 0rem;
     display: flex;
     flex-flow: row;
     list-style-type: none;
+    align-items: baseline;
     border-bottom: 0.5px solid var(--primary-color);
   }
   li a {
@@ -95,9 +106,7 @@ nav {
   }
 
   h1 {
-    margin: 0 1rem;
-    font-size: 1.8rem;
-    line-height: 2rem;
+    margin: 0 2rem;
   }
 
   .narrow-header-wrapper {

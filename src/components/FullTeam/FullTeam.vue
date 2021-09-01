@@ -1,7 +1,22 @@
 <template>
-  <div class="team">
-    <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
-      <TeamMember class="member" :member="member" />
+  <div class="wrapper">
+    <div
+      class="rect"
+      id="rect"
+      @mouseover="showFire = true"
+      @mouseleave="showFire = false"
+    ></div>
+    <div
+      class="rectTent"
+      id="rectTent"
+      @mouseover="showTent = true"
+      @mouseleave="showTent = false"
+    ></div>
+
+    <div class="team" id="team">
+      <div v-for="(member, id) in shuffle(members)" v-bind:key="id">
+        <TeamMember v-show="showFullTeam" class="member" :member="member" />
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +31,8 @@ export default {
   },
   data() {
     return {
+      showFire: false,
+      showTent: false,
       members: [
         {
           id: 0,
@@ -64,22 +81,70 @@ export default {
         array[i] = array[j];
         array[j] = temp;
       }
+
       return array;
     },
+  },
+  computed: {
+    showFullTeam() {
+      return !this.showTent & !this.showFire ? true : false;
+    },
+  },
+  mounted() {
+    const moveRect = document.getElementById("rect");
+    const firePositionX = 150 + Math.floor(Math.random() * 100);
+    const firePositionY = 50 + Math.floor(Math.random() * 100);
+
+    moveRect.style.top = firePositionX.toString() + "px";
+    moveRect.style.left = firePositionY.toString() + "px";
+
+    const moveTent = document.getElementById("rectTent");
+    const tentPositionX = 100 + Math.floor(Math.random() * 100);
+    const tentPositionY = 350 + Math.floor(Math.random() * 100);
+
+    moveTent.style.top = tentPositionX.toString() + "px";
+    moveTent.style.left = tentPositionY.toString() + "px";
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.wrapper {
+  min-height: 20rem;
+}
 .team {
   margin-left: 2rem;
   margin-right: 2.2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.member {
+  margin: 1rem;
+  opacity: 1;
+}
 
-  .member {
-    margin: 1rem;
-  }
+.rect {
+  position: absolute;
+  border: 0.5px solid transparent;
+  height: 2rem;
+  width: 2rem;
+}
+
+.rectTent {
+  position: absolute;
+  border: 0.5px solid transparent;
+  height: 2rem;
+  width: 2rem;
+}
+
+.fadeFire-enter-active,
+.fadeFire-leave-active {
+  transition: opacity 3s ease;
+}
+
+.fadeFire-enter-from,
+.fadeFire-leave-to {
+  opacity: 0;
 }
 
 @media screen and (max-width: 700px) {
