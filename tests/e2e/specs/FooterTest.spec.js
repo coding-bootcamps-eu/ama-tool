@@ -4,7 +4,7 @@ describe("Test footer", () => {
     cy.get("[data-cy='footer-element']").should("exist");
   });
   it("Footer elements should be focusable", () => {
-    /* cypress can't test focus */
+    // cypress can't test focus on these elements
   });
   it("Footer should be clickable and lead to external links", () => {
     /* test every single element, to check later for correct individual url */
