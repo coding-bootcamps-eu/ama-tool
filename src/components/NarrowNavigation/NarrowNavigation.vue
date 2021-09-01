@@ -54,7 +54,7 @@
 import UserLogin from "@/components/UserLogin/UserLogin.vue";
 export default {
   name: "menubar",
-  components: UserLogin,
+  components: { UserLogin },
   data() {
     return {
       isSideBarOpen: false,
@@ -271,7 +271,7 @@ export default {
   font-weight: 700;
   color: white;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 669px) {
   .bm-burger-button {
     display: block;
     position: relative;
