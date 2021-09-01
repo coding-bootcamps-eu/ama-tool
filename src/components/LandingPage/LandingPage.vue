@@ -37,7 +37,7 @@
     Dir Raucht der Kopf?
   </button>
   <Overlay v-show="showText" @click="showOverlay">
-    ESST MEHR BANANEN !!🍌🍌
+    ESST MEHR BANANEN!!🍌🍌
   </Overlay>
 </template>
 
