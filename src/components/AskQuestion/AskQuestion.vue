@@ -4,7 +4,7 @@
       <input
         type="text"
         id="question-title"
-        class="question-title"
+        v-bind:class="titleBorderColor"
         name="question-title"
         v-model="currentQuestion.questionTitle"
         maxlength="150"
@@ -21,7 +21,7 @@
     <div class="wrapper-question-description">
       <textarea
         id="question-description"
-        class="question-description"
+        v-bind:class="descriptionBorderColor"
         name="question-description"
         v-model="currentQuestion.questionDescription"
         maxlength="5000"
@@ -77,6 +77,29 @@
         >SENDEN
       </main-button>
     </div>
+    <div
+      id="question-validation"
+      class="question-validation no-valid-feedback"
+      name="question-validation"
+      v-show="validation === false"
+    >
+      <label>Fehlerhafte Angaben:</label>
+      <p v-show="!this.validTitle">
+        Der Titel benötigt mindestens 10 Zeichen und drei Wörter
+      </p>
+      <p v-show="!this.validDescription">
+        Die Beschreibung benötigt mindestens 10 Zeichen und drei Wörter
+      </p>
+      <p v-show="!this.validCategory">Es wurde keine Kategorie gewählt</p>
+    </div>
+    <div
+      id="question-validation"
+      class="question-validation valid-feedback"
+      name="question-validation"
+      v-show="validation === true"
+    >
+      <label>Deine Frage wurde erfolgreich gesendet!</label>
+    </div>
   </div>
 </template>
 
@@ -96,7 +119,10 @@ export default {
   data() {
     return {
       disabled: 0,
-
+      validTitle: true,
+      validDescription: true,
+      validCategory: true,
+      validation: "",
       currentQuestion: {
         questionTitle: "",
         questionDescription: "",
@@ -118,10 +144,37 @@ export default {
     };
   },
   methods: {
+    validateQuestion() {
+      if (
+        this.currentQuestion.questionTitle.length < 10 ||
+        this.countWords(this.currentQuestion.questionTitle) < 2
+      ) {
+        this.validTitle = false;
+      } else this.validTitle = true;
+      if (
+        this.currentQuestion.questionDescription.length < 10 ||
+        this.countWords(this.currentQuestion.questionDescription) < 2
+      ) {
+        this.validDescription = false;
+      } else this.validDescription = true;
+      if (this.currentQuestion.questionCategory === "") {
+        this.validCategory = false;
+      } else this.validCategory = true;
+
+      if (!this.validTitle || !this.validDescription || !this.validCategory) {
+        this.validation = false;
+        return false;
+      } else {
+        this.validation = true;
+        return true;
+      }
+    },
     initQuestions() {
       // initiated with send-button. questionToList will be new stringify-Entry and will be pushed in array - later new DB-entry.
       // todo: check min-length of title/description?
       // afterwards delete this.title, this.description. Later on have to check all the attributes.
+      let validation = this.validateQuestion();
+      if (validation) {
       let fullDate = new Date();
       let month = fullDate.getMonth() + 1;
       let day = fullDate.getDate();
@@ -144,14 +197,28 @@ export default {
         .catch((e) => {
           console.error(e);
         });
-
-      this.currentQuestion.questionTitle = "";
-      this.currentQuestion.questionDescription = "";
+        this.currentQuestion.questionTitle = "";
+        this.currentQuestion.questionDescription = "";
+      }
     },
+
+    countWords(text) {
+      let count = 0;
+      for (let i = 0; i < text.length; i++) {
+        if (" " === text.charAt(i)) {
+          count++;
+        }
+      }
+      return count;
+    },
+
     resetInput() {
       // resets the written values (Todo: re-routing; Reset more values?!)
       this.currentQuestion.questionDescription = "";
       this.currentQuestion.questionTitle = "";
+      this.validation = "";
+      this.validTitle = true;
+      this.validDescription = true;
     },
     showPreview() {
       if (this.currentQuestion.questionDescription.length > 0) {
@@ -171,10 +238,18 @@ export default {
         ? "label-title"
         : "small-label-title";
     },
+    titleBorderColor() {
+      return this.validTitle ? "question-title" : "question-title red-border";
+    },
     descriptionSize() {
       return this.currentQuestion.questionDescription.length === 0
         ? "label-description"
         : "small-label-title";
+    },
+    descriptionBorderColor() {
+      return this.validDescription
+        ? "question-description"
+        : "question-description red-border";
     },
 
     togglePreview() {
@@ -209,7 +284,8 @@ textarea {
 }
 .question-title,
 .question-description,
-.question-preview {
+.question-preview,
+.question-validation {
   border: 0.5px solid var(--font-color);
   border-radius: 0.25rem;
   padding: 0.8rem 4rem 0.3rem 0.3rem;
@@ -223,6 +299,11 @@ textarea {
   text-align: left;
   cursor: text;
 }
+
+.red-border {
+  border: 0.5px solid var(--fail-color);
+}
+
 .wrapper-question-title,
 .wrapper-question-description {
   position: relative;
@@ -279,6 +360,15 @@ textarea {
   color: var(--placeholder-color);
 }
 
+.no-valid-feedback {
+  color: var(--fail-color);
+}
+
+.valid-feedback {
+  color: var(--success-color);
+  text-align: center;
+}
+
 /* -------- Styling of the buttons -------- */
 .wrapper-btn-row {
   display: flex;
@@ -300,7 +390,8 @@ textarea {
 
   .question-title,
   .question-description,
-  .question-preview {
+  .question-preview,
+  .question-validation {
     min-width: 16rem;
     width: 82vw;
     margin-left: 1rem;
