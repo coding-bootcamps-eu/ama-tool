@@ -1,10 +1,10 @@
 <template>
   <div class="login">
-    <p v-if="user">
-      {{ user.displayName }}
+    <p v-show="user">
+      {{ userName }}
       <button @click="signOut" class="btn-git-logout">Logout</button>
     </p>
-    <button v-else @click="signInGit" class="btn-git-login">
+    <button v-show="!user" @click="signInGit" class="btn-git-login">
       GitHub-Login <i class="fa fa-github"></i>
     </button>
   </div>
@@ -17,9 +17,9 @@ export default {
   name: "UserLogin",
   data() {
     return {
-      user: null,
-      userID: null,
-      userName: null,
+      user: sessionStorage.getItem("user"),
+      userID: sessionStorage.getItem("userID"),
+      userName: sessionStorage.getItem("userName"),
     };
   },
   methods: {
@@ -50,6 +50,13 @@ export default {
         });
     },
   },
+  /**
+   * computed: {
+    isUserLoggedIn() {
+      return sessionStorage.getItem("userID") === null ? false : true;
+    },
+  },
+   */
 };
 </script>
 
