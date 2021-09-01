@@ -4,7 +4,7 @@
   <p>
     Im Rahmen unseres Abschlussprojekts haben wir dieses Tool erstellt, um das
     Leben im Bootcamp einfacher zu gestalten und unsere Fähigkeiten zu
-    erweitern. <br />
+    erweitern. ✅<br />
     Dieses Tool dient der Vorbereitung auf das Ask me anything und soll eine
     einfache Übersicht über Fragen und Themen bieten.
   </p>
