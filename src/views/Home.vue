@@ -1,10 +1,17 @@
 <template>
-  <div class="home"></div>
+  <LandingPage />
 </template>
+
 <script>
+import LandingPage from "@/components/LandingPage/LandingPage.vue";
+
 export default {
-  mounted() {
+  name: "Home",
+  components: {
+    LandingPage,
+},
+ mounted() {
     document.title = "AMA-Home";
-  },
+}
 };
 </script>
