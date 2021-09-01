@@ -103,8 +103,13 @@ nav {
     }
   }
 }
+@media only screen and (max-width: 741px) {
+  nav {
+    white-space: nowrap;
+  }
+}
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 669px) {
   header {
     border-bottom: 0.5px solid var(--primary-color);
     margin-bottom: 1rem;
