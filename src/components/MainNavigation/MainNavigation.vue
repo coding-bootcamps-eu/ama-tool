@@ -17,7 +17,6 @@
         />
         <h1>AMA Tool</h1>
       </div>
-      
     </header>
     <nav class="nav">
       <ul class="header-nav">
@@ -44,8 +43,8 @@
 import UserLogin from "@/components/UserLogin/UserLogin.vue";
 export default {
   name: "MainNavigation",
-  components: {UserLogin},
-}
+  components: { UserLogin },
+};
 </script>
 
 <style lang="scss" scoped>
