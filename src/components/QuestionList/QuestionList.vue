@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <ul id="questions">
+    <ol id="questions">
       <QuestionListElement
         v-for="question in filteredQuestions"
         :key="question.questionKey"
@@ -43,7 +43,7 @@
         @takebackanswer="takebackanswer(question.questionKey)"
         @downvote="downVote(question.questionKey, getUserID())"
       />
-    </ul>
+    </ol>
   </section>
 </template>
 
@@ -232,7 +232,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-ul > li {
+ol > li {
   display: flex;
 }
 .filter-options {
@@ -245,7 +245,7 @@ ul > li {
   }
 }
 @media only screen and (max-width: 814px) {
-  ul > li {
+  ol > li {
     display: flex;
     flex-flow: column;
   }
