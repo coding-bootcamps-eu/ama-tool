@@ -7,5 +7,8 @@
 
 export default {
   name: "Home",
+  mounted() {
+    document.title = "AMA-Home";
+  },
 };
 </script>

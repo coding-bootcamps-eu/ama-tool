@@ -67,6 +67,9 @@ export default {
       return array;
     },
   },
+  mounted() {
+    document.title = "AMA-Team";
+  },
 };
 </script>
 
