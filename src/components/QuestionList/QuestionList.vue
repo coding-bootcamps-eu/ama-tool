@@ -33,11 +33,7 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-    <ul id="questions" class="questions">
-=======
     <ol id="questions">
->>>>>>> dev
       <QuestionListElement
         v-for="question in filteredQuestions"
         :key="question.questionKey"
@@ -97,15 +93,16 @@ export default {
     },
 
     getUserID() {
-      if(this.isUserSet() === true){
-        return sessionStorage.getItem(this.storageKeyUserID);}
+      if (this.isUserSet() === true) {
+        return sessionStorage.getItem(this.storageKeyUserID);
+      }
     },
-    isUserSet(){
-      if(sessionStorage.getItem(this.storageKeyUserID) != null){
-        return true
-      }else{
-        false
-      };
+    isUserSet() {
+      if (sessionStorage.getItem(this.storageKeyUserID) != null) {
+        return true;
+      } else {
+        false;
+      }
     },
 
     createUsersVotedArray(questionKey) {
