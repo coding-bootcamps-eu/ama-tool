@@ -225,6 +225,7 @@ export default {
   },
   mounted() {
     DataService.getAll().on("value", this.onDataChange);
+    document.title = "AMA-Fragenliste";
   },
   beforeUnmount() {
     DataService.getAll().off("value", this.onDataChange);

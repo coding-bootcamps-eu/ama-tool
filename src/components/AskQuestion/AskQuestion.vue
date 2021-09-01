@@ -144,6 +144,9 @@ export default {
       questionArray: [],
     };
   },
+  mounted() {
+    document.title = "AMA-Frage stellen";
+  },
   methods: {
     isUserLoggedIn() {
       if (sessionStorage.getItem("userID") != null) {

@@ -9,6 +9,9 @@ export default {
   name: "Home",
   components: {
     LandingPage,
-  },
+},
+ mounted() {
+    document.title = "AMA-Home";
+}
 };
 </script>
