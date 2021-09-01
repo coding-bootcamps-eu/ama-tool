@@ -14,7 +14,7 @@ var firebaseConfig = {
 };
 
 var firebaseTestConfig = {
-  apiKey: "AIzaSyDXWnA0fG68qydK6204CCrf6CXOpgwI-j8",
+  apiKey: process.env.VUE_APP_FIREBASE_TEST_KEY_AMA || "secrets.DBTEST",
   authDomain: "ama-test-79524.firebaseapp.com",
   databaseURL:
     "https://ama-test-79524-default-rtdb.europe-west1.firebasedatabase.app/",
