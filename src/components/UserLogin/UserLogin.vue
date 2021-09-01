@@ -50,13 +50,6 @@ export default {
         });
     },
   },
-  /**
-   * computed: {
-    isUserLoggedIn() {
-      return sessionStorage.getItem("userID") === null ? false : true;
-    },
-  },
-   */
 };
 </script>
 
