@@ -23,18 +23,16 @@
     und beschreibt sie im Feld darunter genauer. Dort könnt ihr Markdown
     benutzen und auch eine Vorschau davon einblenden.<br />
     Wählt eine Kategorie, die am besten zu eurer Frage passt, um sie einfacher
-    einordnen zu können. Nach dem Senden erscheint die Frage in der Frageliste.
+    einordnen zu können. Nach dem Senden erscheint die Frage in der
+    Frageliste.☑️
   </p>
   <p>
     Auf der Team-Seite wird euch das Team vorgestellt, das diese Seite erstellt
-    hat. Vielleicht findet ihr ja auch ein kleines Easteregg?
+    hat. Vielleicht findet ihr ja auch ein kleines Easteregg?👩🏼‍💻🥚👨🏻‍💻
   </p>
 </template>
 
 <style lang="scss" scoped>
-* {
-  box-sizing: border-box;
-}
 p {
   margin: auto;
   margin-top: 1rem;
