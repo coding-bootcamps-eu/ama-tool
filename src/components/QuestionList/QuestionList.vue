@@ -93,15 +93,16 @@ export default {
     },
 
     getUserID() {
-      if(this.isUserSet() === true){
-        return sessionStorage.getItem(this.storageKeyUserID);}
+      if (this.isUserSet() === true) {
+        return sessionStorage.getItem(this.storageKeyUserID);
+      }
     },
-    isUserSet(){
-      if(sessionStorage.getItem(this.storageKeyUserID) != null){
-        return true
-      }else{
-        false
-      };
+    isUserSet() {
+      if (sessionStorage.getItem(this.storageKeyUserID) != null) {
+        return true;
+      } else {
+        false;
+      }
     },
 
     createUsersVotedArray(questionKey) {
@@ -245,6 +246,12 @@ ol > li {
     margin-right: 1rem;
   }
 }
+.questions {
+  margin-left: 2.5rem;
+  margin-right: 4rem;
+  padding-left: 0;
+  padding-right: 0;
+}
 @media only screen and (max-width: 814px) {
   ol > li {
     display: flex;
@@ -258,6 +265,15 @@ ol > li {
     label {
       margin-right: 1rem;
     }
+  }
+  .questions {
+    margin-left: 2.5rem;
+    margin-right: 2rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .questions {
+    margin-left: 1rem;
   }
 }
 </style>
