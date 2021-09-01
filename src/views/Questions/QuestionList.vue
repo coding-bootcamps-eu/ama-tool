@@ -1,13 +1,13 @@
 <template>
-  <QuestionListComp />
+  <QuestionList />
 </template>
 
 <script>
-import QuestionListComp from "@/components/QuestionList/QuestionListComp.vue";
+import QuestionList from "@/components/QuestionList/QuestionList.vue";
 export default {
-  name: "QuestionList",
+  name: "QuestionListView",
   components: {
-    QuestionListComp,
+    QuestionList,
   },
 };
 </script>
