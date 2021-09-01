@@ -9,7 +9,7 @@
             name="filter"
             id="filterAll"
             value="All"
-            data-cy="input-radio-alle-fragen"
+            data-cy="input-radio-all"
           />
           <label for="filterAll">Alle Fragen</label>
         </div>
@@ -20,7 +20,7 @@
             name="filter"
             id="filterOpen"
             value="false"
-            data-cy="input-radio-offene-fragen"
+            data-cy="input-radio-open"
           />
           <label for="filterOpen">Offene Fragen</label>
         </div>
@@ -31,7 +31,7 @@
             name="filter"
             id="filterClosed"
             value="true"
-            data-cy="input-radio-beantwortete-fragen"
+            data-cy="input-radio-closed"
           /><label for="filterClosed">Beantwortete Fragen</label>
         </div>
       </div>

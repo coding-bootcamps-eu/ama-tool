@@ -20,12 +20,13 @@ describe("Test navigation", () => {
   it("All input fields should accept text when clicked on", () => {
     cy.get("[data-cy='input-text-title']")
       .click()
-      .type("Test typing in question title..{backspace}");
+      .type("Test typing in question title..{backspace}")
+      .should("have.value", "Test typing in question title.");
     cy.get("[data-cy='input-text-description']")
       .click()
       .type(
-        "# Test typing in question description..{backspace}{enter}{enter}*Hello World!*{enter}Test text."
-      );
+        "# Test typing in question description..{backspace}{enter}{enter}## Hello World!{enter}Test text."
+      ); //can't test value, because {enter} cant be read
   });
   it("Input text should only have their maximum length", () => {
     cy.get("[data-cy='input-text-title']").its("length").should("be.lte", 150);

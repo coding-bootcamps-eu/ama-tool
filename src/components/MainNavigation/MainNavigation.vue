@@ -19,16 +19,16 @@
       </div>
       <nav class="nav">
         <ul class="header-nav">
-          <li class="nav-element" data-cy="nav-elements">
+          <li class="nav-element" data-cy="nav-element-start">
             <router-link to="/">Start</router-link>
           </li>
-          <li class="nav-element" data-cy="nav-elements">
+          <li class="nav-element" data-cy="nav-element-list">
             <router-link to="/questionlist">Fragen Liste</router-link>
           </li>
-          <li class="nav-element" data-cy="nav-elements">
+          <li class="nav-element" data-cy="nav-element-ask">
             <router-link to="/askquestion">Frage stellen</router-link>
           </li>
-          <li class="nav-element" data-cy="nav-elements">
+          <li class="nav-element" data-cy="nav-element-team">
             <router-link to="/team">Team</router-link>
           </li>
         </ul>

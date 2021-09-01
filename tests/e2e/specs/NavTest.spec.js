@@ -1,20 +1,21 @@
-// https://docs.cypress.io/api/introduction/api.html
-
 describe("Test navigation", () => {
   it("Navigation should exist", () => {
     cy.visit("/");
     cy.get("nav").should("exist");
   });
   it("Navigation should be clickable", () => {
-    cy.get("[data-cy='nav-elements']").click({ multiple: true });
+    cy.get("[data-cy='nav-element-start']").click();
+    cy.get("[data-cy='nav-element-list']").click();
+    cy.get("[data-cy='nav-element-ask']").click();
+    cy.get("[data-cy='nav-element-team']").click();
   });
   it("Navigation elements should be focusable", () => {
-    // cypress can't test focus on these elements
+    //can't test focus because cypress doesn't see list elements as focusable elements. it only works on input fields.
   });
   it("Navigation should go to correct URL", () => {
-    cy.visit("/");
-    cy.visit("/questionlist");
-    cy.visit("/askquestion");
-    cy.visit("/team");
+    cy.get("[data-cy='nav-element-start']").click().visit("/");
+    cy.get("[data-cy='nav-element-list']").click().visit("/questionlist");
+    cy.get("[data-cy='nav-element-ask']").click().visit("/askquestion");
+    cy.get("[data-cy='nav-element-team']").click().visit("/team");
   });
 });
