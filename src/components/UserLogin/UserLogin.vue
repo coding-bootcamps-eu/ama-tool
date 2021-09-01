@@ -42,7 +42,7 @@ export default {
         .then(() => {
           this.user = null;
           sessionStorage.clear();
-          this.$router.replace("/home");
+          this.$router.replace("/");
           // Sign-out successful.
         })
         .catch((error) => {
@@ -64,7 +64,7 @@ export default {
   border: 2.5px solid;
   border-radius: 0.25rem;
   cursor: pointer;
-  padding: .4rem;
+  padding: 0.4rem;
 }
 .btn-ggl-login {
   font-size: 1.2rem;

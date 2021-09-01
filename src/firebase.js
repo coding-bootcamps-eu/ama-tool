@@ -3,7 +3,7 @@ require("firebase/database");
 require("firebase/auth");
 
 var firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY_AMA || "secrets.DBKEY",
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY_AMA || "secrets.DBKEY",
   authDomain: "ama-tool-ea7e0.firebaseapp.com",
   databaseURL:
     "https://ama-tool-ea7e0-default-rtdb.europe-west1.firebasedatabase.app",
