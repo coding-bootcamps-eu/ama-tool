@@ -73,9 +73,6 @@ p {
   max-width: 40rem;
   line-height: 2rem;
 }
-h2 {
-  font-size: 2rem;
-}
 .text-wrapper {
   padding: 0rem 2rem 0rem 2.6rem;
 }
