@@ -28,7 +28,7 @@ export default {
 }
 #app {
   --primary-color: #6a1cc3;
-  --secondary-color: #a970eb;
+  --secondary-color: #a161e9;
   --background-color: #fafafa;
   --success-color: #a3db33;
   --fail-color: #ed3221;
