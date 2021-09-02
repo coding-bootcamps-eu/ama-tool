@@ -7,7 +7,18 @@
       @mouseover="movePicture"
       @mouseleave="renderPicture"
     />
-    <h2 class="member-name">{{ member.name }}</h2>
+    <div class="member-name">
+      <img src="@/assets/github.png" />
+      <a
+        class="github-link"
+        target="_blank"
+        rel="noopenen noopener"
+        v-bind:href="member.github"
+      >
+        {{ member.name }}
+      </a>
+    </div>
+
     <p class="member-description">{{ member.text }}</p>
   </div>
 </template>
@@ -16,6 +27,13 @@
 export default {
   name: "TeamMember",
 
+  data() {
+    return {
+      fireStatus: false,
+      tentStatus: false,
+      githubLink: "google.com",
+    };
+  },
   props: {
     member: {
       Type: Object,
@@ -47,15 +65,24 @@ export default {
 }
 
 .member-name {
-  margin-top: 2rem;
-  color: var(--primary-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .member-description {
   max-width: 40rem;
   text-align: left;
   margin: 0 auto;
 }
-
+.github-link {
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.github-pic {
+  height: 2rem;
+}
 @media screen and (max-width: 600px) {
   .member-picture {
     height: 10rem;
