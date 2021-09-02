@@ -42,7 +42,7 @@
     >
       <span
         class="bm-burger-bars line-style"
-        :style="{ top: 20 * (index * 2) + '%' }"
+        :style="{ top: 18 * (index * 1.8) + '%' }"
         v-for="(x, index) in 3"
         :key="index"
       ></span>
@@ -221,7 +221,7 @@ export default {
 }
 .line-style {
   position: absolute;
-  height: 30%;
+  height: 19%;
   left: 0;
   right: 0;
 }
