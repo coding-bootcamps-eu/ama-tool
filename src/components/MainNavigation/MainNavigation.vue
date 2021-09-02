@@ -20,16 +20,16 @@
     </header>
     <nav class="nav">
       <ul class="header-nav">
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-element-start">
           <router-link to="/">Start</router-link>
         </li>
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-element-list">
           <router-link to="/questionlist">Fragen Liste</router-link>
         </li>
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-element-ask">
           <router-link to="/askquestion">Frage stellen</router-link>
         </li>
-        <li class="nav-element">
+        <li class="nav-element" data-cy="nav-element-team">
           <router-link to="/team">Team</router-link>
         </li>
         <li class="nav-login">
@@ -75,6 +75,7 @@ nav {
     flex-flow: row;
     list-style-type: none;
     align-items: baseline;
+    white-space: nowrap;
     border-bottom: 0.5px solid var(--primary-color);
   }
   li a {
@@ -96,15 +97,29 @@ nav {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 814px) {
+  nav {
+    .header-nav {
+      margin: 1rem 2rem 1rem 2.5rem;
+    }
+  }
+}
+@media only screen and (max-width: 741px) {
+  nav {
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 669px) {
   header {
     border-bottom: 0.5px solid var(--primary-color);
     margin-bottom: 1rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
   }
   .header-wrapper {
     display: none;
   }
-
   h1 {
     margin: 0 2rem;
   }
@@ -114,7 +129,7 @@ nav {
     flex-direction: row-reverse;
     align-items: center;
     margin-left: 1rem;
-    margin-right: 2rem;
+    margin-right: 0rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }

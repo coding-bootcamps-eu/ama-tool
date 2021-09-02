@@ -2,30 +2,35 @@
   <footer>
     <div class="footer-wrapper">
       <ul>
-        <li>
+        <li data-cy="footer-element">
           <a
             href="https://www.coding-bootcamps.eu/j/privacy"
             target="_blank"
             rel="noopener"
+            data-cy="footer-element-privacy"
             >Datenschutz</a
           >
         </li>
-        <li>
+        <li data-cy="footer-element">
           <a
             href="https://www.coding-bootcamps.eu/about/"
             target="_blank"
             rel="noopener"
+            data-cy="footer-element-imprint"
             >Impressum</a
           >
         </li>
-        <li>
-          <router-link to="/team">Team</router-link>
+        <li data-cy="footer-element">
+          <router-link to="/team" data-cy="footer-element-team"
+            >Team</router-link
+          >
         </li>
-        <li>
+        <li data-cy="footer-element">
           <a
             href="https://www.coding-bootcamps.eu/bewerben/"
             target="_blank"
             rel="noopener"
+            data-cy="footer-element-apply"
             >Bewerben</a
           >
         </li>
@@ -38,19 +43,21 @@
       </p>
       <div class="footer-social-wrapper">
         <ul>
-          <li>
+          <li data-cy="footer-element">
             <a
               href="https://www.instagram.com/codingbootcamps.eu/"
               target="_blank"
               rel="noopener"
+              data-cy="footer-element-instagram"
               >Instagram</a
             >
           </li>
-          <li>
+          <li data-cy="footer-element">
             <a
               href="https://twitter.com/CodeCampEurope"
               target="_blank"
               rel="noopener"
+              data-cy="footer-element-twitter"
               >Twitter</a
             >
           </li>

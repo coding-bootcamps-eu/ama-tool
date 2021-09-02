@@ -12,7 +12,12 @@
           v-model="picked"
           default="true"
         />
-        <label class="category-html-input" for="category-html">HTML</label>
+        <label
+          class="category-html-input"
+          data-cy="input-radio"
+          for="category-html"
+          >HTML</label
+        >
       </div>
       <div>
         <input
@@ -24,7 +29,12 @@
           @click="getCategory"
           v-model="picked"
         />
-        <label class="category-css-input" for="category-css">CSS</label>
+        <label
+          class="category-css-input"
+          data-cy="input-radio"
+          for="category-css"
+          >CSS</label
+        >
       </div>
       <div>
         <input
@@ -36,7 +46,10 @@
           @click="getCategory"
           v-model="picked"
         />
-        <label class="category-javascript-input" for="category-javascript"
+        <label
+          class="category-javascript-input"
+          data-cy="input-radio"
+          for="category-javascript"
           >JavaScript</label
         >
       </div>
@@ -50,7 +63,12 @@
           @click="getCategory"
           v-model="picked"
         />
-        <label class="category-vue-input" for="category-vue">VUE</label>
+        <label
+          class="category-vue-input"
+          data-cy="input-radio"
+          for="category-vue"
+          >VUE</label
+        >
       </div>
       <div>
         <input
@@ -62,7 +80,10 @@
           @click="getCategory"
           v-model="picked"
         />
-        <label class="category-tooling-input" for="category-tooling"
+        <label
+          class="category-tooling-input"
+          data-cy="input-radio"
+          for="category-tooling"
           >Tooling</label
         >
       </div>
@@ -77,7 +98,10 @@
           @click="getCategory"
           v-model="picked"
         />
-        <label class="category-sonstiges-input" for="category-sonstiges"
+        <label
+          class="category-sonstiges-input"
+          data-cy="input-radio"
+          for="category-sonstiges"
           >Sonstiges</label
         >
       </div>

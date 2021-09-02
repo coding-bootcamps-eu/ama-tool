@@ -8,6 +8,7 @@
         name="question-title"
         v-model="currentQuestion.questionTitle"
         maxlength="150"
+        data-cy="input-text-title"
       />
       <label for="question-title" v-bind:class="titleSize"
         >Titel der Frage</label
@@ -24,6 +25,7 @@
         name="question-description"
         v-model="currentQuestion.questionDescription"
         maxlength="5000"
+        data-cy="input-text-description"
         cols="30"
         rows="10"
       ></textarea>
@@ -40,6 +42,7 @@
       name="question-preview"
       placeholder="Bitte beschreibe deine Frage genauer."
       v-show="togglePreview"
+      data-cy="question-preview"
     >
       <Markdown
         :source="currentQuestion.questionDescription"
@@ -53,6 +56,7 @@
         id="preview-question-btn"
         buttonClass="primary"
         @click="showPreview"
+        data-cy="preview-button"
         >{{ buttonText }}
       </main-button>
 
@@ -68,6 +72,7 @@
       <main-button
         id="send-question-btn"
         buttonClass="secondary"
+        data-cy="send-button"
         @click="initQuestions"
         >SENDEN
       </main-button>
@@ -96,16 +101,19 @@
       <label>Deine Frage wurde erfolgreich gesendet!</label>
     </div>
   </div>
-  <div v-show="!userValidation" class="no-user-view">
-    <img src="@/assets/github.png" />
-    <p class="no-valid-user">
-      Um eine Frage zu stellen, bitte mit dem Github-Profil einloggen
-    </p>
+  <div class="wrapper-no-user">
+    <div v-show="!userValidation" class="no-user-view">
+      <img src="@/assets/github.png" />
+      <p class="no-valid-user">
+        Um eine Frage zu stellen, bitte mit dem Github-Profil einloggen
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 import Markdown from "vue3-markdown-it";
+import "highlight.js/styles/github.css";
 
 import RadioButton from "@/components/AskQuestion/RadioButton.vue";
 import DataService from "@/services/DataServices";
@@ -143,6 +151,9 @@ export default {
       text: "Vorschau einblenden",
       questionArray: [],
     };
+  },
+  mounted() {
+    document.title = "AMA-Frage stellen";
   },
   methods: {
     isUserLoggedIn() {
@@ -295,6 +306,9 @@ textarea {
   flex-direction: column;
   align-items: center;
 }
+.wrapper-no-user {
+  margin: 0 2rem;
+}
 .question-title,
 .question-description,
 .question-preview,
@@ -400,6 +414,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 .no-valid-user {

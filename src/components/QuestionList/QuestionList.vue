@@ -9,6 +9,7 @@
             name="filter"
             id="filterAll"
             value="All"
+            data-cy="input-radio-all"
           />
           <label for="filterAll">Alle Fragen</label>
         </div>
@@ -19,6 +20,7 @@
             name="filter"
             id="filterOpen"
             value="false"
+            data-cy="input-radio-open"
           />
           <label for="filterOpen">Offene Fragen</label>
         </div>
@@ -29,6 +31,7 @@
             name="filter"
             id="filterClosed"
             value="true"
+            data-cy="input-radio-closed"
           /><label for="filterClosed">Beantwortete Fragen</label>
         </div>
       </div>
@@ -93,15 +96,16 @@ export default {
     },
 
     getUserID() {
-      if(this.isUserSet() === true){
-        return sessionStorage.getItem(this.storageKeyUserID);}
+      if (this.isUserSet() === true) {
+        return sessionStorage.getItem(this.storageKeyUserID);
+      }
     },
-    isUserSet(){
-      if(sessionStorage.getItem(this.storageKeyUserID) != null){
-        return true
-      }else{
-        false
-      };
+    isUserSet() {
+      if (sessionStorage.getItem(this.storageKeyUserID) != null) {
+        return true;
+      } else {
+        false;
+      }
     },
 
     createUsersVotedArray(questionKey) {
@@ -225,6 +229,7 @@ export default {
   },
   mounted() {
     DataService.getAll().on("value", this.onDataChange);
+    document.title = "AMA-Fragenliste";
   },
   beforeUnmount() {
     DataService.getAll().off("value", this.onDataChange);
@@ -244,6 +249,12 @@ ol > li {
     margin-right: 1rem;
   }
 }
+.questions {
+  margin-left: 2.5rem;
+  margin-right: 4rem;
+  padding-left: 0;
+  padding-right: 0;
+}
 @media only screen and (max-width: 814px) {
   ol > li {
     display: flex;
@@ -257,6 +268,15 @@ ol > li {
     label {
       margin-right: 1rem;
     }
+  }
+  .questions {
+    margin-left: 2.5rem;
+    margin-right: 2rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .questions {
+    margin-left: 1rem;
   }
 }
 </style>

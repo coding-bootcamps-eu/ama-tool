@@ -1,7 +1,22 @@
 <template>
-  <li>
+  <li data-cy="list-element">
     <div class="question-heading">
-      <p class="question-title">{{ questionTitle }}</p>
+      <router-link
+        class="question-title"
+        :to="{
+          name: 'details',
+          params: {
+            questionKey,
+            questionTitle,
+            questionDescription,
+            questionAuthor,
+            questionCategory,
+            questionCreated_at,
+          },
+        }"
+      >
+        {{ questionTitle }}
+      </router-link>
       <div class="inner-question-wrapper">
         <span class="who-asked">
           Frage von: <br />
@@ -35,42 +50,46 @@
 
       <div class="vote-wrapper">
         <p>Votes: {{ questionUpvotes }}</p>
-        
+
         <div class="vote-arrows-wrapper">
-        <button
-          class="vote-button-up"
-          :disabled="!isUserAllowedToVote"
-          @click="$emit('upvote')"
-        > 
-          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
-        </button>
-        <p v-show="!isUserLoggedIn">Logge dich bitte ein!</p>
-        <button
-          class="vote-button-down"
-          :disabled="isUserAllowedToVote"
-          @click="$emit('downvote')"
-        >
-          <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
-        </button>
+          <button
+            class="vote-button-up"
+            :disabled="!isUserAllowedToVote"
+            @click="$emit('upvote')"
+          >
+            <i
+              class="fi-rr-angle-up"
+              data-cy="vote-arrow"
+              v-if="isUserAllowedToVote"
+            ></i>
+          </button>
+          <p v-show="!isUserLoggedIn">Logge dich bitte ein!</p>
+          <button
+            class="vote-button-down"
+            :disabled="isUserAllowedToVote"
+            @click="$emit('downvote')"
+          >
+            <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+          </button>
         </div>
       </div>
       <div class="vote-wrapper-small-screen">
         <p>Votes: {{ questionUpvotes }}</p>
         <div class="vote-arrows-wrapper">
-        <button
-          class="vote-button-up"
-          :disabled="!isUserAllowedToVote"
-          @click="$emit('upvote')"
-        >
-          <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
-        </button>
-        <button
-          class="vote-button-down"
-          :disabled="isUserAllowedToVote"
-          @click="$emit('downvote')"
-        >
-          <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
-        </button>
+          <button
+            class="vote-button-up"
+            :disabled="!isUserAllowedToVote"
+            @click="$emit('upvote')"
+          >
+            <i class="fi-rr-angle-up" v-if="isUserAllowedToVote"></i>
+          </button>
+          <button
+            class="vote-button-down"
+            :disabled="isUserAllowedToVote"
+            @click="$emit('downvote')"
+          >
+            <i class="fi-rr-angle-down" v-if="!isUserAllowedToVote"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -146,13 +165,13 @@ export default {
         return false;
       }
     },
-    isUserLoggedIn(){
-      if(sessionStorage.getItem("userID")!= null){
+    isUserLoggedIn() {
+      if (sessionStorage.getItem("userID") != null) {
         return true;
-      }else{
+      } else {
         return false;
       }
-    }
+    },
   },
 };
 </script>
@@ -163,7 +182,7 @@ export default {
   display: none;
 }
 li {
-  margin: 1rem 4rem 1rem 0;
+  margin: 1rem 0rem 1rem 0;
   list-style-type: none;
   justify-content: space-between;
   align-items: center;
@@ -201,6 +220,7 @@ li {
     padding: 0.5rem 0;
     font-size: 1.1rem;
     font-weight: 550;
+    text-decoration: none;
     border-bottom: 0.5px solid var(--primary-color);
   }
   .question-edit {
@@ -251,7 +271,6 @@ li {
 @media only screen and (max-width: 814px) {
   li {
     margin: 1rem 0rem 1rem 0;
-    max-width: 90%;
     min-width: 50%;
     list-style-type: none;
     justify-content: space-between;

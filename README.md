@@ -29,6 +29,8 @@ We _recommend_ to set your Github display name (settings/public profile).
 
 ---
 
+[![ama-tool](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/mikw99/dev&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/mikw99/runs)
+
 ## Project setup
 
 ```
@@ -69,7 +71,10 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+
 ## Rules we set us during the development process
+=======
+
 
 - Variables: variable naming in english and in "camelCase".
 - Class (HTML), id names with "-" and lowercase
@@ -83,7 +88,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - Rest from top to bottom matching the DOM
 - Components only with "scoped" and in folder
 
+
 ## Views included
+=======
 
 - Home
 - Questions
@@ -95,3 +102,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - Privacy
   - Policies
   - Imprint
+=======
+

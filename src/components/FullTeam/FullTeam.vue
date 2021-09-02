@@ -85,6 +85,7 @@ export default {
       return array;
     },
   },
+
   computed: {
     showFullTeam() {
       return !this.showTent & !this.showFire ? true : false;
@@ -104,6 +105,7 @@ export default {
 
     moveTent.style.top = tentPositionX.toString() + "px";
     moveTent.style.left = tentPositionY.toString() + "px";
+    document.title = "AMA-Team";
   },
 };
 </script>

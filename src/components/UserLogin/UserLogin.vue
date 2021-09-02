@@ -1,10 +1,10 @@
 <template>
   <div class="login">
-    <p v-if="user">
-      {{ user.displayName }}
+    <div class="user-logged-in" v-show="user">
       <button @click="signOut" class="btn-git-logout">Logout</button>
-    </p>
-    <button v-else @click="signInGit" class="btn-git-login">
+      <p class="user-name">{{ userName }}</p>
+    </div>
+    <button v-show="!user" @click="signInGit" class="btn-git-login">
       GitHub-Login <i class="fa fa-github"></i>
     </button>
   </div>
@@ -17,9 +17,9 @@ export default {
   name: "UserLogin",
   data() {
     return {
-      user: null,
-      userID: null,
-      userName: null,
+      user: sessionStorage.getItem("user"),
+      userID: sessionStorage.getItem("userID"),
+      userName: sessionStorage.getItem("userName"),
     };
   },
   methods: {
@@ -34,6 +34,8 @@ export default {
       sessionStorage.setItem("userName", result.user.displayName);
       this.user = result.user;
       this.userID = result.user.uid;
+      this.userName = result.user.displayName;
+      console.log(this.userName);
     },
     signOut() {
       firebase
@@ -57,6 +59,15 @@ export default {
 .login {
   margin: 0 2rem 0 0;
 }
+.user-logged-in {
+  display: flex;
+  flex-flow: row;
+  align-items: baseline;
+  .user-name {
+    margin-left: 0.5rem;
+  }
+}
+
 .btn-git-login {
   font-size: 1.2rem;
   color: var(--primary-color);
@@ -81,5 +92,15 @@ export default {
   border: 2.5px solid;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+@media only screen and (max-width: 741px) {
+  .user-name {
+    font-size: 0.8em;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .user-name {
+    display: none;
+  }
 }
 </style>
