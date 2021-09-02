@@ -201,7 +201,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .nav-wrapper {
   height: 0;
 }
@@ -257,9 +257,16 @@ export default {
   background: rgba(0, 0, 0, 0.15);
 }
 .bm-item-list {
-  color: #b8b7ad;
+  color: var(--font-color);
   margin-left: 10%;
   font-size: 20px;
+  a {
+    color: var(--font-color);
+    font-weight: bold;
+  }
+  .router-link-active {
+    color: var(--primary-color);
+  }
 }
 .bm-item-list > * {
   display: flex;
