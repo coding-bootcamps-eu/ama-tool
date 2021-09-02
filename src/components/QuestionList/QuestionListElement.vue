@@ -182,6 +182,10 @@ export default {
   display: none;
 }
 li {
+  a {
+    color: var(--font-color);
+    font-weight: bold;
+  }
   margin: 1rem 0rem 1rem 0;
   list-style-type: none;
   justify-content: space-between;
