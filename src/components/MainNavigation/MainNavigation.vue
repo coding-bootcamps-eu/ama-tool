@@ -75,6 +75,7 @@ nav {
     flex-flow: row;
     list-style-type: none;
     align-items: baseline;
+    white-space: nowrap;
     border-bottom: 0.5px solid var(--primary-color);
   }
   li a {
