@@ -74,7 +74,7 @@ p {
   line-height: 2rem;
 }
 .text-wrapper {
-  padding: 0rem 2rem 0rem 2.6rem;
+  margin: 2.8rem 4rem 1rem 2.5rem;
 }
 .button-element {
   height: 35px;
@@ -86,5 +86,15 @@ p {
   border-radius: 0.25rem;
   background-color: #fafafa;
   margin-top: 30px;
+}
+@media only screen and (max-width: 814px) {
+  .text-wrapper {
+    margin: 2.8rem 2rem 1rem 2.5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .text-wrapper {
+    margin-left: 1rem;
+  }
 }
 </style>

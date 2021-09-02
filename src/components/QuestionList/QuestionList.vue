@@ -255,9 +255,13 @@ ol > li {
   }
 }
 .question-list-wrapper {
-  margin: 0 2rem;
+  margin: 0 4rem 0 2.5rem;
 }
 @media only screen and (max-width: 814px) {
+  .question-list-wrapper {
+    margin: 0 2rem 0 2.5rem;
+  }
+
   ol > li {
     display: flex;
     flex-flow: column;

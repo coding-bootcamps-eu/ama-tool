@@ -69,7 +69,7 @@ h1 {
 }
 nav {
   .header-nav {
-    margin: 1rem 2rem 1rem 2.2rem;
+    margin: 1rem 4rem 1rem 2.5rem;
     padding: 0rem 2rem 1rem 0rem;
     display: flex;
     flex-flow: row;
@@ -115,7 +115,7 @@ nav {
     border-bottom: 0.5px solid var(--primary-color);
     margin-bottom: 1rem;
     margin-right: 2rem;
-    margin-left: 1rem;
+    margin-left: 2.5rem;
   }
   .header-wrapper {
     display: none;
@@ -138,6 +138,11 @@ nav {
   }
   .narrow-heading-title {
     line-height: 1.8rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .footer-header {
+    margin-left: 1rem;
   }
 }
 </style>
