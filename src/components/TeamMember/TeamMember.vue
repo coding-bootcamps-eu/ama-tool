@@ -7,35 +7,26 @@
       @mouseover="movePicture"
       @mouseleave="renderPicture"
     />
-    <h2 @click="showOverlay" class="member-name">
-      {{ member.name }}
-    </h2>
-    <p class="member-description">{{ member.text }}</p>
-    <overlay class="overlay" v-show="fireStatus">
-      <img @click="showOverlay" src="@/assets/campfire.gif" />
-      <a class="github-link" v-bind:href="githubLink"
-        >{{ member.name }}s Github</a
+    <div class="member-name">
+      <img src="@/assets/github.png" />
+      <a
+        class="github-link"
+        target="_blank"
+        rel="noopenen noopener"
+        v-bind:href="member.github"
       >
-    </overlay>
-    <overlay @click="showOverlay" v-show="tentStatus">
-      <div>
-        <img src="@/assets/tent.webp" />
-        <a class="github-link" v-bind:href="githubLink"
-          >{{ member.name }}s Github</a
-        >
-      </div>
-    </overlay>
+        {{ member.name }}
+      </a>
+    </div>
+
+    <p class="member-description">{{ member.text }}</p>
   </div>
 </template>
 
 <script>
-import Overlay from "@/components/LandingPage/Overlay.vue";
-
 export default {
   name: "TeamMember",
-  components: {
-    Overlay,
-  },
+
   data() {
     return {
       fireStatus: false,
@@ -56,16 +47,6 @@ export default {
     renderPicture() {
       event.target.style.transform = "scale(1) rotate(-15deg)";
     },
-    showOverlay() {
-      if (this.member.name === "INGA") {
-        this.fireStatus = !this.fireStatus;
-        this.githubLink = "https://github.com/EeveeInGaa";
-      }
-      if (this.member.name === "DENIZ") {
-        this.tentStatus = !this.tentStatus;
-        this.githubLink = "https://github.com/Ddeniz38";
-      }
-    },
   },
 };
 </script>
@@ -84,8 +65,8 @@ export default {
 }
 
 .member-name {
-  margin-top: 2rem;
-  color: var(--primary-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .member-description {
   max-width: 40rem;
@@ -94,7 +75,13 @@ export default {
 }
 .github-link {
   padding-top: 1rem;
+  padding-left: 0.5rem;
+  font-size: 2rem;
   text-decoration: none;
+  color: var(--primary-color);
+}
+.github-pic {
+  height: 2rem;
 }
 @media screen and (max-width: 600px) {
   .member-picture {
