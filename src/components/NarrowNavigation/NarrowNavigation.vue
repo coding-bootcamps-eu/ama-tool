@@ -3,13 +3,17 @@
     <div ref="sideNav" class="bm-menu">
       <nav class="bm-item-list">
         <slot>
-          <router-link to="/">Start</router-link>
+          <router-link @click="closeMenu" to="/">Start</router-link>
 
-          <router-link to="/questionlist">Fragen Liste</router-link>
+          <router-link @click="closeMenu" to="/questionlist"
+            >Fragen Liste</router-link
+          >
 
-          <router-link to="/askquestion">Frage stellen</router-link>
+          <router-link @click="closeMenu" to="/askquestion"
+            >Frage stellen</router-link
+          >
 
-          <router-link to="/team">Team</router-link>
+          <router-link @click="closeMenu" to="/team">Team</router-link>
 
           <UserLogin />
         </slot>
@@ -42,7 +46,7 @@
     >
       <span
         class="bm-burger-bars line-style"
-        :style="{ top: 20 * (index * 2) + '%' }"
+        :style="{ top: 18 * (index * 1.8) + '%' }"
         v-for="(x, index) in 3"
         :key="index"
       ></span>
@@ -201,7 +205,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .nav-wrapper {
   height: 0;
 }
@@ -221,7 +225,7 @@ export default {
 }
 .line-style {
   position: absolute;
-  height: 30%;
+  height: 19%;
   left: 0;
   right: 0;
 }
@@ -257,9 +261,16 @@ export default {
   background: rgba(0, 0, 0, 0.15);
 }
 .bm-item-list {
-  color: #b8b7ad;
+  color: var(--font-color);
   margin-left: 10%;
   font-size: 20px;
+  a {
+    color: var(--font-color);
+    font-weight: bold;
+  }
+  .router-link-active {
+    color: var(--primary-color);
+  }
 }
 .bm-item-list > * {
   display: flex;
