@@ -10,15 +10,14 @@ const routes = [
   {
     path: "/team",
     name: "Team",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Team.vue"),
+    component: () => import(/* webpackChunkName: "team" */ "../views/Team.vue"),
   },
   {
     path: "/askquestion",
     name: "AskQuestion",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Questions/AskQuestion.vue"
+        /* webpackChunkName: "askquestion" */ "../views/Questions/AskQuestion.vue"
       ),
   },
   {
@@ -26,7 +25,7 @@ const routes = [
     name: "AllQuestions",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Questions/AllQuestions.vue"
+        /* webpackChunkName: "AllQuestions" */ "../views/Questions/AllQuestions.vue"
       ),
     children: [
       {
@@ -34,7 +33,7 @@ const routes = [
         name: "QuestionList",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "../views/Questions/QuestionList.vue"
+            /* webpackChunkName: "Questionlist" */ "../views/Questions/QuestionList.vue"
           ),
       },
       {
@@ -42,24 +41,23 @@ const routes = [
         name: "details",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "../views/Questions/QuestionDetails.vue"
+            /* webpackChunkName: "QuestionDestails" */ "../views/Questions/QuestionDetails.vue"
           ),
       },
     ],
   },
-
   {
     path: "/imprint",
     name: "Imprint",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Footer/Imprint.vue"),
+      import(/* webpackChunkName: "Imprint" */ "../views/Footer/Imprint.vue"),
   },
   {
     path: "/privacypolicies",
     name: "PrivacyPolicies",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Footer/PrivacyPolicies.vue"
+        /* webpackChunkName: "PrivacyPolicies" */ "../views/Footer/PrivacyPolicies.vue"
       ),
   },
 ];
