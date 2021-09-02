@@ -9,6 +9,15 @@
         left
       />
     </div>
+    <div class="question-button-wrapper">
+      <main-button
+        id="button"
+        buttonClass="primary"
+        @click="browseBack"
+        data-cy="back-button"
+        >ZURÜCK
+      </main-button>
+    </div>
   </section>
 </template>
 
@@ -25,6 +34,11 @@ export default {
     return {
       question: "",
     };
+  },
+  methods: {
+    browseBack() {
+      this.$router.replace("/questionlist");
+    },
   },
   beforeRouteUpdate() {
     this.questionKey = this.$route.params.questionKey;
@@ -56,6 +70,12 @@ export default {
   font-size: 1rem;
   text-align: left;
   cursor: text;
+}
+.question-button-wrapper {
+  display: flex;
+  margin-left: 2.5rem;
+}
+.button {
 }
 @media only screen and (max-width: 814px) {
   .question-description {

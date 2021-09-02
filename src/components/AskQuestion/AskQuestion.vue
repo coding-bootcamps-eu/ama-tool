@@ -71,6 +71,7 @@
 
       <main-button
         id="send-question-btn"
+        class="margin-left"
         buttonClass="secondary"
         data-cy="send-button"
         @click="initQuestions"
@@ -289,8 +290,8 @@ export default {
 
     buttonText() {
       return this.togglePreview === true
-        ? "Vorschau ausblenden"
-        : "Vorschau einblenden";
+        ? "VORSCHAU AUSBLENDEN"
+        : "VORSCHAU EINBLENDEN";
     },
   },
 };
@@ -408,6 +409,9 @@ textarea {
 
 .empty-flex-item {
   flex-grow: 2;
+}
+.margin-left {
+  margin-left: 1rem;
 }
 
 .no-user-view {

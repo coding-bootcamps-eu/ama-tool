@@ -24,7 +24,6 @@ export default {
   border: 2.5px solid transparent;
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 1.5rem;
@@ -36,7 +35,6 @@ export default {
   border: 2.5px solid transparent;
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
-  margin: 0.5rem;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 1.5rem;
@@ -47,16 +45,25 @@ export default {
   outline: none;
   border: 2.5px solid var(--success-color);
 }
+@media screen and (max-width: 900px) {
+  .secondary {
+    font-size: 0.75rem;
+  }
+
+  .primary {
+    font-size: 0.75rem;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .secondary {
-    font-size: 10px;
+    font-size: 0.55rem;
     line-height: 1rem;
     margin: 0.2rem;
   }
 
   .primary {
-    font-size: 10px;
+    font-size: 0.55rem;
     line-height: 1rem;
     margin: 0.2rem;
   }
