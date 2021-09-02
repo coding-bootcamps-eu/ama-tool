@@ -77,7 +77,7 @@ h2 {
   font-size: 2rem;
 }
 .text-wrapper {
-  padding: 0 1.4rem;
+  padding: 0rem 2rem 0rem 2.6rem;
 }
 .button-element {
   height: 35px;
