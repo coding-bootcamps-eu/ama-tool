@@ -15,7 +15,7 @@
           alt="Coding Bootcamp Europe Logo"
           src="@/assets/cbe-logo-plain.png"
         />
-        <h1>AMA Tool</h1>
+        <h1 class="narrow-heading-title">AMA Tool</h1>
       </div>
     </header>
     <nav class="nav">
@@ -135,6 +135,9 @@ nav {
   }
   .nav {
     display: none;
+  }
+  .narrow-heading-title {
+    line-height: 1.8rem;
   }
 }
 </style>
