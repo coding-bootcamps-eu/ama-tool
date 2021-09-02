@@ -101,11 +101,13 @@
       <label>Deine Frage wurde erfolgreich gesendet!</label>
     </div>
   </div>
-  <div v-show="!userValidation" class="no-user-view">
-    <img src="@/assets/github.png" />
-    <p class="no-valid-user">
-      Um eine Frage zu stellen, bitte mit dem Github-Profil einloggen
-    </p>
+  <div class="wrapper-no-user">
+    <div v-show="!userValidation" class="no-user-view">
+      <img src="@/assets/github.png" />
+      <p class="no-valid-user">
+        Um eine Frage zu stellen, bitte mit dem Github-Profil einloggen
+      </p>
+    </div>
   </div>
 </template>
 
@@ -304,6 +306,9 @@ textarea {
   flex-direction: column;
   align-items: center;
 }
+.wrapper-no-user {
+  margin: 0 2rem;
+}
 .question-title,
 .question-description,
 .question-preview,
@@ -409,6 +414,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 .no-valid-user {
