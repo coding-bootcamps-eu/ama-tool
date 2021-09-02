@@ -36,17 +36,19 @@
         </div>
       </div>
     </div>
-    <ol id="questions">
-      <QuestionListElement
-        v-for="question in filteredQuestions"
-        :key="question.questionKey"
-        v-bind="question"
-        @upvote="voteQuestion(question.questionKey, getUserID())"
-        @answer="answerQuestion(question.questionKey)"
-        @takebackanswer="takebackanswer(question.questionKey)"
-        @downvote="downVote(question.questionKey, getUserID())"
-      />
-    </ol>
+    <div class="question-list-wrapper">
+      <ol id="questions">
+        <QuestionListElement
+          v-for="question in filteredQuestions"
+          :key="question.questionKey"
+          v-bind="question"
+          @upvote="voteQuestion(question.questionKey, getUserID())"
+          @answer="answerQuestion(question.questionKey)"
+          @takebackanswer="takebackanswer(question.questionKey)"
+          @downvote="downVote(question.questionKey, getUserID())"
+        />
+      </ol>
+    </div>
   </section>
 </template>
 
@@ -237,6 +239,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+ol {
+  all: unset;
+}
 ol > li {
   display: flex;
 }
@@ -249,7 +254,10 @@ ol > li {
     margin-right: 1rem;
   }
 }
-.questions {
+.question-list-wrapper {
+  margin: 0 2rem;
+}
+_.questions {
   margin-left: 2.5rem;
   margin-right: 4rem;
   padding-left: 0;
@@ -264,19 +272,15 @@ ol > li {
     display: flex;
     flex-flow: column;
     align-items: start;
-    padding-left: 2rem;
-    label {
-      margin-right: 1rem;
-    }
-  }
-  .questions {
-    margin-left: 2.5rem;
-    margin-right: 2rem;
   }
 }
 @media only screen and (max-width: 600px) {
-  .questions {
-    margin-left: 1rem;
+  .question-list-wrapper {
+    margin: 0 2rem 0 1rem;
+  }
+  .filter-options {
+    padding: 0;
+    margin: 0 1rem;
   }
 }
 </style>
