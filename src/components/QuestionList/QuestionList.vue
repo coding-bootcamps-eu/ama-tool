@@ -257,12 +257,6 @@ ol > li {
 .question-list-wrapper {
   margin: 0 2rem;
 }
-_.questions {
-  margin-left: 2.5rem;
-  margin-right: 4rem;
-  padding-left: 0;
-  padding-right: 0;
-}
 @media only screen and (max-width: 814px) {
   ol > li {
     display: flex;
