@@ -28,4 +28,4 @@ jobs:
       - run: npm run lint:ci
 
       # wait for merged tests
-      - run: npm run test:e2e:ci
+      # - run: npm run test:e2e:ci
