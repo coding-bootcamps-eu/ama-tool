@@ -35,7 +35,6 @@ export default {
       this.user = result.user;
       this.userID = result.user.uid;
       this.userName = result.user.displayName;
-      console.log(this.userName);
     },
     signOut() {
       firebase
