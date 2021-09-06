@@ -66,7 +66,6 @@ export default {
     margin-left: 0.5rem;
   }
 }
-
 .btn-git-login {
   font-size: 1.2rem;
   color: var(--primary-color);
@@ -78,7 +77,7 @@ export default {
 }
 .btn-ggl-login {
   font-size: 1.2rem;
-  color: red;
+  color: var(--fail-color);
   background-color: var(--background-color);
   border: 2.5px solid;
   border-radius: 0.25rem;
