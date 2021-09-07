@@ -29,6 +29,7 @@ if (process.env.NODE_ENV === "test") {
   sessionStorage.setItem("userID", "1");
   firebase.default.initializeApp(firebaseTestConfig);
 } else {
+  console.log("test");
   firebase.default.initializeApp(firebaseConfig);
 }
 
