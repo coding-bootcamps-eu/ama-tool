@@ -248,7 +248,7 @@ ol > li {
 .filter-options {
   display: flex;
   flex-flow: row;
-  align-items: start;
+  align-items: flex-start;
   padding-left: 2rem;
   label {
     margin-right: 1rem;
@@ -269,7 +269,7 @@ ol > li {
   .filter-options {
     display: flex;
     flex-flow: column;
-    align-items: start;
+    align-items: flex-start;
   }
 }
 @media only screen and (max-width: 600px) {

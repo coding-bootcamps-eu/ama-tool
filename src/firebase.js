@@ -4,13 +4,13 @@ require("firebase/auth");
 
 var firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY_AMA || "secrets.DBKEY",
-  authDomain: "ama-tool-ea7e0.firebaseapp.com",
+  authDomain: "ama-tool-prod.firebaseapp.com",
   databaseURL:
-    "https://ama-tool-ea7e0-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "ama-tool-ea7e0",
-  storageBucket: "ama-tool-ea7e0.appspot.com",
-  messagingSenderId: "975187077657",
-  appId: "1:975187077657:web:9bef6448123610a32d5888",
+    "https://ama-tool-prod-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "ama-tool-prod",
+  storageBucket: "ama-tool-prod.appspot.com",
+  messagingSenderId: "314282942773",
+  appId: "1:314282942773:web:b8a4afb8183ca9b95f6c7c",
 };
 
 var firebaseTestConfig = {

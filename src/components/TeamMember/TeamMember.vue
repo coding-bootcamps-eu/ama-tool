@@ -83,7 +83,7 @@ export default {
 .github-pic {
   height: 2rem;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 669px) {
   .member-picture {
     height: 10rem;
   }

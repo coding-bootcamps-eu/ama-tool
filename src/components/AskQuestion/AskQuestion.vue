@@ -426,7 +426,7 @@ textarea {
   color: var(--font-color);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 669px) {
   .wrapper {
     align-items: flex-start;
   }

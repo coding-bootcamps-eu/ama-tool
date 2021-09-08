@@ -26,7 +26,7 @@ export default {
 * {
   box-sizing: border-box;
 }
-#app {
+:root {
   --primary-color: #6a1cc3;
   --secondary-color: #a161e9;
   --background-color: #fafafa;
@@ -34,17 +34,19 @@ export default {
   --fail-color: #ed3221;
   --font-color: #121212;
   --placeholder-color: rgba(18, 18, 18, 0.7);
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5rem;
+}
+#app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
 html {
   @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-  font-family: "Open Sans", sans-serif;
   background-color: var(--background-color);
   color: var(--font-color);
-  font-size: 18px;
-  line-height: 1.5rem;
   h1 {
     font-size: 2.2rem;
   }
@@ -60,7 +62,7 @@ body {
   margin: 0 auto;
   min-width: 350px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 669px) {
   body {
     width: 95%;
   }
