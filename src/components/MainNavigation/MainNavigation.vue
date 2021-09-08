@@ -38,6 +38,9 @@
           <router-link to="/askquestion">Frage stellen</router-link>
         </li>
         <li class="nav-element" data-cy="nav-element-team">
+          <router-link to="/about">About</router-link>
+        </li>
+        <li class="nav-element" data-cy="nav-element-team">
           <router-link to="/team">Team</router-link>
         </li>
         <li class="nav-login">
