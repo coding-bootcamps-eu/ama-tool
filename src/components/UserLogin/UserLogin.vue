@@ -35,6 +35,8 @@ export default {
       this.user = result.user;
       this.userID = result.user.uid;
       this.userName = result.user.displayName;
+      this.$router.replace("/");
+      location.reload();
     },
     signOut() {
       firebase
@@ -44,6 +46,7 @@ export default {
           this.user = null;
           sessionStorage.clear();
           this.$router.replace("/");
+          location.reload();
           // Sign-out successful.
         })
         .catch((error) => {
