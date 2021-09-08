@@ -25,9 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add("loginAskQuestion", () => {
   window.sessionStorage.setItem("userID", "1");
-  cy.visit("http://localhost:8080/askquestion");
 });
-Cypress.Commands.add("loginAskQuestion", () => {
+Cypress.Commands.add("loginQuestionList", () => {
   window.sessionStorage.setItem("userID", "1");
-  cy.visit("http://localhost:8080/questionlist");
 });

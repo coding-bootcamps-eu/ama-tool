@@ -11,6 +11,7 @@ describe("Test navigation", () => {
   it("should test focus of input fields and buttons", () => {
     //fails if .focus() isn't included in the test
     cy.loginAskQuestion();
+    cy.visit("http://localhost:8080/askquestion");
     cy.get("[data-cy='input-text-title']").focus().should("have.focus");
     cy.get("[data-cy='input-text-description']").focus().should("have.focus");
     cy.get("[data-cy='preview-button']").focus().should("have.focus");
