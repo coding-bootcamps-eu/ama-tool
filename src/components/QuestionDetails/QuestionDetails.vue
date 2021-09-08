@@ -75,8 +75,6 @@ export default {
   display: flex;
   margin-left: 2.5rem;
 }
-.button {
-}
 @media only screen and (max-width: 814px) {
   .question-description {
     margin: 2.8rem 2rem 1rem 2.5rem;
