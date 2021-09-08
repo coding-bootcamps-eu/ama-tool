@@ -23,3 +23,7 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add("login", () => {
+  window.sessionStorage.setItem("userID", "1");
+  cy.visit("http://localhost:8080");
+});
