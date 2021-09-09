@@ -20,9 +20,6 @@
     </header>
     <nav class="nav">
       <ul class="header-nav">
-        <li class="nav-element" data-cy="nav-element-start">
-          <router-link to="/">Start</router-link>
-        </li>
         <li
           v-show="isUserLoggedIn"
           class="nav-element"
@@ -36,12 +33,6 @@
           data-cy="nav-element-ask"
         >
           <router-link to="/askquestion">Frage stellen</router-link>
-        </li>
-        <li class="nav-element" data-cy="nav-element-team">
-          <router-link to="/about">About</router-link>
-        </li>
-        <li class="nav-element" data-cy="nav-element-team">
-          <router-link to="/team">Team</router-link>
         </li>
         <li class="nav-login">
           <UserLogin />
