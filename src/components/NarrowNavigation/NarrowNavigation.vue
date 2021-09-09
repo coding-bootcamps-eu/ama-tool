@@ -3,8 +3,6 @@
     <div ref="sideNav" class="bm-menu">
       <nav class="bm-item-list">
         <slot>
-          <router-link @click="closeMenu" to="/">Start</router-link>
-
           <router-link @click="closeMenu" to="/questionlist"
             >Fragen Liste</router-link
           >
@@ -12,9 +10,6 @@
           <router-link @click="closeMenu" to="/askquestion"
             >Frage stellen</router-link
           >
-
-          <router-link @click="closeMenu" to="/team">Team</router-link>
-
           <UserLogin />
         </slot>
       </nav>
