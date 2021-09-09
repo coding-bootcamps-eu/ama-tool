@@ -6,6 +6,7 @@
         <b>Bitte logge dich</b> mit deinem <b>GitHub Account</b> ein, um die
         Funktionen des Tools nutzen zu können.
       </p>
+      <div class="lp__login-wrapper"><UserLogin /></div>
       <p class="lp__login-message">
         <em
           ><b>BEACHTE:</b> Dein Displayname in GitHub muss eingestellt sein um
@@ -18,8 +19,11 @@
 </template>
 
 <script>
+import UserLogin from "@/components/UserLogin/UserLogin.vue";
+
 export default {
   name: "Landing Page",
+  components: { UserLogin },
 };
 </script>
 
@@ -37,5 +41,10 @@ em {
 }
 b {
   color: var(--primary-color);
+}
+.lp__login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -5,7 +5,7 @@
       <p class="user-name">{{ userName }}</p>
     </div>
     <button v-show="!user" @click="signInGit" class="btn-git-login">
-      GitHub-Login <i class="fa fa-github"></i>
+      Login with GitHub <i class="fa fa-github"></i>
     </button>
   </div>
 </template>
@@ -29,14 +29,20 @@ export default {
     async signInGit() {
       const provider = new firebase.auth.GithubAuthProvider();
       const result = await firebase.auth().signInWithPopup(provider);
+      debugger;
       sessionStorage.setItem("user", result.user);
       sessionStorage.setItem("userID", result.user.uid);
-      sessionStorage.setItem("userName", result.user.displayName);
+      if (result.user.displayName != null) {
+        sessionStorage.setItem("userName", result.user.displayName);
+      } else {
+        sessionStorage.setItem("userName", result.additionalUserInfo.username);
+      }
       this.user = result.user;
+      console.log(result.user);
       this.userID = result.user.uid;
       this.userName = result.user.displayName;
       this.$router.replace("/");
-      location.reload();
+      //location.reload();
     },
     signOut() {
       firebase

@@ -34,7 +34,7 @@
         >
           <router-link to="/askquestion">Frage stellen</router-link>
         </li>
-        <li class="nav-login">
+        <li v-show="isUserLoggedIn" class="nav-login">
           <UserLogin />
         </li>
       </ul>
