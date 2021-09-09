@@ -7,13 +7,6 @@
         Funktionen des Tools nutzen zu können.
       </p>
       <div class="lp__login-wrapper"><UserLogin /></div>
-      <p class="lp__login-message">
-        <em
-          ><b>BEACHTE:</b> Dein Displayname in GitHub muss eingestellt sein um
-          den vollen Umfang der Funktionen gewährleisten zu können! (GitHub -
-          Settings - Name)</em
-        >
-      </p>
     </div>
   </section>
 </template>
@@ -35,9 +28,6 @@ export default {
 }
 .lp__welcome-message {
   margin: 0.5rem 0rem;
-}
-em {
-  background-color: var(--placeholer-color);
 }
 b {
   color: var(--primary-color);
