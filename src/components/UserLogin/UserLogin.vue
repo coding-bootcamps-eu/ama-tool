@@ -29,7 +29,6 @@ export default {
     async signInGit() {
       const provider = new firebase.auth.GithubAuthProvider();
       const result = await firebase.auth().signInWithPopup(provider);
-      debugger;
       sessionStorage.setItem("user", result.user);
       sessionStorage.setItem("userID", result.user.uid);
       if (result.user.displayName != null) {
@@ -38,11 +37,10 @@ export default {
         sessionStorage.setItem("userName", result.additionalUserInfo.username);
       }
       this.user = result.user;
-      console.log(result.user);
       this.userID = result.user.uid;
       this.userName = result.user.displayName;
       this.$router.replace("/");
-      //location.reload();
+      location.reload();
     },
     signOut() {
       firebase
