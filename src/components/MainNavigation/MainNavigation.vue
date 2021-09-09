@@ -21,7 +21,7 @@
     <nav class="nav">
       <ul class="header-nav">
         <li class="nav-element" data-cy="nav-element-start">
-          <router-link to="/">Start</router-link>
+          <router-link to="/home">Start</router-link>
         </li>
         <li class="nav-element" data-cy="nav-element-list">
           <router-link to="/questionlist">Fragen Liste</router-link>
