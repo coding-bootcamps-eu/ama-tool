@@ -9,6 +9,8 @@ describe("Testing the range Fragen List", () => {
   });
 
   it("List element and associated elements should exist", () => {
+    cy.loginQuestionList();
+    cy.visit("http://localhost:8080/questionlist");
     cy.get("[data-cy='list-element']").should("exist");
     cy.get("[data-cy='list-element']").children().should("exist");
   });

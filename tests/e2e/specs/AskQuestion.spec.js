@@ -10,6 +10,8 @@ describe("Test navigation", () => {
   });
   it("should test focus of input fields and buttons", () => {
     //fails if .focus() isn't included in the test
+    cy.loginAskQuestion();
+    cy.visit("http://localhost:8080/askquestion");
     cy.get("[data-cy='input-text-title']").focus().should("have.focus");
     cy.get("[data-cy='input-text-description']").focus().should("have.focus");
     cy.get("[data-cy='preview-button']").focus().should("have.focus");
@@ -39,13 +41,13 @@ describe("Test navigation", () => {
     cy.get("[data-cy='input-radio']").click({ multiple: true });
   });
   it("Preview button should be clickable and get toggled", () => {
-    cy.get("[data-cy='preview-button']").contains("einblenden").click();
+    cy.get("[data-cy='preview-button']").contains("EINBLENDEN").click();
     cy.get("[data-cy='question-preview']").should("exist");
-    cy.get("[data-cy='preview-button']").contains("ausblenden").click();
+    cy.get("[data-cy='preview-button']").contains("AUSBLENDEN").click();
   });
   it("Preview button should be disabled when nothing is typed in description", () => {
     cy.get("[data-cy='input-text-description']").click().clear();
-    cy.get("[data-cy='preview-button']").click().contains("einblenden");
+    cy.get("[data-cy='preview-button']").click().contains("EINBLENDEN");
   });
   it("Database should only send when something is typed", () => {
     //fails if nothing is typed
