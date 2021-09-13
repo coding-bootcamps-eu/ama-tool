@@ -26,6 +26,10 @@ export default {
   line-height: 1.5;
   text-align: justify;
 }
+.lp__welcome-wrapper {
+  max-width: 50ch;
+  margin: 4rem auto;
+}
 .lp__welcome-message {
   margin: 0.5rem 0rem;
 }
