@@ -1,11 +1,15 @@
 <template>
   <section class="lp__welcome-section">
-    <div class="lp__welcome-wrapper">
+    <div class="lp__welcome-wrapper" v-show="!isUserLoggedIn">
       <p>
         Dieses Tool dient dazu Ask Me Anything Sessions vorzubereiten.
         <b>Bitte logge dich</b> mit deinem <b>GitHub Account</b> ein, um die
         Funktionen des Tools nutzen zu können.
       </p>
+      <div class="lp__login-wrapper"><UserLogin /></div>
+    </div>
+    <div class="lp__welcome-wrapper" v-show="isUserLoggedIn">
+      <p>Du bist eingeloggt! Viel Erfolg bei der Nutzung des AMA-Tools</p>
       <div class="lp__login-wrapper"><UserLogin /></div>
     </div>
   </section>
@@ -17,6 +21,11 @@ import UserLogin from "@/components/UserLogin/UserLogin.vue";
 export default {
   name: "Landing Page",
   components: { UserLogin },
+  computed: {
+    isUserLoggedIn() {
+      return sessionStorage.getItem("userID") === null ? false : true;
+    },
+  },
 };
 </script>
 

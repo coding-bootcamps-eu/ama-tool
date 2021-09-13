@@ -3,11 +3,17 @@
     <div ref="sideNav" class="bm-menu">
       <nav class="bm-item-list">
         <slot>
-          <router-link @click="closeMenu" to="/questionlist"
+          <router-link
+            @click="closeMenu"
+            v-show="isUserLoggedIn"
+            to="/questionlist"
             >Fragen Liste</router-link
           >
 
-          <router-link @click="closeMenu" to="/askquestion"
+          <router-link
+            v-show="isUserLoggedIn"
+            @click="closeMenu"
+            to="/askquestion"
             >Frage stellen</router-link
           >
           <UserLogin />
@@ -104,6 +110,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+  },
+  computed: {
+    isUserLoggedIn() {
+      return sessionStorage.getItem("userID") === null ? false : true;
     },
   },
   methods: {
