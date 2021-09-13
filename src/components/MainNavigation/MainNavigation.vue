@@ -20,19 +20,21 @@
     </header>
     <nav class="nav">
       <ul class="header-nav">
-        <li class="nav-element" data-cy="nav-element-start">
-          <router-link to="/home">Start</router-link>
-        </li>
-        <li class="nav-element" data-cy="nav-element-list">
+        <li
+          v-show="isUserLoggedIn"
+          class="nav-element"
+          data-cy="nav-element-list"
+        >
           <router-link to="/questionlist">Fragen Liste</router-link>
         </li>
-        <li class="nav-element" data-cy="nav-element-ask">
+        <li
+          v-show="isUserLoggedIn"
+          class="nav-element"
+          data-cy="nav-element-ask"
+        >
           <router-link to="/askquestion">Frage stellen</router-link>
         </li>
-        <li class="nav-element" data-cy="nav-element-team">
-          <router-link to="/team">Team</router-link>
-        </li>
-        <li class="nav-login">
+        <li v-show="isUserLoggedIn" class="nav-login">
           <UserLogin />
         </li>
       </ul>
@@ -44,6 +46,11 @@ import UserLogin from "@/components/UserLogin/UserLogin.vue";
 export default {
   name: "MainNavigation",
   components: { UserLogin },
+  computed: {
+    isUserLoggedIn() {
+      return sessionStorage.getItem("userID") === null ? false : true;
+    },
+  },
 };
 </script>
 

@@ -26,6 +26,11 @@
           >
         </li>
         <li data-cy="footer-element">
+          <router-link to="/about" data-cy="footer-element-about"
+            >About</router-link
+          >
+        </li>
+        <li data-cy="footer-element">
           <a
             href="https://www.coding-bootcamps.eu/bewerben/"
             target="_blank"

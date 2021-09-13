@@ -3,7 +3,7 @@ import Home from "../views/Home.vue";
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: Home,
   },
@@ -11,6 +11,12 @@ const routes = [
     path: "/team",
     name: "Team",
     component: () => import(/* webpackChunkName: "team" */ "../views/Team.vue"),
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
     path: "/askquestion",
